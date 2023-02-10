@@ -23,7 +23,7 @@ const Navigation: React.FunctionComponent<NavigationProps> = (props) => {
             sx={{ p: 0 }}
             label="講義検索"
             icon={<SearchIcon />}
-            onClick={() => navigate(`/search`)}
+            onClick={() => navigate(`/classes`)}
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
