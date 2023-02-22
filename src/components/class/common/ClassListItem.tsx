@@ -17,7 +17,6 @@ export const ClassListItem = ({ classItem }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   return (
     <>
-      <Divider />
       <Box sx={{ py: 1, px: 2, background: isFavorite ? orange[50] : '' }}>
         <Typography variant="h6" component="div" gutterBottom>
           {classItem.title}
@@ -70,6 +69,7 @@ export const ClassListItem = ({ classItem }: Props) => {
           </Stack>
         </Stack>
       </Box>
+      <Divider />
     </>
   );
 };
