@@ -2,12 +2,15 @@ import { Container, Paper, TextField } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import Navigation from '../components/general/Navigation';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { SearchQueryInput } from '../components/input/SearchQueryInput';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
+import { classApi } from '../classes.api';
+import { ClassList } from '../components/class/ClassList';
 
 const SearchPage = () => {
   const [query, setQuery] = useState<ClassSearchQuery>({});
+  const filteredClasses = useMemo(() => classApi.getClasses(query), [query]);
 
   return (
     <PageWrapper>
@@ -18,6 +21,7 @@ const SearchPage = () => {
           <TextField multiline fullWidth value={JSON.stringify(query, null, '\t')} />
         </Paper>
       </Container>
+      <ClassList classes={filteredClasses} />
       <Navigation page={1} />
     </PageWrapper>
   );
