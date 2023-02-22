@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { ClassSearchQuery } from '../../types/ClassSearchQuery';
 import { grades } from '../../types/filter/Grade';
 import { semesters } from '../../types/filter/Semester';
@@ -15,48 +15,51 @@ type Props = {
 
 export const SearchQueryInput = ({ query, setQuery }: Props) => {
   return (
-    <Paper sx={{ p: 2, my: 2 }}>
-      <SingleSelector
-        options={years}
-        selectedValue={query.year}
-        onChange={(v) => setQuery({ ...query, year: v })}
-        noneOptionLabel="全て"
-        type="dropdown"
-        label="年度"
-      />
-      <OrganizationSelector selectedOrgId={query} onChange={(v) => setQuery({ ...query, ...v })} />
-      <SingleSelector
-        options={grades}
-        selectedValue={query.grade}
-        onChange={(v) => setQuery({ ...query, grade: v })}
-        noneOptionLabel="全て"
-        type="button"
-        label="学年"
-      />
-      <SingleSelector
-        options={semesters}
-        selectedValue={query.semester}
-        onChange={(v) => setQuery({ ...query, semester: v })}
-        noneOptionLabel="全て"
-        type="button"
-        label="開講時期"
-      />
-      <SingleSelector
-        options={weekdays}
-        selectedValue={query.weekday}
-        onChange={(v) => setQuery({ ...query, weekday: v })}
-        noneOptionLabel="全て"
-        type="button"
-        label="曜日"
-      />
-      <SingleSelector
-        options={times}
-        selectedValue={query.time}
-        onChange={(v) => setQuery({ ...query, time: v })}
-        noneOptionLabel="全て"
-        type="button"
-        label="時限"
-      />
-    </Paper>
+    <Box sx={{ p: 1, my: 2 }}>
+      <Container maxWidth="xl">
+        <SingleSelector
+          options={years}
+          selectedValue={query.year}
+          onChange={(v) => setQuery({ ...query, year: v })}
+          noneOptionLabel="全て"
+          type="dropdown"
+          label="年度"
+        />
+        <OrganizationSelector selectedOrgId={query} onChange={(v) => setQuery({ ...query, ...v })} />
+        <SingleSelector
+          options={grades}
+          selectedValue={query.grade}
+          onChange={(v) => setQuery({ ...query, grade: v })}
+          noneOptionLabel="全て"
+          type="button"
+          label="学年"
+        />
+        <SingleSelector
+          options={semesters}
+          selectedValue={query.semester}
+          onChange={(v) => setQuery({ ...query, semester: v })}
+          noneOptionLabel="全て"
+          type="button"
+          label="開講時期"
+        />
+        <SingleSelector
+          options={weekdays}
+          selectedValue={query.weekday}
+          onChange={(v) => setQuery({ ...query, weekday: v })}
+          noneOptionLabel="全て"
+          type="button"
+          label="曜日"
+        />
+        <SingleSelector
+          options={times}
+          selectedValue={query.time}
+          onChange={(v) => setQuery({ ...query, time: v })}
+          noneOptionLabel="全て"
+          type="button"
+          label="時限"
+        />
+      </Container>
+
+    </Box>
   );
 };

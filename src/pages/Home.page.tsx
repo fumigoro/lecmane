@@ -6,7 +6,7 @@ import Navigation from '../components/general/Navigation';
 
 export const HomePage = () => {
   return (
-    <PageWrapper>
+    <PageWrapper bgColored>
       <Header pageTitle="レクマネ" />
       <Container maxWidth="xl">
         <Box height={100} />

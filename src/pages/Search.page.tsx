@@ -12,8 +12,8 @@ const SearchPage = () => {
   return (
     <PageWrapper>
       <Header pageTitle="講義検索" />
+      <SearchQueryInput query={query} setQuery={setQuery} />
       <Container maxWidth="xl">
-        <SearchQueryInput query={query} setQuery={setQuery} />
         <Paper sx={{ p: 2, my: 2 }}>
           <TextField multiline fullWidth value={JSON.stringify(query, null, '\t')} />
         </Paper>
