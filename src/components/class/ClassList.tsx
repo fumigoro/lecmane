@@ -8,11 +8,11 @@ type Props = {
 };
 
 export const ClassList = ({ classes }: Props) => {
-  const [numOfLoad, setNumOfLoad] = useState(50);
+  const [numOfLoad, setNumOfLoad] = useState(20);
 
   // 表示数を増やす
   const loadMore = () => {
-    const numOfLoadNew = classes.length > numOfLoad + 100 ? numOfLoad + 100 : classes.length;
+    const numOfLoadNew = classes.length > numOfLoad + 30 ? numOfLoad + 30 : classes.length;
     setNumOfLoad(numOfLoadNew);
   };
 
