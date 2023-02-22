@@ -59,7 +59,6 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           label="時限"
         />
       </Container>
-
     </Box>
   );
 };
