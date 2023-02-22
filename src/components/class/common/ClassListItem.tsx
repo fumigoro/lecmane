@@ -8,6 +8,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { useState } from 'react';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import { orange } from '@mui/material/colors';
+import { ClassOpeMenu } from './ClassOpeMenu';
 
 type Props = {
   classItem: Class;
@@ -15,6 +16,7 @@ type Props = {
 
 export const ClassListItem = ({ classItem }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Box sx={{ py: 1, px: 2, background: isFavorite ? orange[50] : '' }}>
@@ -22,7 +24,7 @@ export const ClassListItem = ({ classItem }: Props) => {
           {classItem.title}
         </Typography>
         <Stack direction="row">
-          <Box sx={{ width: '100%' }}>
+          <Box sx={{ width: '100%', cursor: 'pointer' }} onClick={(e) => setOpen(true)}>
             <Typography variant="body2">
               {[classItem.department, classItem.category, classItem.field].join(' / ')}
             </Typography>
@@ -69,6 +71,7 @@ export const ClassListItem = ({ classItem }: Props) => {
           </Stack>
         </Stack>
       </Box>
+      <ClassOpeMenu classItem={classItem} open={open} setOpen={setOpen} />
       <Divider />
     </>
   );
