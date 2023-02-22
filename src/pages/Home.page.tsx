@@ -1,12 +1,12 @@
 import { Box, Container } from '@mui/material';
-import PageWrapper from '../components/common/BackgroundWrapper';
-import { Header } from '../components/common/Header';
-import Navigation from '../components/common/Navigation';
 
+import PageWrapper from '../components/general/BackgroundWrapper';
+import { Header } from '../components/general/Header';
+import Navigation from '../components/general/Navigation';
 
 export const HomePage = () => {
   return (
-    <PageWrapper >
+    <PageWrapper>
       <Header pageTitle="レクマネ" />
       <Container maxWidth="xl">
         <Box height={100} />

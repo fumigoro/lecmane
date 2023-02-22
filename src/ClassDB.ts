@@ -315,7 +315,7 @@ export default class classDB {
       const classItem = await this.getClassDetails(selected.takeYear, selected.id);
       if (classItem) {
         // 当該学期のものだけ抽出して返す
-        if (this.filterSemester(this.detail2summary(classItem), semester.toString())){
+        if (this.filterSemester(this.detail2summary(classItem), semester.toString())) {
           returnList.push(classItem);
         }
       } else {
@@ -555,7 +555,7 @@ export default class classDB {
   }
 
   public static getSemester<T>(date: Date, returnValues: T[], full?: boolean) {
-    if(full){
+    if (full) {
       const month = date.getMonth() + 1;
 
       if (3 <= month && month <= 8) {

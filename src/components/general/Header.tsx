@@ -37,7 +37,7 @@ export const Header = (props: HeaderProps) => {
               noWrap
               sx={{ mr: 2, display: 'block', color: '#000', fontWeight: 'bold', margin: { xs: 'auto', md: 0 } }}
             >
-              <img src="/image/logo_128.png" height={30} style={{ marginRight: 3 }} alt='レクマネのロゴ' />
+              <img src="/image/logo_128.png" height={30} style={{ marginRight: 3 }} alt="レクマネのロゴ" />
               {props.pageTitle}
             </Typography>
           </Toolbar>
