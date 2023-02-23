@@ -18,7 +18,6 @@ const SearchPage = () => {
       setFilteredClasses(classes);
     });
   }, [query]);
-  // const filteredClasses = useMemo(() => classApi.getClasses(query), [query]);
 
   useEffect(() => {
     StorageIO.set(Key.SEARCH_QUERY, JSON.stringify(query));
