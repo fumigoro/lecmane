@@ -1,4 +1,4 @@
-export type Time = 1 | 2 | 3 | 4 | 5;
+export type Time = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 export const times: {
   value: Time;
@@ -23,5 +23,13 @@ export const times: {
   {
     value: 5,
     label: '5'
+  },
+  {
+    value: 6,
+    label: '6'
+  },
+  {
+    value: 7,
+    label: '7'
   }
 ];
