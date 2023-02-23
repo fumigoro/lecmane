@@ -9,9 +9,17 @@ import { classApi } from '../classes.api';
 import { ClassList } from '../components/class/ClassList';
 import { Key, StorageIO } from '../lib/storage';
 import { Class } from '../types/global';
+import { years } from '../types/filter/Year';
+
+const queryDefault: ClassSearchQuery = {
+  year: years[0].value,
+  flags: []
+};
 
 const SearchPage = () => {
-  const [query, setQuery] = useState<ClassSearchQuery>(JSON.parse(StorageIO.get(Key.SEARCH_QUERY) || '{"flags":[]}'));
+  const [query, setQuery] = useState<ClassSearchQuery>(
+    JSON.parse(StorageIO.get(Key.SEARCH_QUERY) || JSON.stringify(queryDefault))
+  );
   const [filteredClasses, setFilteredClasses] = useState<Class[]>([]);
   useEffect(() => {
     classApi.getClasses(query).then((classes) => {

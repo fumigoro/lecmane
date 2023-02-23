@@ -29,7 +29,6 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           options={years}
           selectedValue={query.year}
           onChange={(v) => setQuery({ ...query, year: v })}
-          noneOptionLabel="全て"
           type="dropdown"
           label="年度"
         />

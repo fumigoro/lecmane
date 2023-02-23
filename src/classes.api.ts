@@ -4,12 +4,12 @@ import { ClassSearchQuery } from './types/ClassSearchQuery';
 import { Categories } from './types/filter/Category';
 import { Flags } from './types/filter/Flag';
 import { Organizations } from './types/filter/Organization';
-import { Year } from './types/filter/Year';
+import { Year, years } from './types/filter/Year';
 
 import { Class, Favorite } from './types/global';
 
 // 講義データが利用可能な年度
-export const AVAILABLE_YEARS = [2022, 2021];
+export const AVAILABLE_YEARS = years.map((y) => y.value);
 
 class ClassApi {
   // 講義の検索用一覧データ
