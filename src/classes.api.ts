@@ -4,8 +4,9 @@ import { ClassSearchQuery } from './types/ClassSearchQuery';
 import { Categories } from './types/filter/Category';
 import { Flags } from './types/filter/Flag';
 import { Organizations } from './types/filter/Organization';
+import { Year } from './types/filter/Year';
 
-import { Class } from './types/global';
+import { Class, Favorite } from './types/global';
 
 // 講義データが利用可能な年度
 export const AVAILABLE_YEARS = [2022, 2021];
@@ -14,6 +15,7 @@ class ClassApi {
   // 講義の検索用一覧データ
   private classList: Class[];
   private initialized: boolean = false;
+  private favoriteList: Favorite[] = [];
 
   constructor() {
     this.classList = [];
@@ -24,7 +26,7 @@ class ClassApi {
    * インスタンス化後、どのメソッドよりも最初に実行する必要がある。
    * @returns
    */
-  public async initialize() {
+  public async initializeClassList() {
     const cachedListString = StorageIO.get(Key.CLASS_LIST);
     const localDataTimestampString = StorageIO.get(Key.DATA_TIMESTAMP);
     // キャッシュが存在しない場合は全取得
@@ -53,13 +55,64 @@ class ClassApi {
     console.log('Class Api Initialized.');
   }
 
+  public initializeFavoriteList() {
+    const fListString = StorageIO.get(Key.FAVORITE_LIST);
+    this.favoriteList = JSON.parse(fListString || '[]');
+  }
+
+  /**
+   * 講義をお気に入り登録する
+   * @param year
+   * @param classId
+   * @returns 既に登録済みだった場合はFalse、この操作で登録された場合はTrueを返す
+   */
+  public addFavorite(year: Year, classId: string) {
+    if (this.favoriteList.findIndex((f) => f.year === year && f.classId === classId) !== -1) {
+      return false;
+    }
+    // console.log(`追加${classId}`)
+    this.favoriteList.push({
+      year,
+      classId
+    });
+    StorageIO.set(Key.FAVORITE_LIST, JSON.stringify(this.favoriteList));
+    return true;
+  }
+
+  /**
+   * 講義をお気に入りから削除する
+   * @param year
+   * @param classId
+   * @returns 元々未登録みだった場合はFalse、この操作で削除された場合はTrueを返す
+   */
+  public removeFavorite(year: Year, classId: string) {
+    const index = this.favoriteList.findIndex((f) => f.year === year && f.classId === classId);
+    if (index === -1) {
+      return false;
+    }
+    // console.log(`削除${classId}`)
+    this.favoriteList.splice(index, 1);
+    StorageIO.set(Key.FAVORITE_LIST, JSON.stringify(this.favoriteList));
+    return true;
+  }
+
+  /**
+   * この講義がお気に入り登録済みかを返す
+   * @param year
+   * @param classId
+   * @returns
+   */
+  public isFavorite(year: Year, classId: string) {
+    return this.favoriteList.findIndex((f) => f.year === year && f.classId === classId) !== -1;
+  }
+
   /**
    * 講義一覧をクエリで絞り込んで返す
    * @param q クエリ
    */
   public async getClasses(q: ClassSearchQuery) {
     if (!this.initialized) {
-      await this.initialize();
+      await this.initializeClassList();
     }
     let filteredClasses = [...this.classList];
     if (q.id) {
@@ -146,5 +199,6 @@ class ClassApi {
 export default ClassApi;
 
 export const classApi = new ClassApi();
+classApi.initializeFavoriteList();
 // classApi.initialize().then(() => {
 // });

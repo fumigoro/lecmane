@@ -9,14 +9,16 @@ import { useState } from 'react';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import { orange } from '@mui/material/colors';
 import { ClassOpeMenu } from './ClassOpeMenu';
+import { classApi } from '../../../classes.api';
 
 type Props = {
   classItem: Class;
 };
 
 export const ClassListItem = ({ classItem }: Props) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(classApi.isFavorite(classItem.year, classItem.id));
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <Box sx={{ py: 1, px: 2, background: isFavorite ? orange[50] : '' }}>
@@ -64,7 +66,14 @@ export const ClassListItem = ({ classItem }: Props) => {
                 icon={<StarBorderIcon color="primary" />}
                 checkedIcon={<StarIcon />}
                 checked={isFavorite}
-                onChange={(e) => setIsFavorite(e.target.checked)}
+                onChange={(e) => {
+                  setIsFavorite(e.target.checked);
+                  if (e.target.checked) {
+                    classApi.addFavorite(classItem.year, classItem.id);
+                  } else {
+                    classApi.removeFavorite(classItem.year, classItem.id);
+                  }
+                }}
                 sx={{ p: 0 }}
               />
               <Typography sx={{ fontSize: 12, textAlign: 'center' }} color="primary">

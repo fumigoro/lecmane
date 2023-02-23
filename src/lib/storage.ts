@@ -21,6 +21,10 @@ export class Key {
    * 検索クエリ
    */
   public static SEARCH_QUERY: StorageIOKey = { key: 'lecmane_search_query', chunk: false };
+  /**
+   * お気に入りリスト
+   */
+  public static FAVORITE_LIST: StorageIOKey = { key: 'lecmane_favorite_list', chunk: true };
 }
 
 //  LocalStorageAPIをラップする。5MBを超える巨大な文字列データの場合、分割してlocalStorageに出し入れするクラス。

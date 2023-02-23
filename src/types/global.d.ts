@@ -1,3 +1,5 @@
+import { Year } from './filter/Year';
+
 export type Faculty = {
   name: string;
   id: string;
@@ -16,7 +18,7 @@ export type Class = {
   takeYear: number;
   id: string;
   customId: string;
-  year: number;
+  year: Year;
   title: string;
   url: string;
   semester: string;
@@ -48,7 +50,7 @@ export type ClassDetails = {
   hasDetails: boolean;
   id: string;
   customId: string;
-  year: number;
+  year: Year;
   title: string;
   englishTitle: string;
   teachers: string[];
@@ -107,4 +109,8 @@ export type NewsContent = {
   date: string;
   title: string;
   body: string;
+};
+export type Favorite = {
+  classId: string;
+  year: Year;
 };

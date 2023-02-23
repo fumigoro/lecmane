@@ -43,7 +43,9 @@ export const ClassList = ({ classes }: Props) => {
     <>
       <div>{classes.length}</div>
       <div>{numOfLoad}</div>
-      {classes.flatMap((c, index) => (index < numOfLoad ? [<ClassListItem key={index} classItem={c} />] : []))}
+      {classes.flatMap((c, index) =>
+        index < numOfLoad ? [<ClassListItem key={`${index}${c.year}${c.id}`} classItem={c} />] : []
+      )}
       <div ref={ref} onClick={() => loadMore()} id="load_more" />
       {classes.length > numOfLoad && (
         <Box sx={{ my: 2, p: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
