@@ -1,10 +1,13 @@
 import { Box, Container } from '@mui/material';
+import { useEffect } from 'react';
 import { ClassSearchQuery } from '../../types/ClassSearchQuery';
 import { grades } from '../../types/filter/Grade';
 import { semesters } from '../../types/filter/Semester';
 import { times } from '../../types/filter/Time';
 import { weekdays } from '../../types/filter/Weekday';
 import { years } from '../../types/filter/Year';
+import { CategorySelector } from './common/CategorySelector';
+import { FlagCheckbox } from './common/FlagCheckbox';
 import { OrganizationSelector } from './common/OrganizationSelector';
 import { SingleSelector } from './common/SingleSelector';
 
@@ -14,8 +17,13 @@ type Props = {
 };
 
 export const SearchQueryInput = ({ query, setQuery }: Props) => {
+  // 学部変更時にカテゴリー条件をリセット
+  useEffect(() => {
+    setQuery({ ...query, category: undefined, flags: [] });
+  }, [query.faculty]);
+
   return (
-    <Box sx={{ p: 1, my: 2 }}>
+    <Box sx={{ my: 2 }}>
       <Container maxWidth="xl">
         <SingleSelector
           options={years}
@@ -26,6 +34,13 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           label="年度"
         />
         <OrganizationSelector selectedOrgId={query} onChange={(v) => setQuery({ ...query, ...v })} />
+        <CategorySelector query={query} onChange={(v) => setQuery({ ...query, category: v })} />
+        <FlagCheckbox
+          query={query}
+          onChange={(v) => {
+            setQuery({ ...query, flags: v });
+          }}
+        />
         <SingleSelector
           options={grades}
           selectedValue={query.grade}

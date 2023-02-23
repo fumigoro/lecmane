@@ -15,6 +15,12 @@ export const ClassList = ({ classes }: Props) => {
     const numOfLoadNew = classes.length > numOfLoad + 30 ? numOfLoad + 30 : classes.length;
     setNumOfLoad(numOfLoadNew);
   };
+  // 検索条件の変更によりヒット件数が変わった場合は、numOfLoadをリセット
+  useEffect(() => {
+    if (classes.length > 0) {
+      setNumOfLoad(Math.min(classes.length, 20));
+    }
+  }, [classes]);
 
   // 一番下に設置したダミー要素が画面内に入ったら表示数を増やすクリックイベントを持った要素をクリックしイベント発動
   const ref = useRef<HTMLDivElement>(null);
@@ -36,6 +42,7 @@ export const ClassList = ({ classes }: Props) => {
   return (
     <>
       <div>{classes.length}</div>
+      <div>{numOfLoad}</div>
       {classes.flatMap((c, index) => (index < numOfLoad ? [<ClassListItem key={index} classItem={c} />] : []))}
       <div ref={ref} onClick={() => loadMore()} id="load_more" />
       {classes.length > numOfLoad && (

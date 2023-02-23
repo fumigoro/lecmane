@@ -17,6 +17,10 @@ export class Key {
    * 現在ローカルにあるデータの更新日（＝バージョン）
    */
   public static DATA_TIMESTAMP: StorageIOKey = { key: 'lecmane_class_data_last_updated', chunk: false };
+  /**
+   * 検索クエリ
+   */
+  public static SEARCH_QUERY: StorageIOKey = { key: 'lecmane_search_query', chunk: false };
 }
 
 //  LocalStorageAPIをラップする。5MBを超える巨大な文字列データの場合、分割してlocalStorageに出し入れするクラス。

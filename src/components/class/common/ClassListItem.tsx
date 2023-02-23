@@ -20,7 +20,7 @@ export const ClassListItem = ({ classItem }: Props) => {
   return (
     <>
       <Box sx={{ py: 1, px: 2, background: isFavorite ? orange[50] : '' }}>
-        <Typography variant="h6" component="div" gutterBottom>
+        <Typography variant="h6" component="div" gutterBottom onClick={(e) => setOpen(true)}>
           {classItem.title}
         </Typography>
         <Stack direction="row">
@@ -51,7 +51,10 @@ export const ClassListItem = ({ classItem }: Props) => {
             <Stack direction="row" alignItems={'center'} justifyContent="space-between">
               <Stack direction="row" spacing={0.3}>
                 <SchoolIcon sx={{ color: 'gray', fontSize: 16 }} />
-                <Typography variant="body2">{classItem.teachers[0]}</Typography>
+                <Typography variant="body2">
+                  {classItem.teachers[0]}
+                  {classItem.teachers.length > 2 && ' ほか'}
+                </Typography>
               </Stack>
             </Stack>
           </Box>

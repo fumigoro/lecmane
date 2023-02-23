@@ -2,15 +2,27 @@ import { Container, Paper, TextField } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import Navigation from '../components/general/Navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SearchQueryInput } from '../components/input/SearchQueryInput';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
 import { classApi } from '../classes.api';
 import { ClassList } from '../components/class/ClassList';
+import { Key, StorageIO } from '../lib/storage';
+import { Class } from '../types/global';
 
 const SearchPage = () => {
-  const [query, setQuery] = useState<ClassSearchQuery>({});
-  const filteredClasses = useMemo(() => classApi.getClasses(query), [query]);
+  const [query, setQuery] = useState<ClassSearchQuery>(JSON.parse(StorageIO.get(Key.SEARCH_QUERY) || '{"flags":[]}'));
+  const [filteredClasses, setFilteredClasses] = useState<Class[]>([]);
+  useEffect(() => {
+    classApi.getClasses(query).then((classes) => {
+      setFilteredClasses(classes);
+    });
+  }, [query]);
+  // const filteredClasses = useMemo(() => classApi.getClasses(query), [query]);
+
+  useEffect(() => {
+    StorageIO.set(Key.SEARCH_QUERY, JSON.stringify(query));
+  }, [query]);
 
   return (
     <PageWrapper>
