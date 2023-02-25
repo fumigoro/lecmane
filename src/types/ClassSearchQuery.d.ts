@@ -20,4 +20,5 @@ export type ClassSearchQuery = {
   category?: string;
   grade?: Grade;
   flags: string[];
+  isFavorite?: boolean;
 };

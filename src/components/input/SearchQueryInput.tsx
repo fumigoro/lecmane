@@ -72,6 +72,14 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           type="button"
           label="時限"
         />
+        <SingleSelector
+          options={[{ value: true, label: '登録済み' }]}
+          selectedValue={query.isFavorite}
+          onChange={(v) => setQuery({ ...query, isFavorite: v })}
+          noneOptionLabel="全て"
+          type="button"
+          label="お気に入り登録"
+        />
       </Container>
     </Box>
   );

@@ -177,6 +177,12 @@ class ClassApi {
         filteredClasses = filteredClasses.filter((c) => c.id.match(r) !== null);
       }
     });
+    if (q.isFavorite) {
+      filteredClasses = filteredClasses.filter((c) => {
+        const index = this.favoriteList.findIndex((f) => f.classId === c.id && f.year === c.year);
+        return index !== -1;
+      });
+    }
     return filteredClasses;
   }
 
