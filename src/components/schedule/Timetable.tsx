@@ -15,10 +15,10 @@ type Props = {
 
 export const Timetable = ({ year, semester }: Props) => {
   const [timetable, setTimetable] = useState<Class[][][]>([]);
+
   useEffect(() => {
     classApi.getTimetable(year, semester).then((tt) => {
       setTimetable(tt);
-      console.log(tt);
     });
   }, [year, semester]);
 
@@ -27,14 +27,14 @@ export const Timetable = ({ year, semester }: Props) => {
       <Grid container spacing={0.5}>
         {[
           // 表の右上のセル
-          <Grid item xs={1} key="root">
+          <Grid item xs={0.6} key="root">
             <TimetableCellBase>
               <Typography align="center"></Typography>
             </TimetableCellBase>
           </Grid>,
           // 表の1行目、曜日表示セル
           weekdays.map((w) => (
-            <Grid item xs={2.2} key={w.value}>
+            <Grid item xs={2.28} key={w.value}>
               <TimetableCellBase>
                 <Typography align="center">{w.value}</Typography>
               </TimetableCellBase>
@@ -42,14 +42,16 @@ export const Timetable = ({ year, semester }: Props) => {
           )),
           ...timetable.flatMap((time, tIndex) => [
             // 表の1列目、時限表示セル
-            <Grid item xs={1} key={`${tIndex}-header`}>
+            <Grid item xs={0.6} key={`${tIndex}-header`}>
               <TimetableCellBase>
-                <Typography align="center">{times[tIndex].label}</Typography>
+                <Typography align="center" variant="body2">
+                  {times[tIndex].label}
+                </Typography>
               </TimetableCellBase>
             </Grid>,
             ...time.flatMap((weekday, wIndex) => (
               // 通常セル
-              <Grid item xs={2.2} key={`${tIndex}-${wIndex}`}>
+              <Grid item xs={2.28} key={`${tIndex}-${wIndex}`}>
                 <TimetableCell classes={weekday} />
               </Grid>
             ))

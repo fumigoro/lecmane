@@ -6,7 +6,7 @@ import { Flags } from './types/filter/Flag';
 import { Organizations } from './types/filter/Organization';
 import { Semester } from './types/filter/Semester';
 import { times } from './types/filter/Time';
-import { weekdays, weekdaysFull } from './types/filter/Weekday';
+import { weekdays } from './types/filter/Weekday';
 import { Year, years } from './types/filter/Year';
 
 import { Class, Favorite } from './types/global';
