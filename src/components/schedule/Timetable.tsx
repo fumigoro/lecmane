@@ -52,7 +52,7 @@ export const Timetable = ({ year, semester }: Props) => {
             ...time.flatMap((weekday, wIndex) => (
               // 通常セル
               <Grid item xs={2.28} key={`${tIndex}-${wIndex}`}>
-                <TimetableCell classes={weekday} />
+                <TimetableCell classes={weekday} key={`${tIndex}-${wIndex}`} />
               </Grid>
             ))
           ])

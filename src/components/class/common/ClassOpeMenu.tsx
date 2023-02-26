@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Divider,
@@ -22,6 +21,7 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 import { Class } from '../../../types/global';
+import { mainTheme } from '../../../styles/theme';
 
 type Props = {
   classItem: Class;
@@ -118,12 +118,12 @@ export const ClassOpeMenu = ({ classItem, open, setOpen }: Props) => {
             <ListItem disablePadding>
               <ListItemButton
                 onClick={(event) => handleOpenDetailPage(classItem.id, classItem.year)}
-                sx={{ bgcolor: orange[50] }}
+                sx={{ bgcolor: mainTheme.palette.primary.light }}
               >
                 <ListItemIcon>
                   <ArticleOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="NEW! 講義の詳細を見る" />
+                <ListItemText primary="講義の詳細を見る" />
               </ListItemButton>
             </ListItem>
             <Divider />
