@@ -23,7 +23,14 @@ export const weekdays: {
   {
     value: '金',
     label: '金'
-  },
+  }
+];
+
+export const weekdaysFull: {
+  value: Weekday;
+  label: string;
+}[] = [
+  ...weekdays,
   {
     value: '集中',
     label: '集中'

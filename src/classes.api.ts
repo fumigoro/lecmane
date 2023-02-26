@@ -4,6 +4,9 @@ import { ClassSearchQuery } from './types/ClassSearchQuery';
 import { Categories } from './types/filter/Category';
 import { Flags } from './types/filter/Flag';
 import { Organizations } from './types/filter/Organization';
+import { Semester } from './types/filter/Semester';
+import { times } from './types/filter/Time';
+import { weekdays, weekdaysFull } from './types/filter/Weekday';
 import { Year, years } from './types/filter/Year';
 
 import { Class, Favorite } from './types/global';
@@ -114,6 +117,10 @@ class ClassApi {
     if (!this.initialized) {
       await this.initializeClassList();
     }
+    return this.getClassesWithoutInitCheck(q);
+  }
+
+  private getClassesWithoutInitCheck(q: ClassSearchQuery) {
     let filteredClasses = [...this.classList];
     if (q.id) {
       filteredClasses = filteredClasses.filter((c) => c.id === q.id);
@@ -184,6 +191,28 @@ class ClassApi {
       });
     }
     return filteredClasses;
+  }
+
+  public async getTimetable(year: Year, semester: Semester) {
+    if (!this.initialized) {
+      await this.initializeClassList();
+    }
+
+    const timetable = times.map((time) => {
+      // 集中講義はweekdaysに含まれない。
+      return weekdays.flatMap((weekday) => {
+        const q: ClassSearchQuery = {
+          year,
+          semester,
+          weekday: weekday.value,
+          time: time.value,
+          flags: [],
+          isFavorite: true
+        };
+        return [this.getClassesWithoutInitCheck(q)];
+      });
+    });
+    return timetable;
   }
 
   /**

@@ -4,7 +4,7 @@ import { ClassSearchQuery } from '../../types/ClassSearchQuery';
 import { grades } from '../../types/filter/Grade';
 import { semesters } from '../../types/filter/Semester';
 import { times } from '../../types/filter/Time';
-import { weekdays } from '../../types/filter/Weekday';
+import { weekdaysFull } from '../../types/filter/Weekday';
 import { years } from '../../types/filter/Year';
 import { CategorySelector } from './common/CategorySelector';
 import { FlagCheckbox } from './common/FlagCheckbox';
@@ -57,7 +57,7 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           label="開講時期"
         />
         <SingleSelector
-          options={weekdays}
+          options={weekdaysFull}
           selectedValue={query.weekday}
           onChange={(v) => setQuery({ ...query, weekday: v })}
           noneOptionLabel="全て"

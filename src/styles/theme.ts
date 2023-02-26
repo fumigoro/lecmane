@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 import { orange, pink } from '@mui/material/colors';
 
-export const theme = createTheme({
+export const mainTheme = createTheme({
   typography: {
     fontSize: 13,
     fontWeightLight: 300,
@@ -24,7 +24,10 @@ export const theme = createTheme({
     button: { textTransform: 'none' }
   },
   palette: {
-    primary: orange,
+    primary: {
+      main: orange[500],
+      light: orange[100]
+    },
     secondary: pink
   }
 });

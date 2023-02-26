@@ -1,4 +1,8 @@
-export const SEMESTER = {
+export const SEMESTER: {
+  SPRING: Semester;
+  FALL: Semester;
+  ALL: Semester;
+} = {
   SPRING: '1',
   FALL: '2',
   ALL: '3'
