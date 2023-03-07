@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { orange, pink } from '@mui/material/colors';
+import { grey, orange } from '@mui/material/colors';
 
 export const mainTheme = createTheme({
   typography: {
@@ -28,6 +28,8 @@ export const mainTheme = createTheme({
       main: orange[500],
       light: orange[100]
     },
-    secondary: pink
+    secondary: {
+      main: grey[800]
+    }
   }
 });

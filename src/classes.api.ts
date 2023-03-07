@@ -223,7 +223,7 @@ class ClassApi {
    */
   public async getSyllabus(year: number, id: string) {
     const key = `C${year}${id}`;
-    if (key in this.syllabusDict){
+    if (key in this.syllabusDict) {
       return this.syllabusDict[key];
     }
     try {
