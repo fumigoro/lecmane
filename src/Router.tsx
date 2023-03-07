@@ -5,6 +5,7 @@ import FavoritePage from './pages/Favorite.page';
 import { HomePage } from './pages/Home.page';
 import SchedulePage from './pages/Schedule.page';
 import ClassesPage from './pages/Search.page';
+import TextbookPage from './pages/Textbook.page';
 import { mainTheme } from './styles/theme';
 
 const Router = () => {
@@ -16,6 +17,7 @@ const Router = () => {
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/favorite" element={<FavoritePage />} />
+          <Route path="/textbook" element={<TextbookPage />} />
         </Routes>
       </ThemeProvider>
     </Box>

@@ -1,7 +1,7 @@
 import { AVAILABLE_YEARS } from '../classes.api';
 import filterConfig from '../json/filter_config.json';
 import { Key, StorageIO } from './storage';
-import { Class, ClassDetails } from '../types/global';
+import { Class, FullClass } from '../types/global';
 
 // S3上のデータを取得する関数
 
@@ -96,7 +96,7 @@ export const getSyllabusOne = async (year: number, id: string) => {
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
     const body = await response.json();
-    const syllabus: ClassDetails = body;
+    const syllabus: FullClass = body;
     console.log(`fetch ${year} ${id}.json`);
     return syllabus;
   } catch (error) {

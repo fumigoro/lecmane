@@ -33,6 +33,21 @@ export type Class = {
   type: string;
   credit: number;
 };
+export type FullClass = Class & {
+  timestamp: string;
+  details: {
+    outline: string;
+    goals: string;
+    schedule: string[] | null;
+    scheduleComment: string | null;
+    scheduleOrigin: string;
+    grading: string;
+    evaluationPerspective: string;
+    textbook: TextBook[];
+    textComment: string;
+    note: string;
+  };
+};
 export type FlagFilterState = {
   id: string;
   target: string;

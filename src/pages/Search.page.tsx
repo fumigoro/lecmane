@@ -9,12 +9,7 @@ import { classApi } from '../classes.api';
 import { ClassList } from '../components/class/ClassList';
 import { Key, StorageIO } from '../lib/storage';
 import { Class } from '../types/global';
-import { years } from '../types/filter/Year';
-
-const queryDefault: ClassSearchQuery = {
-  year: years[0].value,
-  flags: []
-};
+import { queryDefault } from '../types/filter/QueryDefault';
 
 const SearchPage = () => {
   const [query, setQuery] = useState<ClassSearchQuery>(
