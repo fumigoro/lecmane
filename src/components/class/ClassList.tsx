@@ -41,8 +41,7 @@ export const ClassList = ({ classes }: Props) => {
 
   return (
     <>
-      <div>{classes.length}</div>
-      <div>{numOfLoad}</div>
+      <Typography gutterBottom variant='body2'>{classes.length}件見つかりました</Typography>
       {classes.flatMap((c, index) =>
         index < numOfLoad ? [<ClassListItem key={`${index}${c.year}${c.id}`} classItem={c} />] : []
       )}
