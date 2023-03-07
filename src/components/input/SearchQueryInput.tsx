@@ -20,6 +20,7 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
   // 学部変更時にカテゴリー条件をリセット
   useEffect(() => {
     setQuery({ ...query, category: undefined, flags: [] });
+    // eslint-disable-next-line
   }, [query.faculty]);
 
   return (

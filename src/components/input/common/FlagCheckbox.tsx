@@ -13,6 +13,7 @@ export const FlagCheckbox = ({ query, onChange }: Props) => {
 
   useEffect(() => {
     onChange([...flags.filter((f) => f.default).map((f) => f.id)]);
+    // eslint-disable-next-line
   }, [flags]);
 
   return (
