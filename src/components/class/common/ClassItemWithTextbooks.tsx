@@ -1,4 +1,4 @@
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, Paper } from '@mui/material';
 import { Class, FullClass } from '../../../types/global';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
@@ -7,6 +7,9 @@ import SchoolIcon from '@mui/icons-material/School';
 import { useEffect, useState } from 'react';
 import { ClassOpeMenu } from './ClassOpeMenu';
 import { classApi } from '../../../classes.api';
+import { TextbookItem, TextbookItemSkelton } from './TextbookItem';
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import { mainTheme } from '../../../styles/theme';
 
 type Props = {
   classItem: Class;
@@ -30,11 +33,11 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
   }, [classItem]);
 
   return (
-    <Box sx={{ py: 1 }}>
-      <Typography variant="h6" component="div" gutterBottom onClick={(e) => setOpen(true)}>
-        {classItem.title}
-      </Typography>
+    <Paper sx={{ p: 1, my: 1 }}>
       <Box sx={{ width: '100%', cursor: 'pointer' }} onClick={(e) => setOpen(true)}>
+        <Typography gutterBottom sx={{ fontWeight: 'bold' }}>
+          {classItem.title}
+        </Typography>
         <Stack direction="row" alignItems={'center'} spacing={1} sx={{ my: 1 }}>
           <Stack direction="row" spacing={0.3}>
             <CalendarTodayIcon sx={{ color: 'gray', fontSize: 16 }} />
@@ -62,9 +65,17 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
             </Typography>
           </Stack>
         </Stack>
-        <Typography>{fullData?.details.goals}</Typography>
+        {fullData && fullData.details.textComment && (
+          <Stack direction="row" spacing={0.3} mb={0.5}>
+            <AnnouncementIcon sx={{ fontSize: 16, color: mainTheme.palette.primary.main }} />
+            <Typography variant="body2">{fullData.details.textComment}</Typography>
+          </Stack>
+        )}
       </Box>
+      {fullData && fullData.details.textbook.map((t, index) => <TextbookItem textbook={t} key={index} />)}
+      {!fullData && <TextbookItemSkelton />}
+
       <ClassOpeMenu classItem={classItem} open={open} setOpen={setOpen} />
-    </Box>
+    </Paper>
   );
 };
