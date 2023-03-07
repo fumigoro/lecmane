@@ -9,7 +9,7 @@ import { times } from './types/filter/Time';
 import { weekdays } from './types/filter/Weekday';
 import { Year, years } from './types/filter/Year';
 
-import { Class, Favorite } from './types/global';
+import { Class, Favorite, FullClass } from './types/global';
 
 // 講義データが利用可能な年度
 export const AVAILABLE_YEARS = years.map((y) => y.value);
@@ -19,6 +19,7 @@ class ClassApi {
   private classList: Class[];
   private initialized: boolean = false;
   private favoriteList: Favorite[] = [];
+  private syllabusDict: { [key: string]: FullClass } = {};
 
   constructor() {
     this.classList = [];
@@ -221,8 +222,13 @@ class ClassApi {
    * @param id 講義コード
    */
   public async getSyllabus(year: number, id: string) {
+    const key = `C${year}${id}`;
+    if (key in this.syllabusDict){
+      return this.syllabusDict[key];
+    }
     try {
       const syllabus = await getSyllabusOne(year, id);
+      this.syllabusDict[key] = syllabus;
       return syllabus;
     } catch (error) {
       console.error(error);
