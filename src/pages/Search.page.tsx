@@ -1,7 +1,7 @@
 import { Container, Paper, TextField } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 import { useEffect, useState } from 'react';
 import { SearchQueryInput } from '../components/input/SearchQueryInput';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
@@ -36,7 +36,7 @@ const SearchPage = () => {
         </Paper>
       </Container>
       <ClassList classes={filteredClasses} />
-      <Navigation page={1} />
+      <MobileNavigation page="classes" />
     </PageWrapper>
   );
 };

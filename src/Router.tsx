@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
 import ClassDetailPage from './pages/ClassDetail.page';
 import FavoritePage from './pages/Favorite.page';
+import FeaturesPage from './pages/Features.page';
 import { HomePage } from './pages/Home.page';
 import Mypage from './pages/Mypage.page';
 import SchedulePage from './pages/Schedule.page';
@@ -16,12 +17,14 @@ const Router = () => {
       <ThemeProvider theme={mainTheme}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/classes" element={<ClassesPage />} />
-          <Route path="/classes/:id" element={<ClassDetailPage />} />
           <Route path="/schedule" element={<SchedulePage />} />
-          <Route path="/favorite" element={<FavoritePage />} />
-          <Route path="/textbook" element={<TextbookPage />} />
+          <Route path="/classes" element={<ClassesPage />} />
+          <Route path="/features" element={<FeaturesPage />} />
           <Route path="/mypage" element={<Mypage />} />
+
+          <Route path="/classes/:id" element={<ClassDetailPage />} />
+          <Route path="/textbook" element={<TextbookPage />} />
+          <Route path="/favorite" element={<FavoritePage />} />
         </Routes>
       </ThemeProvider>
     </Box>

@@ -6,7 +6,7 @@ import { ClassDetail } from '../components/class/common/ClassDetail';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 import { Year, years } from '../types/filter/Year';
 import { FullClass } from '../types/global';
 
@@ -59,7 +59,7 @@ const ClassDetailPage = () => {
           </FullScreenMessage>
         )}
       </Container>
-      <Navigation page={-1} />
+      <MobileNavigation />
     </PageWrapper>
   );
 };

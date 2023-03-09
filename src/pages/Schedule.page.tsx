@@ -2,7 +2,7 @@ import { Container } from '@mui/material';
 import { useState } from 'react';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import { Timetable } from '../components/schedule/Timetable';
 import { SEMESTER, semesters } from '../types/filter/Semester';
@@ -32,7 +32,7 @@ const SchedulePage = () => {
         />
       </Container>
       <Timetable year={year} semester={semester} />
-      <Navigation page={2} />
+      <MobileNavigation page="schedule" />
     </PageWrapper>
   );
 };

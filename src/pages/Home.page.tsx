@@ -2,7 +2,7 @@ import { Box, Container } from '@mui/material';
 
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 
 export const HomePage = () => {
   return (
@@ -11,7 +11,7 @@ export const HomePage = () => {
       <Container maxWidth="xl">
         <Box height={100} />
       </Container>
-      <Navigation page={0} />
+      <MobileNavigation page="home" />
     </PageWrapper>
   );
 };

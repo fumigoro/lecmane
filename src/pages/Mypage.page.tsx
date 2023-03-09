@@ -1,19 +1,14 @@
-import { Container, Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
-import { FeatureCard } from '../components/general/FeatureIcon';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 
 const Mypage = () => {
   return (
     <PageWrapper bgColored>
       <Header pageTitle="マイページ" />
-      <Container maxWidth="xl">
-        <Stack spacing={2} sx={{ my: 4 }}>
-          <FeatureCard title="教科書リスト" description="必要な教科書をリストで確認" />
-        </Stack>
-      </Container>
-      <Navigation page={4} />
+      <Container maxWidth="xl"></Container>
+      <MobileNavigation page="mypage" />
     </PageWrapper>
   );
 };

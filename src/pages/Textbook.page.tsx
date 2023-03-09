@@ -4,7 +4,7 @@ import { classApi } from '../classes.api';
 import { ClassItemWithTextbooks } from '../components/class/common/ClassItemWithTextbooks';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
 import { queryDefault } from '../types/filter/QueryDefault';
@@ -43,7 +43,7 @@ const TextbookPage = () => {
           <ClassItemWithTextbooks classItem={c} key={index} />
         ))}
       </Container>
-      <Navigation page={-1} />
+      <MobileNavigation />
     </PageWrapper>
   );
 };

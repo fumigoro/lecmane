@@ -4,7 +4,7 @@ import { classApi } from '../classes.api';
 import { ClassList } from '../components/class/ClassList';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
-import Navigation from '../components/general/Navigation';
+import MobileNavigation from '../components/general/Navigation';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
 import { Year, years } from '../types/filter/Year';
 import { Class } from '../types/global';
@@ -18,7 +18,7 @@ const FavoritePage = () => {
           <FavoriteList year={y.value} title={y.label} key={y.value} />
         ))}
       </Container>
-      <Navigation page={3} />
+      <MobileNavigation />
     </PageWrapper>
   );
 };
