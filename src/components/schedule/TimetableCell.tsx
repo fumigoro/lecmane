@@ -40,20 +40,19 @@ export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) =>
             sx={{
               px: 0.5,
               py: 0.2,
-              fontSize: 4,
               overflow: 'hidden',
               display: '-webkit-box',
               WebkitBoxOrient: 'vertical',
               WebkitLineClamp: '2'
             }}
             align="center"
+            variant='body2'
           >
             {c.title}
           </Typography>
           <Paper sx={{ background: mainTheme.palette.primary.main, px: 0.5, py: 0.2 }} elevation={0}>
             <Typography
               sx={{
-                fontSize: 4,
                 color: 'white',
                 overflow: 'hidden',
                 display: '-webkit-box',
@@ -61,6 +60,7 @@ export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) =>
                 WebkitLineClamp: '2'
               }}
               align="center"
+              variant='body2'
             >
               {shortRoomName(c.room)}
             </Typography>
