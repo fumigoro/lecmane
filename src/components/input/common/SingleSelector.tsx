@@ -1,5 +1,18 @@
-import { Box, InputLabel, ButtonGroup, Button, SxProps, FormControl, MenuItem, Select } from '@mui/material';
-import { useMemo } from 'react';
+import {
+  Box,
+  InputLabel,
+  ButtonGroup,
+  Button,
+  SxProps,
+  FormControl,
+  MenuItem,
+  Select,
+  Grid,
+  Typography,
+  Paper,
+  Stack
+} from '@mui/material';
+import { ReactNode, useMemo } from 'react';
 
 const noneOptionId = 'none_option';
 
@@ -7,10 +20,11 @@ type Props<T> = {
   options: {
     value: T;
     label: string;
+    icon?: ReactNode;
   }[];
   selectedValue: T | undefined;
   onChange: (newValue: T | undefined) => void;
-  type: 'button' | 'dropdown';
+  type: 'button' | 'dropdown' | 'card';
   // 選択しない、全て　のような例外選択肢のラベル。指定しなければ例外選択肢は設けられない。
   noneOptionLabel?: string;
   label?: string;
@@ -111,6 +125,39 @@ export const SingleSelector = <T,>(props: Props<T>) => {
             })}
           </Select>
         </FormControl>
+      );
+    case 'card':
+      return (
+        <Box sx={props.sx}>
+          <Typography variant='h6' gutterBottom my={2}>{props.label}</Typography>
+          <Grid container spacing={1}>
+            {options.map((option, idx) => (
+              <Grid item xs={6} md={3} key={idx}>
+                <Button fullWidth
+                  sx={{ p: 0 }}
+                  onClick={() => props.onChange(option.value)}
+                  disabled={props.disabled}
+                >
+                  <Paper
+                    sx={{
+                      height: '100%',
+                      width: '100%',
+                      p: 2,
+                      border: option.value === props.selectedValue ? '3px solid orange' : ''
+                    }}
+                  >
+                    <Stack direction='row' alignItems='center'  spacing={2}>
+                      {option.icon}
+                      <Typography align="center" variant="h6">
+                        {option.label}
+                      </Typography>
+                    </Stack>
+                  </Paper>
+                </Button>
+              </Grid>
+            ))}
+          </Grid>
+        </Box >
       );
     default:
       return <></>;

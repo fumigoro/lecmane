@@ -129,3 +129,4 @@ export type Favorite = {
   classId: string;
   year: Year;
 };
+export type RoomSearchMethod = 'room' | 'time';

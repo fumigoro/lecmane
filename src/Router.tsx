@@ -6,6 +6,7 @@ import FavoritePage from './pages/Favorite.page';
 import FeaturesPage from './pages/Features.page';
 import { HomePage } from './pages/Home.page';
 import Mypage from './pages/Mypage.page';
+import RoomsPage from './pages/Rooms.page';
 import SchedulePage from './pages/Schedule.page';
 import ClassesPage from './pages/Search.page';
 import TextbookPage from './pages/Textbook.page';
@@ -25,6 +26,7 @@ const Router = () => {
           <Route path="/classes/:id" element={<ClassDetailPage />} />
           <Route path="/features/textbook" element={<TextbookPage />} />
           <Route path="/features/favorite" element={<FavoritePage />} />
+          <Route path="/features/rooms" element={<RoomsPage />} />
         </Routes>
       </ThemeProvider>
     </Box>
