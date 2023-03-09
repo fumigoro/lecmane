@@ -1,6 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { Box } from '@mui/material';
 import { Route, Routes } from 'react-router-dom';
+import ClassDetailPage from './pages/ClassDetail.page';
 import FavoritePage from './pages/Favorite.page';
 import { HomePage } from './pages/Home.page';
 import Mypage from './pages/Mypage.page';
@@ -16,6 +17,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/classes" element={<ClassesPage />} />
+          <Route path="/classes/:id" element={<ClassDetailPage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/favorite" element={<FavoritePage />} />
           <Route path="/textbook" element={<TextbookPage />} />
