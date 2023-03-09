@@ -20,11 +20,11 @@ const Router = () => {
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/profile" element={<Mypage />} />
 
           <Route path="/classes/:id" element={<ClassDetailPage />} />
-          <Route path="/textbook" element={<TextbookPage />} />
-          <Route path="/favorite" element={<FavoritePage />} />
+          <Route path="/features/textbook" element={<TextbookPage />} />
+          <Route path="/features/favorite" element={<FavoritePage />} />
         </Routes>
       </ThemeProvider>
     </Box>

@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  page?: 'home' | 'schedule' | 'classes' | 'features' | 'mypage';
+  page?: 'home' | 'schedule' | 'classes' | 'features' | 'profile';
 };
 
 const MobileNavigation = ({ page }: Props) => {
@@ -48,9 +48,9 @@ const MobileNavigation = ({ page }: Props) => {
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="マイページ"
-            value="mypage"
+            value="profile"
             icon={<AccountCircleIcon />}
-            onClick={() => navigate(`/mypage`)}
+            onClick={() => navigate(`/profile`)}
           />
         </BottomNavigation>
         <Box sx={{ height: '15px' }}></Box>

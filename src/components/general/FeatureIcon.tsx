@@ -7,11 +7,12 @@ import { mainTheme } from '../../styles/theme';
 type Props = {
   title: string;
   description?: string;
+  to: string;
 };
 
-export const FeatureCard = ({ title, description }: Props) => {
+export const FeatureCard = ({ title, description, to }: Props) => {
   return (
-    <InAppLink to="/textbook">
+    <InAppLink to={to}>
       <Paper sx={{ p: 2 }}>
         <Stack alignItems="center" justifyContent="space-between" direction="row">
           <Stack direction="row" spacing={2}>

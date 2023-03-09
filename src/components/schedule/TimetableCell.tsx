@@ -46,7 +46,7 @@ export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) =>
               WebkitLineClamp: '2'
             }}
             align="center"
-            variant='body2'
+            variant="body2"
           >
             {c.title}
           </Typography>
@@ -60,7 +60,7 @@ export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) =>
                 WebkitLineClamp: '2'
               }}
               align="center"
-              variant='body2'
+              variant="body2"
             >
               {shortRoomName(c.room)}
             </Typography>

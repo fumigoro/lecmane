@@ -8,7 +8,7 @@ const Mypage = () => {
     <PageWrapper bgColored>
       <Header pageTitle="マイページ" />
       <Container maxWidth="xl"></Container>
-      <MobileNavigation page="mypage" />
+      <MobileNavigation page="profile" />
     </PageWrapper>
   );
 };
