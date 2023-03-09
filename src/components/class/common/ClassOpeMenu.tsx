@@ -22,6 +22,7 @@ import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 import { Class } from '../../../types/global';
 import { mainTheme } from '../../../styles/theme';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   classItem: Class;
@@ -39,6 +40,8 @@ const InfoBadge = styled(Box)(({ theme }) => ({
 }));
 
 export const ClassOpeMenu = ({ classItem, open, setOpen }: Props) => {
+  const navigate = useNavigate();
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -49,7 +52,7 @@ export const ClassOpeMenu = ({ classItem, open, setOpen }: Props) => {
   };
 
   const handleOpenDetailPage = (id: string, year: number) => {
-    window.location.href = `/classes/${id}?y=${year}`;
+    navigate(`/classes/${id}?y=${year}`);
   };
 
   return (
