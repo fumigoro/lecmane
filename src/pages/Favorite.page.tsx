@@ -12,7 +12,7 @@ import { Class } from '../types/global';
 const FavoritePage = () => {
   return (
     <PageWrapper>
-      <Header pageTitle="お気に入り" />
+      <Header pageTitle="お気に入り" showBackButton />
       <Container maxWidth="xl">
         {years.map((y) => (
           <FavoriteList year={y.value} title={y.label} key={y.value} />

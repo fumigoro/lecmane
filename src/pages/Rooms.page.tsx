@@ -45,7 +45,7 @@ const RoomsPage = () => {
 
   return (
     <PageWrapper bgColored>
-      <Header pageTitle="空き教室検索" />
+      <Header pageTitle="空き教室検索" showBackButton />
       <Container maxWidth="xl">
         {!method && <RoomSearchModeSelect setMethod={setMethod} />}
         {method === 'time' && (

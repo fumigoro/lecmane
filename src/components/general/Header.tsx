@@ -1,45 +1,42 @@
 import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { InAppLink } from './InAppLink';
+import { useNavigate } from 'react-router-dom';
 
 type HeaderProps = {
   pageTitle: string;
-  backButtonPath?: string | undefined;
+  showBackButton?: boolean;
 };
-export const Header = (props: HeaderProps) => {
-  const headerHight = 50;
 
-  const backButton = () => {
-    if (props.backButtonPath) {
-      return (
-        <>
-          <IconButton sx={{ position: { xs: 'absolute', md: 'static' } }} href={props.backButtonPath}>
-            <ArrowBackIosNewIcon />
-          </IconButton>
-        </>
-      );
-    } else {
-      return <></>;
-    }
-  };
+export const Header = ({ pageTitle, showBackButton }: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const headerHight = 50;
 
   return (
     <>
-      <AppBar position="static" sx={{ height: headerHight, background: '#fafafa', boxShadow: 'none' }}>
+      <AppBar position="static" sx={{ height: headerHight, background: 'white', boxShadow: 'none' }}>
         <Container maxWidth="xl" sx={{ height: headerHight }}>
-          <Toolbar
-            disableGutters
-            variant="dense"
-            sx={{ height: headerHight, position: { xs: 'relative', md: 'static' } }}
-          >
-            {backButton()}
-            <Typography
-              variant="h5"
-              noWrap
-              sx={{ mr: 2, display: 'block', color: '#000', fontWeight: 'bold', margin: { xs: 'auto', md: 0 } }}
-            >
-              <img src="/image/logo_128.png" height={30} style={{ marginRight: 3 }} alt="レクマネのロゴ" />
-              {props.pageTitle}
+          <Toolbar disableGutters variant="dense" sx={{ height: headerHight, justifyContent: 'space-between' }}>
+            {showBackButton && (
+              <IconButton onClick={() => navigate(-1)}>
+                <ArrowBackIcon />
+              </IconButton>
+            )}
+            {!showBackButton && (
+              <InAppLink to="/">
+                <img src="/image/logo_128.png" height={30} alt="レクマネのロゴ" />
+              </InAppLink>
+            )}
+            <Typography variant={pageTitle.length > 14 ? 'h6' : 'h4'} noWrap sx={{ fontWeight: 'bold' }}>
+              {pageTitle}
             </Typography>
+            <InAppLink to="/profile">
+              <IconButton>
+                <AccountCircleIcon />
+              </IconButton>
+            </InAppLink>
           </Toolbar>
         </Container>
       </AppBar>

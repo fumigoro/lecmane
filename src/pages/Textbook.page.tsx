@@ -22,7 +22,7 @@ const TextbookPage = () => {
   }, [query]);
   return (
     <PageWrapper>
-      <Header pageTitle="教科書リスト" />
+      <Header pageTitle="教科書リスト" showBackButton />
       <Container>
         <SingleSelector
           options={years}

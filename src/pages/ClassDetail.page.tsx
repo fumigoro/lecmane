@@ -44,7 +44,7 @@ const ClassDetailPage = () => {
 
   return (
     <PageWrapper>
-      <Header pageTitle="講義詳細" />
+      <Header pageTitle={(fullData && fullData.title) || '講義詳細'} showBackButton />
       <Container maxWidth="xl">
         {fullData && <ClassDetail fullData={fullData} />}
         {!fullData && !failed && <FullScreenMessage progress label="読み込み中" />}

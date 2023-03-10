@@ -7,7 +7,7 @@ import MobileNavigation from '../components/general/Navigation';
 export const HomePage = () => {
   return (
     <PageWrapper bgColored>
-      <Header pageTitle="レクマネ" />
+      <Header pageTitle="ホーム" />
       <Container maxWidth="xl">
         <Box height={100} />
       </Container>
