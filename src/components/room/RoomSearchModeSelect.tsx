@@ -49,7 +49,6 @@ export const RoomSearchModeSelect = ({ setMethod }: Props) => {
           </Button>
         ))}
       </Stack>
-
     </Box>
   );
 };

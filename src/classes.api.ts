@@ -221,7 +221,7 @@ class ClassApi {
    * @param year 年度
    * @param id 講義コード
    */
-  public async getSyllabus(year: number, id: string) {
+  public async getSyllabus(year: Year, id: string) {
     const key = `C${year}${id}`;
     if (key in this.syllabusDict) {
       return this.syllabusDict[key];

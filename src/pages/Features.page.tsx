@@ -1,6 +1,6 @@
 import { Container, Stack } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
-import { FeatureCard } from '../components/general/FeatureIcon';
+import { FeatureCard, FeatureCardDisabled } from '../components/general/FeatureIcon';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
@@ -12,6 +12,12 @@ const iconProps = {
   sx: {
     fontSize: 40,
     color: mainTheme.palette.primary.main
+  }
+};
+const disabledIconProps = {
+  sx: {
+    fontSize: 40,
+    color: 'gray'
   }
 };
 
@@ -33,11 +39,11 @@ const FeaturesPage = () => {
             to="/features/favorite"
             icon={<StarIcon {...iconProps} />}
           />
-          <FeatureCard
+          <FeatureCardDisabled
             title="空き教室検索"
             description="自習などに使える教室を検索"
-            to="/features/rooms"
-            icon={<RoomIcon {...iconProps} />}
+            disabledReason="講義期間中のみ利用できます"
+            icon={<RoomIcon {...disabledIconProps} />}
           />
         </Stack>
       </Container>

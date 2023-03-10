@@ -5,10 +5,6 @@ export const years: {
   label: string;
 }[] = [
   {
-    value: 2023,
-    label: '2023(令和5)年度'
-  },
-  {
     value: 2022,
     label: '2022(令和4)年度'
   },

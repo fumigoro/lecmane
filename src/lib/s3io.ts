@@ -2,6 +2,8 @@ import { AVAILABLE_YEARS } from '../classes.api';
 import filterConfig from '../json/filter_config.json';
 import { Key, StorageIO } from './storage';
 import { Class, FullClass } from '../types/global';
+import { Room } from '../rooms.api';
+import { Year } from '../types/filter/Year';
 
 // S3上のデータを取得する関数
 
@@ -91,7 +93,7 @@ export const getClassList = async () => {
 /**
  * 指定の年度、IDのシラバスを取得する
  */
-export const getSyllabusOne = async (year: number, id: string) => {
+export const getSyllabusOne = async (year: Year, id: string) => {
   const fetchUrl = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/detail/${id}.json`;
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
@@ -100,6 +102,19 @@ export const getSyllabusOne = async (year: number, id: string) => {
     console.log(`fetch ${year} ${id}.json`);
     return syllabus;
   } catch (error) {
+    console.error(error);
     throw error;
+  }
+};
+
+export const getRoomSchedule = async (year: Year) => {
+  const url = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/room_schedule.json`;
+  try {
+    const response = await fetch(url, { cache: 'no-store' });
+    const body: { name: string; building: string; search: boolean; schedule: string[][] }[] = await response.json();
+    return body.map((b) => new Room(b));
+  } catch (error) {
+    console.error(error);
+    return [];
   }
 };

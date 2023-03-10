@@ -129,15 +129,13 @@ export const SingleSelector = <T,>(props: Props<T>) => {
     case 'card':
       return (
         <Box sx={props.sx}>
-          <Typography variant='h6' gutterBottom my={2}>{props.label}</Typography>
+          <Typography variant="h6" gutterBottom my={2}>
+            {props.label}
+          </Typography>
           <Grid container spacing={1}>
             {options.map((option, idx) => (
               <Grid item xs={6} md={3} key={idx}>
-                <Button fullWidth
-                  sx={{ p: 0 }}
-                  onClick={() => props.onChange(option.value)}
-                  disabled={props.disabled}
-                >
+                <Button fullWidth sx={{ p: 0 }} onClick={() => props.onChange(option.value)} disabled={props.disabled}>
                   <Paper
                     sx={{
                       height: '100%',
@@ -146,7 +144,7 @@ export const SingleSelector = <T,>(props: Props<T>) => {
                       border: option.value === props.selectedValue ? '3px solid orange' : ''
                     }}
                   >
-                    <Stack direction='row' alignItems='center'  spacing={2}>
+                    <Stack direction="row" alignItems="center" spacing={2}>
                       {option.icon}
                       <Typography align="center" variant="h6">
                         {option.label}
@@ -157,7 +155,7 @@ export const SingleSelector = <T,>(props: Props<T>) => {
               </Grid>
             ))}
           </Grid>
-        </Box >
+        </Box>
       );
     default:
       return <></>;
