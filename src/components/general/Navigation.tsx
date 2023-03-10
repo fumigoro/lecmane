@@ -20,36 +20,36 @@ const MobileNavigation = ({ page }: Props) => {
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="ホーム"
-            icon={<HomeIcon />}
             value="home"
+            icon={<HomeIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/`)}
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="時間割"
             value="schedule"
-            icon={<EventNoteIcon />}
+            icon={<EventNoteIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/schedule`)}
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="講義検索"
             value="classes"
-            icon={<SearchIcon />}
+            icon={<SearchIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/classes`)}
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="ツール"
             value="features"
-            icon={<HomeRepairServiceIcon />}
+            icon={<HomeRepairServiceIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/features`)}
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="マイページ"
             value="profile"
-            icon={<AccountCircleIcon />}
+            icon={<AccountCircleIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/profile`)}
           />
         </BottomNavigation>
