@@ -8,9 +8,11 @@ import { ClassList } from '../components/class/ClassList';
 import { Key, StorageIO } from '../lib/storage';
 import useClasses from '../hooks/useClasses';
 import useClassSearchQuery from '../hooks/useClassSearchQuery';
+import useQueryParams from '../hooks/useQueryParams';
 
 const SearchPage = () => {
   const [query, setQuery] = useClassSearchQuery();
+  const { debug } = useQueryParams<{ debug: string }>();
 
   const filteredClasses = useClasses(query);
 
@@ -22,11 +24,13 @@ const SearchPage = () => {
     <PageWrapper>
       <Header pageTitle="講義検索" />
       <SearchQueryInput query={query} setQuery={setQuery} />
-      <Container maxWidth="xl">
-        <Paper sx={{ p: 2, my: 2 }}>
-          <TextField multiline fullWidth value={JSON.stringify(query, null, '\t')} />
-        </Paper>
-      </Container>
+      {debug?.toLowerCase() === 'true' && (
+        <Container maxWidth="xl">
+          <Paper sx={{ p: 2, my: 2 }}>
+            <TextField multiline fullWidth value={JSON.stringify(query, null, '\t')} />
+          </Paper>
+        </Container>
+      )}
       <ClassList classes={filteredClasses} />
       <MobileNavigation page="classes" />
     </PageWrapper>
