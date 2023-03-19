@@ -1,25 +1,17 @@
 import { Container } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { classApi } from '../classes.api';
 import { ClassItemWithTextbooks } from '../components/class/common/ClassItemWithTextbooks';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
-import { ClassSearchQuery } from '../types/ClassSearchQuery';
-import { queryDefault } from '../types/filter/QueryDefault';
+import useClasses from '../hooks/useClasses';
+import useClassSearchQuery from '../hooks/useClassSearchQuery';
 import { semesters } from '../types/filter/Semester';
 import { years } from '../types/filter/Year';
-import { Class } from '../types/global';
 
 const TextbookPage = () => {
-  const [query, setQuery] = useState<ClassSearchQuery>({ ...queryDefault, isFavorite: true });
-  const [classes, setClasses] = useState<Class[]>([]);
-  useEffect(() => {
-    classApi.getClasses(query).then((classes) => {
-      setClasses(classes);
-    });
-  }, [query]);
+  const [query, setQuery] = useClassSearchQuery((q) => ({ ...q, isFavorite: true }));
+  const classes = useClasses(query);
   return (
     <PageWrapper>
       <Header pageTitle="教科書リスト" showBackButton />

@@ -2,25 +2,17 @@ import { Container, Paper, TextField } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { SearchQueryInput } from '../components/input/SearchQueryInput';
-import { ClassSearchQuery } from '../types/ClassSearchQuery';
-import { classApi } from '../classes.api';
 import { ClassList } from '../components/class/ClassList';
 import { Key, StorageIO } from '../lib/storage';
-import { Class } from '../types/global';
-import { queryDefault } from '../types/filter/QueryDefault';
+import useClasses from '../hooks/useClasses';
+import useClassSearchQuery from '../hooks/useClassSearchQuery';
 
 const SearchPage = () => {
-  const [query, setQuery] = useState<ClassSearchQuery>(
-    JSON.parse(StorageIO.get(Key.SEARCH_QUERY) || JSON.stringify(queryDefault))
-  );
-  const [filteredClasses, setFilteredClasses] = useState<Class[]>([]);
-  useEffect(() => {
-    classApi.getClasses(query).then((classes) => {
-      setFilteredClasses(classes);
-    });
-  }, [query]);
+  const [query, setQuery] = useClassSearchQuery();
+
+  const filteredClasses = useClasses(query);
 
   useEffect(() => {
     StorageIO.set(Key.SEARCH_QUERY, JSON.stringify(query));

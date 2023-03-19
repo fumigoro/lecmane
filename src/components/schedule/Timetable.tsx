@@ -1,11 +1,9 @@
 import { Container, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { classApi } from '../../classes.api';
+import useTimetable from '../../hooks/useTimetable';
 import { Semester } from '../../types/filter/Semester';
 import { times } from '../../types/filter/Time';
 import { weekdays } from '../../types/filter/Weekday';
 import { Year } from '../../types/filter/Year';
-import { Class } from '../../types/global';
 import { TimetableCell, TimetableCellBase } from './TimetableCell';
 
 type Props = {
@@ -14,13 +12,7 @@ type Props = {
 };
 
 export const Timetable = ({ year, semester }: Props) => {
-  const [timetable, setTimetable] = useState<Class[][][]>([]);
-
-  useEffect(() => {
-    classApi.getTimetable(year, semester).then((tt) => {
-      setTimetable(tt);
-    });
-  }, [year, semester]);
+  const timetable = useTimetable(year, semester);
 
   return (
     <Container>

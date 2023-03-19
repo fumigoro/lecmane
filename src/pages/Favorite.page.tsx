@@ -1,13 +1,12 @@
 import { Box, Container, Typography } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import { classApi } from '../classes.api';
+import { useMemo } from 'react';
 import { ClassList } from '../components/class/ClassList';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
+import useClasses from '../hooks/useClasses';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
 import { Year, years } from '../types/filter/Year';
-import { Class } from '../types/global';
 
 const FavoritePage = () => {
   return (
@@ -41,12 +40,7 @@ const FavoriteList = ({ year, title }: Props) => {
     [year]
   );
 
-  const [filteredClasses, setFilteredClasses] = useState<Class[]>([]);
-  useEffect(() => {
-    classApi.getClasses(query).then((classes) => {
-      setFilteredClasses(classes);
-    });
-  }, [query]);
+  const filteredClasses = useClasses(query);
 
   return (
     <Box mb={2}>

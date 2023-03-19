@@ -1,46 +1,30 @@
 import { Button, Container, Typography } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { classApi } from '../classes.api';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ClassDetail } from '../components/class/common/ClassDetail';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
+import useQueryParams from '../hooks/useQueryParams';
+import useSyllabus from '../hooks/useSyllabus';
 import { Year, years } from '../types/filter/Year';
-import { FullClass } from '../types/global';
 
 const toYear = (yearString: string) => {
-  const y: Year = Number(yearString) as any;
+  const y = Number(yearString) as Year;
   if (years.map((y) => y.value).includes(y)) {
-    return y as Year;
+    return y;
   }
   return undefined;
 };
 
 const ClassDetailPage = () => {
   const { id } = useParams();
-  const { search } = useLocation();
-  const query = useMemo(() => new URLSearchParams(search), [search]);
-  const year = toYear(query.get('y') || '');
-  const [fullData, setFullData] = useState<undefined | FullClass>(undefined);
+  const { y: yearString } = useQueryParams<{ y: string }>();
+  const year = toYear(yearString || '');
 
-  const [failed, setFailed] = useState(false);
+  const { fullData, failed } = useSyllabus(year, id);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!(year && id)) {
-      return;
-    }
-    classApi.getSyllabus(year, id).then((fc) => {
-      if (!fc) {
-        setFailed(true);
-        return;
-      }
-      setFullData(fc);
-    });
-  }, [year, id]);
 
   return (
     <PageWrapper>

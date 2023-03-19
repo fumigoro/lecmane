@@ -1,16 +1,13 @@
 import { Box, Container } from '@mui/material';
-import { useLocation } from 'react-router-dom';
-
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import { OneDaySchedule } from '../components/schedule/DailySchedule';
+import useQueryParams from '../hooks/useQueryParams';
 
 export const HomePage = () => {
   // クエリパラメータから日付を取得
-  const search = useLocation().search;
-  const query = new URLSearchParams(search);
-  const date = query.get('date');
+  const { date } = useQueryParams<{ date: string }>();
 
   return (
     <PageWrapper>

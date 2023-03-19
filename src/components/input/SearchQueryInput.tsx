@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
 import { useEffect } from 'react';
 import { ClassSearchQuery } from '../../types/ClassSearchQuery';
+import { Flags } from '../../types/filter/Flag';
 import { grades } from '../../types/filter/Grade';
 import { semesters } from '../../types/filter/Semester';
 import { times } from '../../types/filter/Time';
@@ -19,7 +20,8 @@ type Props = {
 export const SearchQueryInput = ({ query, setQuery }: Props) => {
   // 学部変更時にカテゴリー条件をリセット
   useEffect(() => {
-    setQuery({ ...query, category: undefined, flags: [] });
+    const flags = Flags.filter((f) => f.target === query.faculty).map((f) => f.id);
+    setQuery({ ...query, category: undefined, flags });
     // eslint-disable-next-line
   }, [query.faculty]);
 
