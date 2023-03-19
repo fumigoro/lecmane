@@ -13,12 +13,6 @@ const getCalenderKey = (date: Date) => {
 const useCalender = (date: Date) => {
   const [calender, setCalender] = useState<Calender | undefined | null>(undefined);
 
-  // 休日の場合はholidayを返す
-  const isHoliday = date.getDay() === 0 || date.getDay() === 6;
-  if (isHoliday) {
-    return 'holiday';
-  }
-
   useEffect(() => {
     const schoolYear = getSchoolYear(date);
     getCalender(schoolYear)
@@ -29,6 +23,12 @@ const useCalender = (date: Date) => {
         setCalender(null);
       });
   }, [date]);
+
+  // 休日の場合はholidayを返す
+  const isHoliday = date.getDay() === 0 || date.getDay() === 6;
+  if (isHoliday) {
+    return 'holiday';
+  }
 
   // fetchできなかった場合
   if (calender === null) return 'nodata';

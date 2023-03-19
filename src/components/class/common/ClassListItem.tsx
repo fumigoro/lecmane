@@ -7,9 +7,9 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { useState } from 'react';
 import NumbersIcon from '@mui/icons-material/Numbers';
-import { orange } from '@mui/material/colors';
 import { ClassOpeMenu } from './ClassOpeMenu';
 import { classApi } from '../../../classes.api';
+import { mainTheme } from '../../../styles/theme';
 
 type Props = {
   classItem: Class;
@@ -21,7 +21,7 @@ export const ClassListItem = ({ classItem }: Props) => {
 
   return (
     <>
-      <Box sx={{ py: 1, px: 2, background: isFavorite ? orange[50] : '' }}>
+      <Box sx={{ py: 1, px: 2, background: isFavorite ? mainTheme.palette.primary.light : '' }}>
         <Typography variant="h6" component="div" gutterBottom onClick={(e) => setOpen(true)}>
           {classItem.title}
         </Typography>

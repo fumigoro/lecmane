@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 import { grey, orange } from '@mui/material/colors';
 
+export const primaryColor = orange;
+
 export const mainTheme = createTheme({
   typography: {
     fontSize: 13,
@@ -25,8 +27,8 @@ export const mainTheme = createTheme({
   },
   palette: {
     primary: {
-      main: orange[500],
-      light: orange[100]
+      main: primaryColor[500],
+      light: primaryColor[100]
     },
     secondary: {
       main: grey[800]

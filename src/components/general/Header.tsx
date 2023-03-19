@@ -29,7 +29,7 @@ export const Header = ({ pageTitle, showBackButton }: HeaderProps) => {
                 <img src="/image/logo_128.png" height={30} alt="レクマネのロゴ" />
               </InAppLink>
             )}
-            <Typography variant={pageTitle.length > 14 ? 'h6' : 'h4'} noWrap sx={{ fontWeight: 'bold' }}>
+            <Typography variant={pageTitle.length > 14 ? 'h6' : 'h4'} noWrap sx={{ fontWeight: 'bold' }} color="black">
               {pageTitle}
             </Typography>
             <InAppLink to="/profile">

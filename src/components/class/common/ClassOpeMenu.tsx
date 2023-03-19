@@ -19,9 +19,8 @@ import NumbersIcon from '@mui/icons-material/Numbers';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { styled } from '@mui/material/styles';
-import { orange } from '@mui/material/colors';
 import { Class } from '../../../types/global';
-import { mainTheme } from '../../../styles/theme';
+import { mainTheme, primaryColor } from '../../../styles/theme';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
@@ -33,7 +32,7 @@ type Props = {
 const InfoBadge = styled(Box)(({ theme }) => ({
   padding: '1px 6px',
   textAlign: 'center',
-  background: orange[200],
+  background: primaryColor[200],
   fontWeight: 'bold',
   fontSize: 12,
   color: '#2b3c4e'
