@@ -1,7 +1,7 @@
 import { AVAILABLE_YEARS } from '../classes.api';
 import filterConfig from '../json/filter_config.json';
 import { Key, StorageIO } from './storage';
-import { Class, FullClass } from '../types/global';
+import { Calender, Class, FullClass } from '../types/global';
 import { Room } from '../rooms.api';
 import { Year } from '../types/filter/Year';
 
@@ -116,5 +116,22 @@ export const getRoomSchedule = async (year: Year) => {
   } catch (error) {
     console.error(error);
     return [];
+  }
+};
+
+/**
+ * 学年暦を取得する
+ * @param year
+ * @returns
+ */
+export const getCalender = async (year: Year) => {
+  const url = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/calender.json`;
+  try {
+    const response = await fetch(url, { cache: 'no-store' });
+    const body: Calender = await response.json();
+    return body;
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
 };

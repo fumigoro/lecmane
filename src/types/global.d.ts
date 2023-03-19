@@ -1,3 +1,5 @@
+import { Semester } from './filter/Semester';
+import { Weekday } from './filter/Weekday';
 import { Year } from './filter/Year';
 
 export type Faculty = {
@@ -130,3 +132,13 @@ export type Favorite = {
   year: Year;
 };
 export type RoomSearchMethod = 'room' | 'time';
+export type DateInfo = {
+  semester: Semester | undefined;
+  schoolWeekday: Weekday | undefined;
+  count: number | undefined;
+  event: string | undefined;
+  holiday: string | undefined;
+};
+export type Calender = {
+  [key: string]: DateInfo;
+};
