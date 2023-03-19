@@ -10,6 +10,7 @@ import RoomsPage from './pages/Rooms.page';
 import SchedulePage from './pages/Schedule.page';
 import ClassesPage from './pages/Search.page';
 import SettingPage from './pages/Setting.page';
+import TermsPage from './pages/Terms.page';
 import TextbookPage from './pages/Textbook.page';
 import { mainTheme } from './styles/theme';
 
@@ -24,6 +25,7 @@ const Router = () => {
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/setting" element={<SettingPage />} />
 
+          <Route path="/terms" element={<TermsPage />} />
           <Route path="/profile" element={<Mypage />} />
           <Route path="/classes/:id" element={<ClassDetailPage />} />
           <Route path="/features/textbook" element={<TextbookPage />} />
