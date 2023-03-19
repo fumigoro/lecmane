@@ -70,7 +70,7 @@ export const TextbookItem = ({ textbook }: Props) => {
       <AccordionDetails>
         <Grid container spacing={1}>
           {ECSites.map((ec) => (
-            <Grid item xs={6}>
+            <Grid item xs={6} key={ec.name}>
               <Button variant="outlined" fullWidth href={ec.getUrl(textbook)} target="_blank" color="secondary">
                 {ec.name}
               </Button>
