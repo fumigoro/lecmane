@@ -9,6 +9,7 @@ import Mypage from './pages/Mypage.page';
 import RoomsPage from './pages/Rooms.page';
 import SchedulePage from './pages/Schedule.page';
 import ClassesPage from './pages/Search.page';
+import SettingPage from './pages/Setting.page';
 import TextbookPage from './pages/Textbook.page';
 import { mainTheme } from './styles/theme';
 
@@ -21,8 +22,9 @@ const Router = () => {
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/profile" element={<Mypage />} />
+          <Route path="/setting" element={<SettingPage />} />
 
+          <Route path="/profile" element={<Mypage />} />
           <Route path="/classes/:id" element={<ClassDetailPage />} />
           <Route path="/features/textbook" element={<TextbookPage />} />
           <Route path="/features/favorite" element={<FavoritePage />} />

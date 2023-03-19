@@ -6,9 +6,9 @@ import MobileNavigation from '../components/general/Navigation';
 const Mypage = () => {
   return (
     <PageWrapper bgColored>
-      <Header pageTitle="マイページ" />
+      <Header pageTitle="マイページ" showBackButton />
       <Container maxWidth="xl"></Container>
-      <MobileNavigation page="profile" />
+      <MobileNavigation />
     </PageWrapper>
   );
 };

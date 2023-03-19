@@ -1,13 +1,13 @@
 import { Paper, BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import SettingsIcon from '@mui/icons-material/Settings';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  page?: 'home' | 'schedule' | 'classes' | 'features' | 'profile';
+  page?: 'home' | 'schedule' | 'classes' | 'features' | 'setting';
 };
 
 const MobileNavigation = ({ page }: Props) => {
@@ -47,10 +47,10 @@ const MobileNavigation = ({ page }: Props) => {
           />
           <BottomNavigationAction
             sx={{ p: 0 }}
-            label="マイページ"
-            value="profile"
-            icon={<AccountCircleIcon sx={{ fontSize: 24 }} />}
-            onClick={() => navigate(`/profile`)}
+            label="設定"
+            value="setting"
+            icon={<SettingsIcon sx={{ fontSize: 24 }} />}
+            onClick={() => navigate(`/setting`)}
           />
         </BottomNavigation>
         <Box sx={{ height: '15px' }}></Box>
