@@ -16,6 +16,7 @@ import { mainTheme } from './styles/theme';
 import { StorageIO, Key } from './lib/storage';
 import { useEffect, useState } from 'react';
 import { WalkThrough } from './components/general/WalkThrough';
+import Migration from './pages/Migration.page';
 
 const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState(false);
@@ -27,6 +28,7 @@ const Router = () => {
   }, []);
   return (
     <Box sx={{ background: { xs: '#fafafa', md: '#fff' }, fontFamily: 'Noto Sans JP' }}>
+      <Migration />
       <ThemeProvider theme={mainTheme}>
         <Routes>
           {/* 初回のみウォークスルーを表示 */}
