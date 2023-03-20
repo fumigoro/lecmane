@@ -35,7 +35,7 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
   return (
     <Paper sx={{ p: 1, my: 1 }}>
       <Box sx={{ width: '100%', cursor: 'pointer' }} onClick={(e) => setOpen(true)}>
-        <Typography gutterBottom sx={{ fontWeight: 'bold' }}>
+        <Typography gutterBottom fontWeight="bold">
           {classItem.title}
         </Typography>
         <Stack direction="row" alignItems={'center'} spacing={1} sx={{ my: 1 }}>

@@ -61,9 +61,7 @@ export const DailyScheduleCell = ({ time, classes }: Props) => {
   return (
     <Stack sx={{ my: 2 }} direction="row" spacing={2}>
       <Stack alignItems="center" spacing={1}>
-        <Typography sx={{ color, fontWeight: 'bold' }} variant="h3">
-          {classInfo.title}
-        </Typography>
+        <Typography variant="h3">{classInfo.title}</Typography>
         <Box sx={{ background: color, width: '3px', borderRadius: '3px' }} flexGrow={1} />
       </Stack>
       <Box sx={{ width: '100%' }}>

@@ -30,7 +30,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
             <Typography
               variant="h1"
               align="center"
-              fontWeight="bold"
               sx={{
                 width: 'fit-content',
                 borderBottom: `3px solid ${primaryColor[500]}`,
@@ -52,7 +51,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
               variant="h1"
               sx={{
                 textAlign: 'center',
-                fontWeight: 'bold',
                 width: 'fit-content',
                 borderBottom: `3px solid ${primaryColor[500]}`,
                 margin: 'auto',
@@ -74,7 +72,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
                 sx={{
                   m: 0.5,
                   textAlign: 'center',
-                  fontWeight: 'bold',
                   width: 'fit-content',
                   display: 'inline-block',
                   borderBottom: `3px solid ${primaryColor[500]}`,
@@ -83,11 +80,7 @@ export const WalkThrough = (props: WalkThroughProps) => {
               >
                 時間割
               </Typography>
-              <Typography
-                variant="h3"
-                sx={{ textAlign: 'center', fontWeight: 'bold', display: 'inline-block' }}
-                gutterBottom
-              >
+              <Typography variant="h3" sx={{ textAlign: 'center', display: 'inline-block' }} gutterBottom>
                 や
               </Typography>
               <Typography
@@ -95,7 +88,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
                 sx={{
                   m: 0.5,
                   textAlign: 'center',
-                  fontWeight: 'bold',
                   width: 'fit-content',
                   display: 'inline-block',
                   borderBottom: `3px solid ${primaryColor[500]}`,
@@ -104,11 +96,7 @@ export const WalkThrough = (props: WalkThroughProps) => {
               >
                 教科書リスト
               </Typography>
-              <Typography
-                variant="h3"
-                sx={{ textAlign: 'center', fontWeight: 'bold', display: 'inline-block' }}
-                gutterBottom
-              >
+              <Typography variant="h3" sx={{ textAlign: 'center', display: 'inline-block' }} gutterBottom>
                 を
               </Typography>
             </Box>
@@ -118,7 +106,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
               variant="h1"
               sx={{
                 textAlign: 'center',
-                fontWeight: 'bold',
                 width: 'fit-content',
                 borderBottom: `3px solid ${primaryColor[500]}`,
                 margin: 'auto',
@@ -132,13 +119,10 @@ export const WalkThrough = (props: WalkThroughProps) => {
         <Fade in={activeStep === 3}>
           <Box>
             <Box sx={{ position: 'absolute', top: '10vh', width: '100%' }}>
-              <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>
+              <Typography variant="h4" sx={{ textAlign: 'center' }} gutterBottom>
                 岐大生のための履修管理サービス
               </Typography>
-              <Typography
-                variant="h1"
-                sx={{ textAlign: 'center', fontWeight: 'bold', width: 'fit-content', margin: 'auto' }}
-              >
+              <Typography variant="h1" sx={{ textAlign: 'center', width: 'fit-content', margin: 'auto' }}>
                 レクマネ
               </Typography>
               <Box height={80} />
@@ -147,7 +131,6 @@ export const WalkThrough = (props: WalkThroughProps) => {
                 variant="h3"
                 sx={{
                   textAlign: 'center',
-                  fontWeight: 'bold',
                   width: 'fit-content',
                   borderBottom: `3px solid ${primaryColor[500]}`,
                   margin: 'auto',

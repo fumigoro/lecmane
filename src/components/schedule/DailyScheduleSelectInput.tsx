@@ -28,7 +28,7 @@ export const DailyScheduleSelectInput = ({ date, setDate, dateInfo }: Props) => 
             <ArrowBackIosIcon />
           </IconButton>
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+            <Typography variant="h3">
               {date.getMonth() + 1}月{date.getDate()}日 {weekdaysAll[date.getDay()]}
             </Typography>
             <Box my={0.5}>

@@ -7,7 +7,7 @@ import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 
 const Head1 = ({ children }: { children: ReactNode }) => (
-  <Typography variant="h4" fontWeight="bold" my={2}>
+  <Typography variant="h4" my={2}>
     {children}
   </Typography>
 );
@@ -38,7 +38,7 @@ const TermsPage = () => {
           fumigoro（以下「当方」）は履修管理サービス「レクマネ」（以下「本サービス」）を開発・運営しています。本サービスの利用によって、本規約に同意していただいたものとみなします。
         </Typography>
         <Box my={2} p={1} sx={{ background: deepOrange[400] }} color="white">
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             重要
           </Typography>
           <Typography>
