@@ -1,26 +1,32 @@
-import { Container, Typography, Box, Button } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import PageWrapper from "../components/general/BackgroundWrapper";
-import { Header } from "../components/general/Header";
-import MobileNavigation from "../components/general/Navigation";
+import { Container, Typography, Box, Button } from '@mui/material';
+import { deepOrange } from '@mui/material/colors';
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PageWrapper from '../components/general/BackgroundWrapper';
+import { Header } from '../components/general/Header';
+import MobileNavigation from '../components/general/Navigation';
 
 const Head1 = ({ children }: { children: ReactNode }) => (
-  <Typography variant="h4" fontWeight='bold' my={2}>{children}</Typography>
-)
+  <Typography variant="h4" fontWeight="bold" my={2}>
+    {children}
+  </Typography>
+);
 
 const Head2 = ({ children }: { children: ReactNode }) => (
-  <Typography variant="h6" my={1}>{children}</Typography>
-)
+  <Typography variant="h6" my={1}>
+    {children}
+  </Typography>
+);
 
 const TermsPage = () => {
   const navigate = useNavigate();
   const clearAll = () => {
-    if (window.confirm('講義のお気に入り登録を含む全てのデータが削除されます。この操作は元に戻せません。よろしいですか？')) {
+    if (
+      window.confirm('講義のお気に入り登録を含む全てのデータが削除されます。この操作は元に戻せません。よろしいですか？')
+    ) {
       localStorage.clear();
       window.alert('削除しました');
-      navigate('/')
+      navigate('/');
     }
   };
   return (
@@ -31,8 +37,10 @@ const TermsPage = () => {
         <Typography variant="body1">
           fumigoro（以下「当方」）は履修管理サービス「レクマネ」（以下「本サービス」）を開発・運営しています。本サービスの利用によって、本規約に同意していただいたものとみなします。
         </Typography>
-        <Box my={2} p={1} sx={{ background: deepOrange[400] }} color='white' >
-          <Typography variant="h4" fontWeight='bold' gutterBottom>重要</Typography>
+        <Box my={2} p={1} sx={{ background: deepOrange[400] }} color="white">
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            重要
+          </Typography>
           <Typography>
             本サービスは当方が独自に開発・運営しており、サービス自体及び提供する情報の一切は岐阜大学より認可（これに類するものを含む）を受けたものではありません。
           </Typography>
@@ -56,16 +64,12 @@ const TermsPage = () => {
           お問い合わせの際に収集した情報は、お問い合わせに対する返信のために利用いたします。
         </Typography>
 
-        <Head1>
-          3. 個人情報の管理
-        </Head1>
+        <Head1>3. 個人情報の管理</Head1>
         <Typography variant="body1">
           当方は、2-2に記載の個人情報を正確な状態に保ち、個人情報への不正アクセス・紛失・破損・改ざん・漏洩などを防止するため、安全対策を実施し個人情報の厳重な管理を行います。
         </Typography>
 
-        <Head1>
-          4. 個人情報の第三者への開示・提供の禁止
-        </Head1>
+        <Head1>4. 個人情報の第三者への開示・提供の禁止</Head1>
         <Typography variant="body1">
           当方は、ご利用者様よりお預かりした個人情報を適切に管理し、次のいずれかに該当する場合を除き、個人情報を第三者に開示いたしません。
         </Typography>
@@ -74,15 +78,11 @@ const TermsPage = () => {
           <li>法令に基づき開示することが必要である場合</li>
         </ul>
 
-        <Head1>
-          5. 免責事項
-        </Head1>
+        <Head1>5. 免責事項</Head1>
         <Typography gutterBottom>
           本サービスは当方が独自に開発・運営しており、サービス自体及び提供する情報の一切は岐阜大学より認可（これに類するものを含む）を受けたものではありません。
         </Typography>
-        <Typography gutterBottom>
-          本サービスは岐阜大学とは関係ございません。
-        </Typography>
+        <Typography gutterBottom>本サービスは岐阜大学とは関係ございません。</Typography>
         <Typography gutterBottom>
           本サービスは当方が独自に開発・運営しており、サービス自体及び提供する情報の一切は岐阜大学より認可（これに類するものを含む）を受けたものではありません。
         </Typography>
@@ -110,7 +110,7 @@ const TermsPage = () => {
       </Container>
       <MobileNavigation />
     </PageWrapper>
-  )
-}
+  );
+};
 
 export default TermsPage;

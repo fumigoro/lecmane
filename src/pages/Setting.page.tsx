@@ -11,18 +11,24 @@ const SettingPage = () => {
       <Container sx={{ my: 2 }}>
         <Box py={2}>
           <Typography gutterBottom>お気に入りをリセット</Typography>
-          <Typography variant='body2' color='gray'>講義のお気に入り登録を削除します</Typography>
+          <Typography variant="body2" color="gray">
+            講義のお気に入り登録を削除します
+          </Typography>
         </Box>
         <Divider />
         <Box py={2}>
           <Typography gutterBottom>キャッシュを削除</Typography>
-          <Typography variant='body2' color='gray'>一時保存している講義データを削除します</Typography>
+          <Typography variant="body2" color="gray">
+            一時保存している講義データを削除します
+          </Typography>
         </Box>
         <Divider />
-        <InAppLink to='/terms'>
+        <InAppLink to="/terms">
           <Box py={2}>
             <Typography gutterBottom>利用規約とプライバシーポリシー</Typography>
-            <Typography variant='body2' color='gray'>利用規約とプライバシーポリシーを開く</Typography>
+            <Typography variant="body2" color="gray">
+              利用規約とプライバシーポリシーを開く
+            </Typography>
           </Box>
         </InAppLink>
         <Divider />

@@ -13,12 +13,24 @@ import SettingPage from './pages/Setting.page';
 import TermsPage from './pages/Terms.page';
 import TextbookPage from './pages/Textbook.page';
 import { mainTheme } from './styles/theme';
+import { StorageIO, Key } from './lib/storage';
+import { useEffect, useState } from 'react';
+import { WalkThrough } from './components/general/WalkThrough';
 
 const Router = () => {
+  const [setUpCompleted, setSetUpCompleted] = useState(false);
+  useEffect(() => {
+    const favoriteList = StorageIO.get(Key.CLASS_LIST);
+    if (favoriteList) {
+      setSetUpCompleted(true);
+    }
+  }, []);
   return (
     <Box sx={{ background: { xs: '#fafafa', md: '#fff' }, fontFamily: 'Noto Sans JP' }}>
       <ThemeProvider theme={mainTheme}>
         <Routes>
+          {/* 初回のみウォークスルーを表示 */}
+          {!setUpCompleted && <Route path="/" element={<WalkThrough startApp={() => setSetUpCompleted(true)} />} />}
           <Route path="/" element={<HomePage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/classes" element={<ClassesPage />} />
