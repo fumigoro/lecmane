@@ -56,6 +56,7 @@ export type Favorite = {
 export type RoomSearchMethod = 'room' | 'time';
 
 export type DateInfo = {
+  date: Date;
   semester: Semester | undefined;
   schoolWeekday: Weekday | undefined;
   count: number | undefined;

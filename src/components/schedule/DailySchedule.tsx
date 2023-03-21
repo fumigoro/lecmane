@@ -1,5 +1,5 @@
 import { Alert, Container } from '@mui/material';
-import useCalender from '../../hooks/useCalender';
+import useDateInfo from '../../hooks/useDateInfo';
 import { FullScreenMessage } from '../general/FullScreenMessage';
 import useTimetable from '../../hooks/useTimetable';
 import { DailyScheduleCell } from './DailyScheduleCell';
@@ -15,7 +15,7 @@ export const DailySchedule = () => {
   const { date: dateString } = useQueryParams<{ date: string }>();
 
   const [date, setDate] = useState<Date>(dateString ? new Date(dateString) : new Date());
-  const dateInfo = useCalender(date);
+  const dateInfo = useDateInfo(date);
   const timetable = useTimetable(getSchoolYear(date), getSemester(date));
 
   if (!dateInfo) {

@@ -129,6 +129,9 @@ export const getCalender = async (year: Year) => {
   try {
     const response = await fetch(url, { cache: 'no-store' });
     const body: Calender = await response.json();
+    Object.keys(body).forEach((key) => {
+      body[key].date = new Date(key);
+    });
     return body;
   } catch (error) {
     console.log(error);
