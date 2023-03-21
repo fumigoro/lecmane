@@ -1,4 +1,3 @@
-import { CreditSummary } from '../components/credit/CreditSummary';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
