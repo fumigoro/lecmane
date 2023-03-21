@@ -235,6 +235,17 @@ class ClassApi {
       return null;
     }
   }
+
+  /**
+   * 年とIDのリストから複数の講義のシラバスを一括取得する
+   * @param cList
+   * @returns
+   */
+  public async getSyllabusList(cList: { year: Year; id: string }[]) {
+    const syllabusListNull = await Promise.all(cList.map((c) => this.getSyllabus(c.year, c.id)));
+    const syllabusList = syllabusListNull.flatMap((s) => (s ? [s] : []));
+    return syllabusList;
+  }
 }
 
 export default ClassApi;

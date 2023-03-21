@@ -67,3 +67,7 @@ export type DateInfo = {
 export type Calender = {
   [key: string]: DateInfo;
 };
+
+export type CreditTotal = {
+  [faculty: string]: { [category: string]: Class[] };
+};

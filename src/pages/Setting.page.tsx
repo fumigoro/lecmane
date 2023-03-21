@@ -13,8 +13,10 @@ const SettingPage = () => {
         <Box
           py={2}
           onClick={() => {
-            localStorage.clear();
-            window.alert('お気に入り登録を削除しました');
+            if (window.confirm('お気に入りをリセットしますか？この操作は取り消せません。')) {
+              localStorage.clear();
+              window.alert('お気に入り登録を削除しました');
+            }
           }}
         >
           <Typography gutterBottom>お気に入りをリセット</Typography>

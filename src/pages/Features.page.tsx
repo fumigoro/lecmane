@@ -39,6 +39,12 @@ const FeaturesPage = () => {
             to="/features/favorite"
             icon={<StarIcon {...iconProps} />}
           />
+          <FeatureCard
+            title="単位数の集計"
+            description="お気に入り登録した講義の単位数を集計"
+            to="/features/credits"
+            icon={<StarIcon {...iconProps} />}
+          />
           <FeatureCardDisabled
             title="空き教室検索"
             description="自習などに使える教室を検索"

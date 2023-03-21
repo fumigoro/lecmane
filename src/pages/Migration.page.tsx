@@ -9,10 +9,7 @@ const loadPreviousData = async () => {
     return;
   }
   const parsed: { id: string; takeYear: number }[] = JSON.parse(selected);
-
-  const promises = parsed.map(async ({ id, takeYear }) => classApi.getSyllabus(takeYear as Year, id));
-  const syllabusListTmp = await Promise.all(promises);
-  const syllabusList = syllabusListTmp.flatMap((s) => (s ? [s] : []));
+  const syllabusList = await classApi.getSyllabusList(parsed.map((p) => ({ id: p.id, year: p.takeYear as Year })));
   return syllabusList;
 };
 

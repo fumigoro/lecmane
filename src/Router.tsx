@@ -17,6 +17,7 @@ import { StorageIO, Key } from './lib/storage';
 import { useEffect, useState } from 'react';
 import { WalkThrough } from './components/general/WalkThrough';
 import Migration from './pages/Migration.page';
+import CreditSummaryPage from './pages/CreditTotal.page';
 
 const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState(false);
@@ -42,6 +43,7 @@ const Router = () => {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/profile" element={<Mypage />} />
           <Route path="/classes/:id" element={<ClassDetailPage />} />
+          <Route path="/features/credits" element={<CreditSummaryPage />} />
           <Route path="/features/textbook" element={<TextbookPage />} />
           <Route path="/features/favorite" element={<FavoritePage />} />
           <Route path="/features/rooms" element={<RoomsPage />} />
