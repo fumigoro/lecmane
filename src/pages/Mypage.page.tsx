@@ -6,7 +6,7 @@ import MobileNavigation from '../components/general/Navigation';
 
 const Mypage = () => {
   return (
-    <PageWrapper bgColored>
+    <PageWrapper>
       <Header pageTitle="マイページ" />
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mt: 4, mb: 2 }}>

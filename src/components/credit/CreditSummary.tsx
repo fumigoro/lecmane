@@ -14,9 +14,50 @@ import { useEffect, useMemo, useState } from 'react';
 import { getCreditsTotal } from '../../lib/credit';
 import { Class, CreditTotal } from '../../types/global';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { lightBlue, green, orange, blueGrey, red, brown } from '@mui/material/colors';
+import {
+  lightBlue,
+  green,
+  orange,
+  blueGrey,
+  red,
+  brown,
+  pink,
+  purple,
+  amber,
+  blue,
+  cyan,
+  deepOrange,
+  deepPurple,
+  indigo,
+  lightGreen,
+  teal,
+  yellow
+} from '@mui/material/colors';
 import { primaryColor } from '../../styles/theme';
 import { ClassOpeMenu } from '../class/common/ClassOpeMenu';
+
+const categoryColors = [
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  brown,
+  lightGreen,
+  amber,
+  yellow,
+  orange,
+  deepOrange
+];
+
+const getCategoryColors = (category: string) => {
+  return categoryColors[category.charCodeAt(0) % categoryColors.length];
+};
 
 const getCreditSum = (classes: Class[]) => {
   return classes.reduce((acc, c) => acc + c.credit, 0);
@@ -38,12 +79,24 @@ export const CreditSummary = () => {
     return getCreditSum(classes);
   }, [total]);
 
+  const numOfClasses = useMemo(() => {
+    if (!total) return 0;
+    const classes = Object.values(total)
+      .map((faculties) => Object.values(faculties).flat())
+      .flat();
+    return classes.length;
+  }, [total]);
+
   return (
     <Container>
-      <Paper>
+      <Paper variant="outlined">
         <Stack p={2} direction="row" justifyContent="space-between">
           <Typography variant="h6">合計単位数</Typography>
           <Typography>{totalCredit}単位</Typography>
+        </Stack>
+        <Stack p={2} direction="row" justifyContent="space-between">
+          <Typography variant="h6">合計講義数</Typography>
+          <Typography>{numOfClasses}講義</Typography>
         </Stack>
       </Paper>
       {total &&
@@ -51,9 +104,10 @@ export const CreditSummary = () => {
           const classes = Object.values(faculties).flat();
           const creditSum = getCreditSum(classes);
           const numOfClasses = classes.length;
+          const color = getCategoryColors(key);
           return (
-            <Box key={key}>
-              <Typography variant="h5" pl={1} mt={2} mb={1}>
+            <Box key={key} sx={{ background: color[50], borderRadius: 4, py: 2, px: 1, my: 2 }}>
+              <Typography variant="h5" pl={1} mb={1} sx={{ color: color['A700'] }}>
                 {key}
               </Typography>
               <Typography pl={1} mb={1}>
@@ -63,10 +117,12 @@ export const CreditSummary = () => {
                 const creditSum = getCreditSum(classes);
                 const numOfClasses = classes.length;
                 return (
-                  <Accordion key={key}>
+                  <Accordion key={key} variant="outlined">
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                       <Stack>
-                        <Typography>{key} </Typography>
+                        <Typography sx={{ color: color['A700'] }} variant="h6">
+                          {key}{' '}
+                        </Typography>
                         <Typography color="gray">
                           {creditSum}単位 {numOfClasses}個の講義
                         </Typography>

@@ -6,7 +6,7 @@ import MobileNavigation from '../components/general/Navigation';
 
 const CreditSummaryPage = () => {
   return (
-    <PageWrapper bgColored>
+    <PageWrapper>
       <Header pageTitle="単位集計" showBackButton />
       <Box sx={{ my: 4 }}>
         <CreditSummary />

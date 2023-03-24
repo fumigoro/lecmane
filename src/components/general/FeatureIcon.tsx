@@ -13,7 +13,7 @@ type Props = {
 export const FeatureCard = ({ title, description, to, icon }: Props) => {
   return (
     <InAppLink to={to}>
-      <Paper sx={{ p: 2 }}>
+      <Paper sx={{ p: 2 }} variant="outlined">
         <Stack alignItems="center" justifyContent="space-between" direction="row">
           <Stack direction="row" spacing={2} alignItems="center">
             {icon}
@@ -40,7 +40,7 @@ type FeatureCardDisabledProps = {
 
 export const FeatureCardDisabled = ({ title, description, icon, disabledReason }: FeatureCardDisabledProps) => {
   return (
-    <Paper sx={{ px: 2, py: 1, background: '#e0e0e0' }}>
+    <Paper sx={{ px: 2, py: 1, background: '#e0e0e0' }} variant="outlined">
       <Stack direction="row" spacing={2} alignItems="center">
         {icon}
         <Box>
