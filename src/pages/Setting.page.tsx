@@ -52,7 +52,7 @@ const SettingPage = () => {
         </InAppLink>
         <Divider />
       </Container>
-      <MobileNavigation page="setting" />
+      <MobileNavigation />
     </PageWrapper>
   );
 };

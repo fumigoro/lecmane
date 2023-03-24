@@ -6,7 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 type Props = {
-  page?: 'home' | 'schedule' | 'classes' | 'features' | 'setting';
+  page?: 'home' | 'schedule' | 'classes' | 'features' | 'mypage';
 };
 
 const MobileNavigation = ({ page }: Props) => {
@@ -47,7 +47,7 @@ const MobileNavigation = ({ page }: Props) => {
           <BottomNavigationAction
             sx={{ p: 0 }}
             label="マイページ"
-            value="setting"
+            value="mypage"
             icon={<AccountCircleIcon sx={{ fontSize: 24 }} />}
             onClick={() => navigate(`/profile`)}
           />
