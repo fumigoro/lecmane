@@ -15,7 +15,7 @@ const Mypage = () => {
       </Container>
       <CreditSummary />
 
-      <MobileNavigation page='mypage' />
+      <MobileNavigation page="mypage" />
     </PageWrapper>
   );
 };

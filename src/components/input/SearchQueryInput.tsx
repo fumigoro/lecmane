@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, TextField } from '@mui/material';
 import { useEffect } from 'react';
 import { ClassSearchQuery } from '../../types/ClassSearchQuery';
 import { Flags } from '../../types/filter/Flag';
@@ -82,6 +82,13 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           noneOptionLabel="全て"
           type="button"
           label="お気に入り登録"
+        />
+        <TextField
+          fullWidth
+          label="キーワード"
+          variant="outlined"
+          sx={{ my: 1 }}
+          onChange={(e) => setQuery({ ...query, keyWord: e.target.value })}
         />
       </Container>
     </Box>

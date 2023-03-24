@@ -129,12 +129,16 @@ class ClassApi {
     if (q.year) {
       filteredClasses = filteredClasses.filter((c) => c.year === q.year);
     }
-    if (q.title) {
-      const words = q.title.split(/[\s　]/g);
+    if (q.keyWord) {
+      const words = q.keyWord.split(/[\s　]/g);
       filteredClasses = filteredClasses.filter((c) => {
         let hit = true;
         for (const word of words) {
-          if (c.title.indexOf(word) === -1) {
+          if (c.id === word) {
+            // 講義IDが完全一致した場合はヒット
+            return hit;
+          }
+          if (c.title.indexOf(word) === -1 && c.teachers.join(' ').indexOf(word) === -1) {
             hit = false;
           }
         }

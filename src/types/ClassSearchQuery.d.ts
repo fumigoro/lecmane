@@ -9,7 +9,7 @@ import { Grade } from './filter/Grade';
 export type ClassSearchQuery = {
   id?: string;
   year?: number;
-  title?: string;
+  keyWord?: string;
   semester?: Semester;
   weekday?: Weekday;
   time?: Time;
