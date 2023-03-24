@@ -5,7 +5,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SchoolIcon from '@mui/icons-material/School';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import { ClassOpeMenu } from './ClassOpeMenu';
 import { classApi } from '../../../classes.api';
@@ -18,6 +18,15 @@ type Props = {
 export const ClassListItem = ({ classItem }: Props) => {
   const [isFavorite, setIsFavorite] = useState(classApi.isFavorite(classItem.year, classItem.id));
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (isFavorite) {
+      classApi.addFavorite(classItem.year, classItem.id);
+    } else {
+      classApi.removeFavorite(classItem.year, classItem.id);
+    }
+    // eslint-disable-next-line
+  }, [isFavorite]);
 
   return (
     <>
@@ -68,11 +77,6 @@ export const ClassListItem = ({ classItem }: Props) => {
                 checked={isFavorite}
                 onChange={(e) => {
                   setIsFavorite(e.target.checked);
-                  if (e.target.checked) {
-                    classApi.addFavorite(classItem.year, classItem.id);
-                  } else {
-                    classApi.removeFavorite(classItem.year, classItem.id);
-                  }
                 }}
                 sx={{ p: 0 }}
               />
@@ -83,7 +87,13 @@ export const ClassListItem = ({ classItem }: Props) => {
           </Stack>
         </Stack>
       </Box>
-      <ClassOpeMenu classItem={classItem} open={open} setOpen={setOpen} />
+      <ClassOpeMenu
+        classItem={classItem}
+        open={open}
+        setOpen={setOpen}
+        isFavorite={isFavorite}
+        setIsFavorite={setIsFavorite}
+      />
       <Divider />
     </>
   );
