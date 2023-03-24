@@ -8,7 +8,7 @@ import { StorageIO, Key } from '../lib/storage';
 const SettingPage = () => {
   return (
     <PageWrapper>
-      <Header pageTitle="設定" />
+      <Header pageTitle="設定" showBackButton />
       <Container sx={{ my: 2 }}>
         <Box
           py={2}

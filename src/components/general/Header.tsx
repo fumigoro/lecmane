@@ -1,6 +1,7 @@
 import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 import { InAppLink } from './InAppLink';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,9 +33,9 @@ export const Header = ({ pageTitle, showBackButton }: HeaderProps) => {
             <Typography variant={pageTitle.length > 14 ? 'h6' : 'h4'} noWrap color="black">
               {pageTitle}
             </Typography>
-            <InAppLink to="/profile">
+            <InAppLink to="/setting">
               <IconButton>
-                <AccountCircleIcon />
+                <SettingsIcon />
               </IconButton>
             </InAppLink>
           </Toolbar>

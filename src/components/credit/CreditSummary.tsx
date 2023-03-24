@@ -99,7 +99,7 @@ const CreditSummaryRow = ({ class: c }: { class: Class }) => {
       <Divider />
       <Stack direction="row" spacing={1} alignItems="center" onClick={() => setOpen(true)}>
         <Typography variant="body2" my={1} flexGrow={1}>
-          {c.title}
+          {c.title} / {c.year}年度
         </Typography>
         <Typography
           sx={{
