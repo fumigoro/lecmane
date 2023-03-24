@@ -9,7 +9,7 @@ import { useState } from 'react';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import { ClassOpeMenu } from './ClassOpeMenu';
 import { classApi } from '../../../classes.api';
-import { mainTheme } from '../../../styles/theme';
+import { primaryColor } from '../../../styles/theme';
 
 type Props = {
   classItem: Class;
@@ -21,7 +21,7 @@ export const ClassListItem = ({ classItem }: Props) => {
 
   return (
     <>
-      <Box sx={{ py: 1, px: 2, background: isFavorite ? mainTheme.palette.primary.light : '' }}>
+      <Box sx={{ py: 1, px: 2, background: isFavorite ? primaryColor[50] : '' }}>
         <Typography variant="h6" component="div" gutterBottom onClick={(e) => setOpen(true)}>
           {classItem.title}
         </Typography>

@@ -1,9 +1,50 @@
 import { Paper, Stack, Typography } from '@mui/material';
 import { shortRoomName } from '../../lib/main';
 import { Class } from '../../types/global';
-import { mainTheme } from '../../styles/theme';
 import { ClassOpeMenu } from '../class/common/ClassOpeMenu';
 import { useState } from 'react';
+import {
+  amber,
+  blue,
+  brown,
+  cyan,
+  deepOrange,
+  deepPurple,
+  green,
+  indigo,
+  lightBlue,
+  lightGreen,
+  orange,
+  pink,
+  purple,
+  red,
+  teal,
+  yellow
+} from '@mui/material/colors';
+
+const categoryColors = [
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  brown,
+  lightGreen,
+  amber,
+  yellow,
+  orange,
+  deepOrange
+];
+
+const getCategoryColors = (category: string) => {
+  return categoryColors[category.charCodeAt(0) % categoryColors.length];
+};
+
 type Props = {
   classes: Class[];
 };
@@ -27,11 +68,12 @@ type TimetableClassItemProps = {
 };
 export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) => {
   const [open, setOpen] = useState(false);
+  const color = getCategoryColors(c.department);
 
   return (
     <>
       <Paper
-        sx={{ background: mainTheme.palette.primary.light, height: '100%', cursor: 'pointer' }}
+        sx={{ background: color[50], height: '100%', cursor: 'pointer' }}
         elevation={0}
         onClick={() => setOpen(true)}
       >
@@ -50,7 +92,7 @@ export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) =>
           >
             {c.title}
           </Typography>
-          <Paper sx={{ background: mainTheme.palette.primary.main, px: 0.5, py: 0.2 }} elevation={0}>
+          <Paper sx={{ background: color[400], px: 0.5, py: 0.2 }} elevation={0}>
             <Typography
               sx={{
                 color: 'white',
