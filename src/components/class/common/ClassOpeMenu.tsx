@@ -105,8 +105,8 @@ export const ClassOpeMenu = ({
             <Typography color="gray" my={2}>
               講義詳細
             </Typography>
-            <IconButton>
-              <CloseIcon onClick={handleClose} />
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
             </IconButton>
           </Stack>
           <Paper variant="outlined" sx={{ p: 2, background: isFavorite ? primaryColor[50] : 'white' }}>
@@ -122,7 +122,7 @@ export const ClassOpeMenu = ({
             </Stack>
             <Divider sx={{ mb: 2 }} />
             {basicData.map((d) => (
-              <Stack my={1} direction="row" alignItems="center">
+              <Stack my={1} direction="row" alignItems="center" key={d.label}>
                 <d.icon sx={{ fontSize: 20, mr: 2 }} />
                 <Typography>{d.value}</Typography>
               </Stack>

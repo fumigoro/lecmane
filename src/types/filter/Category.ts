@@ -66,9 +66,15 @@ export const Categories: {
   },
   {
     target: '05',
-    id: 'Z-freshman_seminar',
-    displayText: '初年次セミナー',
-    regExp: /^.ZFS/
+    id: 'Z-gifu',
+    displayText: '岐阜学',
+    regExp: /^.ZGF/
+  },
+  {
+    target: '05',
+    id: 'Z-data_science',
+    displayText: '数理・データサイエンス・AI',
+    regExp: /^.ZDS/
   },
   {
     target: '05',
@@ -78,57 +84,33 @@ export const Categories: {
   },
   {
     target: '05',
-    id: 'Z-gifu',
-    displayText: '(2022~)岐阜学',
-    regExp: /^.ZGF/
-  },
-  {
-    target: '05',
-    id: 'Z-data_science',
-    displayText: '(2022~)数理・データサイエンス・AI',
-    regExp: /^.ZDS/
-  },
-  {
-    target: '05',
     id: 'Z-langage',
-    displayText: '(2022~)言語と文化',
+    displayText: '言語と文化',
     regExp: /^.ZLA/
   },
   {
     target: '05',
     id: 'Z-literacy',
-    displayText: '(2022~)社会人リテラシー',
+    displayText: '社会人リテラシー',
     regExp: /^.ZSL/
   },
   {
     target: '05',
-    id: 'Z-chinese',
-    displayText: '(~2021)中国語',
-    regExp: /^.ZCN/
+    id: 'Z-teacher',
+    displayText: '全学共通教職',
+    regExp: /^.ZKY/
   },
   {
     target: '05',
-    id: 'Z-german',
-    displayText: '(~2021)ドイツ語',
-    regExp: /^.ZDE/
+    id: 'Z-freshman_seminar',
+    displayText: '初年次セミナー',
+    regExp: /^.ZFS/
   },
   {
     target: '05',
-    id: 'Z-french',
-    displayText: '(~2021)フランス語',
-    regExp: /^.ZFR/
-  },
-  {
-    target: '05',
-    id: 'Z-korean',
-    displayText: '(~2021)韓国語',
-    regExp: /^.ZKR/
-  },
-  {
-    target: '05',
-    id: 'Z-portuguese',
-    displayText: '(~2021)ポルトガル語',
-    regExp: /^.ZPT/
+    id: 'Z-2nd_foreign_language',
+    displayText: '(~2021)第２外国語',
+    regExp: /^.(ZPT|ZKR|ZFR|ZDE|ZCN)/
   },
   {
     target: '05',
@@ -147,12 +129,6 @@ export const Categories: {
     id: 'Z-introduction_of_japan',
     displayText: '日本事情(留学生)',
     regExp: /^.ZJJ/
-  },
-  {
-    target: '05',
-    id: 'Z-teacher',
-    displayText: '全学共通教職',
-    regExp: /^.ZKY/
   },
   {
     target: '70',
