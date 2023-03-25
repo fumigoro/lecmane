@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import liff from "@line/liff/dist/lib";
+import { useEffect, useState } from 'react';
+import liff from '@line/liff/dist/lib';
 import type { Profile } from '@liff/get-profile';
-
 
 /**
  * LIFF SDKからユーザー情報を取得する
@@ -15,12 +14,14 @@ const useLiffProfile = () => {
     //   liff.login();
     // }
     const profile = await liff.getProfile();
-    setLiffProfile(profile)
-  }
+    setLiffProfile(profile);
+  };
 
-  useEffect(() => { getProfile() }, []);
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   return liffProfile;
-}
+};
 
 export default useLiffProfile;

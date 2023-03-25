@@ -1,5 +1,5 @@
-import liff from "@line/liff/dist/lib";
-import { useEffect, useState } from "react";
+import liff from '@line/liff/dist/lib';
+import { useEffect, useState } from 'react';
 
 /**
  * LIFF SDKが取得した「現在のユーザーの生のIDトークン」を取得する
@@ -15,11 +15,13 @@ const useLiffIDToken = () => {
 
     const t = liff.getIDToken();
     setToken(t);
-  }
+  };
 
-  useEffect(() => { getIdToken() }, []);
+  useEffect(() => {
+    getIdToken();
+  }, []);
 
   return token;
-}
+};
 
 export default useLiffIDToken;
