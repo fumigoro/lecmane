@@ -10,9 +10,9 @@ const useLiffProfile = () => {
 
   const getProfile = async () => {
     await liff.ready;
-    // if (!liff.isLoggedIn()) {
-    //   liff.login();
-    // }
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
     const profile = await liff.getProfile();
     setLiffProfile(profile);
   };

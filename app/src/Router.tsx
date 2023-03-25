@@ -29,8 +29,8 @@ const Router = () => {
     if (!liff.isLoggedIn()) {
       liff.login();
     } else {
-      const profile = await liff.getProfile();
-      console.log(profile);
+      // const profile = await liff.getProfile();
+      // console.log(profile);
     }
   };
 
