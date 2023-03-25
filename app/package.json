@@ -23,7 +23,7 @@
     "lint": "eslint --fix 'src/**/*.{ts,tsx,json}'",
     "format": "prettier -w 'src/**/*.{ts,tsx,json}'",
     "fix": "npm run format && npm run lint",
-    "prepare": "node_modules/.bin/husky install"
+    "prepare": "cd .. && npx husky install"
   },
   "eslintConfig": {
     "extends": [
