@@ -1,4 +1,4 @@
-export type Year = 2023 | 2022 | 2021;
+export type Year = 2023 | 2022;
 
 export const years: {
   value: Year;
