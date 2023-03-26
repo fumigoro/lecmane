@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Snackbar from '@mui/material/Snackbar';
+import { useState } from 'react';
 
 type Props = {
   textbook: TextBook;
@@ -44,41 +46,71 @@ const ECSites = [
 ];
 
 export const TextbookItem = ({ textbook }: Props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
-    <Accordion>
-      <AccordionSummary>
-        <Grid container spacing={1}>
-          <Grid item xs={2}>
-            <Stack sx={{ height: '100%' }}>
-              <Box
-                component="img"
-                sx={{ height: '4rem', width: 'auto', margin: 'auto', borderRadius: 1, overflow: 'hidden' }}
-                src={textbook.imageUrl || '/image/no_image.png'}
-                alt={`${textbook.title}のカバー画像`}
-              />
-            </Stack>
+    <>
+      <Accordion>
+        <AccordionSummary>
+          <Grid container spacing={1}>
+            <Grid item xs={2}>
+              <Stack sx={{ height: '100%' }}>
+                <Box
+                  component="img"
+                  sx={{ height: '4rem', width: 'auto', margin: 'auto', borderRadius: 1, overflow: 'hidden' }}
+                  src={textbook.imageUrl || '/image/no_image.png'}
+                  alt={`${textbook.title}のカバー画像`}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={10}>
+              <Typography variant="body2">{textbook.title}</Typography>
+              <Typography variant="body2">
+                {textbook.publisher} / {textbook.author}
+              </Typography>
+              <Typography variant="body2">{textbook.isbn}</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={10}>
-            <Typography variant="body2">{textbook.title}</Typography>
-            <Typography variant="body2">
-              {textbook.publisher} / {textbook.author}
-            </Typography>
-            <Typography variant="body2">{textbook.isbn}</Typography>
-          </Grid>
-        </Grid>
-      </AccordionSummary>
-      <AccordionDetails>
-        <Grid container spacing={1}>
-          {ECSites.map((ec) => (
-            <Grid item xs={6} key={ec.name}>
-              <Button variant="outlined" fullWidth href={ec.getUrl(textbook)} target="_blank" color="secondary">
-                {ec.name}
+        </AccordionSummary>
+        <AccordionDetails sx={{ my: 1 }}>
+          <Grid container spacing={1}>
+            {ECSites.map((ec) => (
+              <Grid item xs={6} key={ec.name}>
+                <Button variant="outlined" fullWidth href={ec.getUrl(textbook)} target="_blank" color="secondary">
+                  {ec.name}
+                </Button>
+              </Grid>
+            ))}
+            <Grid item xs={6}>
+              <Button variant="outlined" fullWidth color="secondary" disabled>
+                生協教科書サイト(4/1~)
               </Button>
             </Grid>
-          ))}
-        </Grid>
-      </AccordionDetails>
-    </Accordion>
+            <Grid item xs={6}>
+              <Button
+                variant="outlined"
+                fullWidth
+                onClick={() => {
+                  navigator.clipboard.writeText(textbook.isbn).then(() => setOpen(true));
+                }}
+                color="secondary"
+                disabled={!textbook.isbn}
+              >
+                ISBNをコピー
+              </Button>
+            </Grid>
+          </Grid>
+        </AccordionDetails>
+      </Accordion>
+      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose} message="コピーしました" />
+    </>
   );
 };
 
