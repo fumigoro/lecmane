@@ -59,7 +59,7 @@ const getClassListOne = async (year: number, facultyId: string) => {
     console.log(`fetch ${year} ${facultyId}.json`);
     return main;
   } catch (error) {
-    window.alert(`データの取得に失敗しました。${year}-${facultyId}\n${error}`);
+    window.alert(`データの取得に失敗しました。${year}-${facultyId}${error}`);
     throw error;
   }
 };
@@ -71,7 +71,7 @@ export const getClassList = async () => {
   // サーバー上データの最終更新日時を取得
   const { serverDataTimestamp } = await getClassDataUpdateAt();
   // 学部のIDリスト
-  const faculties = filterConfig.organization.filter((item) => item.type === 'faculty');
+  const faculties = filterConfig.organization.filter((item) => item.type === 'faculty' && item.id !== 'all');
   const fetchTasks = AVAILABLE_YEARS.flatMap((year) => {
     return faculties.map((fac) => getClassListOne(year, fac.id));
   });
