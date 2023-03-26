@@ -20,19 +20,31 @@ import Migration from './pages/Migration.page';
 import CreditSummaryPage from './pages/CreditTotal.page';
 import liff from '@line/liff/dist/lib';
 import { firebaseApp } from './lib/firebase';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import useFirebaseProfile from './hooks/useFirebaseProfile';
 
 const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState(false);
+
+  const { user, liffProfile } = useFirebaseProfile();
 
   const initLiff = async () => {
     await liff.init({ liffId: process.env.REACT_APP_LIFF_ID || '' });
     if (!liff.isLoggedIn()) {
       liff.login();
-    } else {
-      // const profile = await liff.getProfile();
-      // console.log(profile);
     }
   };
+
+  useEffect(() => {
+    if (!user || !liffProfile) {
+      return;
+    }
+    // FirestoreにLINE IDを保存
+    const db = getFirestore(firebaseApp);
+    setDoc(doc(db, 'users', user.uid), {
+      lineId: liffProfile.userId
+    });
+  }, [user, liffProfile]);
 
   useEffect(() => {
     // LIFF を初期化
@@ -42,8 +54,6 @@ const Router = () => {
     if (favoriteList) {
       setSetUpCompleted(true);
     }
-
-    console.log(firebaseApp);
   }, []);
 
   return (

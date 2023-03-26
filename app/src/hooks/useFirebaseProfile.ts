@@ -44,7 +44,7 @@ const useFirebaseProfile = () => {
     // eslint-disable-next-line
   }, [liffIDToken, liffProfile]);
 
-  return user;
+  return { user, liffProfile };
 };
 
 export default useFirebaseProfile;

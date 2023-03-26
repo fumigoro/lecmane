@@ -7,7 +7,7 @@ import useFirebaseProfile from '../hooks/useFirebaseProfile';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Mypage = () => {
-  const user = useFirebaseProfile();
+  const { user } = useFirebaseProfile();
 
   return (
     <PageWrapper>
