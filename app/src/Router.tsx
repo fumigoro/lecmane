@@ -18,15 +18,34 @@ import { useEffect, useState } from 'react';
 import { WalkThrough } from './components/general/WalkThrough';
 import Migration from './pages/Migration.page';
 import CreditSummaryPage from './pages/CreditTotal.page';
+import liff from '@line/liff/dist/lib';
+import { firebaseApp } from './lib/firebase';
 
 const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState(false);
+
+  const initLiff = async () => {
+    await liff.init({ liffId: process.env.REACT_APP_LIFF_ID || '' });
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    } else {
+      // const profile = await liff.getProfile();
+      // console.log(profile);
+    }
+  };
+
   useEffect(() => {
+    // LIFF を初期化
+    initLiff();
+    // ローカルストレージからデータ読み込み
     const favoriteList = StorageIO.get(Key.CLASS_LIST);
     if (favoriteList) {
       setSetUpCompleted(true);
     }
+
+    console.log(firebaseApp);
   }, []);
+
   return (
     <Box sx={{ background: { xs: '#fafafa', md: '#fff' }, fontFamily: 'Noto Sans JP' }}>
       <Migration />
