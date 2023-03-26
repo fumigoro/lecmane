@@ -1,3 +1,5 @@
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { firebaseApp } from './lib/firebase';
 import { getClassDataUpdateAt, getClassList, getSyllabusOne } from './lib/s3io';
 import { Key, StorageIO } from './lib/storage';
 import { ClassSearchQuery } from './types/ClassSearchQuery';
@@ -20,6 +22,9 @@ class ClassApi {
   private initialized: boolean = false;
   private favoriteList: Favorite[] = [];
   private syllabusDict: { [key: string]: FullClass } = {};
+
+  private db = getFirestore(firebaseApp);
+  private uid: string | null = null;
 
   constructor() {
     this.classList = [];
@@ -59,9 +64,16 @@ class ClassApi {
     console.log('Class Api Initialized.');
   }
 
-  public initializeFavoriteList() {
-    const fListString = StorageIO.get(Key.FAVORITE_LIST);
-    this.favoriteList = JSON.parse(fListString || '[]');
+  public async initializeFavoriteList(uid: string) {
+    this.uid = uid;
+    const docRef = doc(this.db, 'users', this.uid);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) {
+      // TODO: ローカルストレージから吸い出して、Firestoreに保存する
+      return;
+    }
+    const data: Favorite[] = docSnap.data().favorites;
+    this.favoriteList = data;
   }
 
   /**
@@ -255,6 +267,5 @@ class ClassApi {
 export default ClassApi;
 
 export const classApi = new ClassApi();
-classApi.initializeFavoriteList();
 // classApi.initialize().then(() => {
 // });

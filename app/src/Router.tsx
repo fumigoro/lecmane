@@ -22,11 +22,15 @@ import liff from '@line/liff/dist/lib';
 import { firebaseApp } from './lib/firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import useFirebaseProfile from './hooks/useFirebaseProfile';
+import { classApi } from './classes.api';
+import { FullScreenMessage } from './components/general/FullScreenMessage';
 
 const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState(false);
 
   const { user, liffProfile } = useFirebaseProfile();
+
+  const [apiReady, setApiReady] = useState(false);
 
   const initLiff = async () => {
     await liff.init({ liffId: process.env.REACT_APP_LIFF_ID || '' });
@@ -44,9 +48,15 @@ const Router = () => {
     setDoc(doc(db, 'users', user.uid), {
       lineId: liffProfile.userId
     });
+    // ClassApiお気に入りリストの初期化
+    classApi.initializeFavoriteList(user.uid).then(() => {
+      setApiReady(true);
+    });
   }, [user, liffProfile]);
 
   useEffect(() => {
+    //
+    classApi.initializeClassList();
     // LIFF を初期化
     initLiff();
     // ローカルストレージからデータ読み込み
@@ -61,6 +71,7 @@ const Router = () => {
       <Migration />
       <ThemeProvider theme={mainTheme}>
         <Routes>
+          {!apiReady && <Route path="/" element={<FullScreenMessage label="読み込み中" />} />}
           {/* 初回のみウォークスルーを表示 */}
           {!setUpCompleted && <Route path="/" element={<WalkThrough startApp={() => setSetUpCompleted(true)} />} />}
           <Route path="/" element={<HomePage />} />
