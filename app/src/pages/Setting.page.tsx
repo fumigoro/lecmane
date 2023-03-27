@@ -4,9 +4,11 @@ import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import { InAppLink } from '../components/general/InAppLink';
 import MobileNavigation from '../components/general/Navigation';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { StorageIO, Key } from '../lib/storage';
 
 const SettingPage = () => {
+  useGA4PageEvent();
   return (
     <PageWrapper>
       <Header pageTitle="設定" showBackButton />

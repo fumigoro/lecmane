@@ -5,10 +5,12 @@ import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import useClasses from '../hooks/useClasses';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { ClassSearchQuery } from '../types/ClassSearchQuery';
 import { Year, years } from '../types/filter/Year';
 
 const FavoritePage = () => {
+  useGA4PageEvent();
   return (
     <PageWrapper>
       <Header pageTitle="お気に入り" showBackButton />

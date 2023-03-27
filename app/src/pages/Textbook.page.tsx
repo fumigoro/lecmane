@@ -6,10 +6,12 @@ import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import useClasses from '../hooks/useClasses';
 import useClassSearchQuery from '../hooks/useClassSearchQuery';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { semesters } from '../types/filter/Semester';
 import { years } from '../types/filter/Year';
 
 const TextbookPage = () => {
+  useGA4PageEvent();
   const [query, setQuery] = useClassSearchQuery((q) => ({ ...q, isFavorite: true }));
   const classes = useClasses(query);
   return (

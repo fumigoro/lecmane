@@ -5,6 +5,7 @@ import PageWrapper from '../components/general/BackgroundWrapper';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import useQueryParams from '../hooks/useQueryParams';
 import useSyllabus from '../hooks/useSyllabus';
 import { Year, years } from '../types/filter/Year';
@@ -18,6 +19,7 @@ const toYear = (yearString: string) => {
 };
 
 const ClassDetailPage = () => {
+  useGA4PageEvent();
   const { id } = useParams();
   const { y: yearString } = useQueryParams<{ y: string }>();
   const year = toYear(yearString || '');

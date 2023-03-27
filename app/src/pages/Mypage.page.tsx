@@ -5,8 +5,10 @@ import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import useFirebaseProfile from '../hooks/useFirebaseProfile';
 import PersonIcon from '@mui/icons-material/Person';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 
 const Mypage = () => {
+  useGA4PageEvent();
   const user = useFirebaseProfile();
 
   return (
