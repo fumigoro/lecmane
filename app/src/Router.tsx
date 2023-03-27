@@ -20,6 +20,7 @@ import Migration from './pages/Migration.page';
 import CreditSummaryPage from './pages/CreditTotal.page';
 import liff from '@line/liff/dist/lib';
 import { firebaseApp } from './lib/firebase';
+import ReactGA from 'react-ga4';
 
 const Router = () => {
   // ローカルストレージからデータ読み込み
@@ -42,6 +43,8 @@ const Router = () => {
       StorageIO.set(Key.SETUP_DONE, 'true');
       // LIFF を初期化
       initLiff();
+      // Google Analytics を初期化
+      ReactGA.initialize('G-ND9S98LEFF');
     }
   }, [setUpCompleted]);
 

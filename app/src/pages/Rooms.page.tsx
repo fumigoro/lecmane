@@ -5,6 +5,7 @@ import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import { RoomSearchModeSelect } from '../components/room/RoomSearchModeSelect';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { Room, roomApi } from '../rooms.api';
 import { buildings } from '../types/Building';
 import { SEMESTER, Semester } from '../types/filter/Semester';
@@ -13,6 +14,7 @@ import { Weekday, weekdays } from '../types/filter/Weekday';
 import { RoomSearchMethod } from '../types/global';
 
 const RoomsPage = () => {
+  useGA4PageEvent();
   const [method, setMethod] = useState<RoomSearchMethod | undefined>(undefined);
   const [rooms, setRooms] = useState<Room[]>([]);
 

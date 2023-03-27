@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { classApi } from '../classes.api';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { Year } from '../types/filter/Year';
 import { FullClass } from '../types/global';
 
@@ -29,6 +30,7 @@ const previousStorageKeys = [
 ];
 
 const Migration = () => {
+  useGA4PageEvent();
   const [syllabusList, setSyllabusList] = useState<FullClass[]>([]);
   useEffect(() => {
     loadPreviousData().then((d) => d && setSyllabusList(d));

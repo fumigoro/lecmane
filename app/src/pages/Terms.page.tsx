@@ -5,6 +5,7 @@ import { DeleteAccount } from '../components/account/DeleteAccount';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 
 const Head1 = ({ children }: { children: ReactNode }) => (
   <Typography variant="h4" my={2}>
@@ -19,6 +20,7 @@ const Head2 = ({ children }: { children: ReactNode }) => (
 );
 
 const TermsPage = () => {
+  useGA4PageEvent();
   return (
     <PageWrapper>
       <Header pageTitle="利用規約・プライバシーポリシー" showBackButton />

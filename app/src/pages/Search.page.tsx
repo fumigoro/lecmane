@@ -9,8 +9,10 @@ import { Key, StorageIO } from '../lib/storage';
 import useClasses from '../hooks/useClasses';
 import useClassSearchQuery from '../hooks/useClassSearchQuery';
 import useQueryParams from '../hooks/useQueryParams';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 
 const SearchPage = () => {
+  useGA4PageEvent();
   const [query, setQuery] = useClassSearchQuery();
   const { debug } = useQueryParams<{ debug: string }>();
 

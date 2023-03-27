@@ -7,6 +7,7 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import StarIcon from '@mui/icons-material/Star';
 import RoomIcon from '@mui/icons-material/Room';
 import { mainTheme } from '../styles/theme';
+import useGA4PageEvent from '../hooks/useGA4PageEvent';
 
 const iconProps = {
   sx: {
@@ -22,6 +23,7 @@ const disabledIconProps = {
 };
 
 const FeaturesPage = () => {
+  useGA4PageEvent();
   return (
     <PageWrapper bgColored>
       <Header pageTitle="ツール" />

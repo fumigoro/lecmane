@@ -7,6 +7,7 @@ import MuiAccordionSummary, { AccordionSummaryProps } from '@mui/material/Accord
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
+import { sendBookSearchEvent } from '../../../lib/analytics';
 
 type Props = {
   textbook: TextBook;
@@ -83,7 +84,14 @@ export const TextbookItem = ({ textbook }: Props) => {
           <Grid container spacing={1}>
             {ECSites.map((ec) => (
               <Grid item xs={6} key={ec.name}>
-                <Button variant="outlined" fullWidth href={ec.getUrl(textbook)} target="_blank" color="secondary">
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  href={ec.getUrl(textbook)}
+                  target="_blank"
+                  color="secondary"
+                  onClick={() => sendBookSearchEvent(textbook, ec.name)}
+                >
                   {ec.name}
                 </Button>
               </Grid>
