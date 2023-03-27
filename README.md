@@ -6,6 +6,8 @@ LINE公式アカウントから利用できます。
 
 https://lin.ee/8hIle16
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a3810151-82b5-48c6-aa19-cf81e57f39b0/deploy-status)](https://app.netlify.com/sites/lecmane/deploys)
+
 ## ご注意
 
  - このサービスは有志の岐大生が趣味で開発しているため、岐阜大学から一切の認可を受けていません。
