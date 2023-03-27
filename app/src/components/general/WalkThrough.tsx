@@ -153,7 +153,7 @@ export const WalkThrough = (props: WalkThroughProps) => {
                 </Typography>
               </Container>
             </Box>
-            <Box sx={{ position: 'absolute', width: '100%', top: '85vh', textAlign: 'center' }}>
+            <Box sx={{ position: 'absolute', width: '100%', bottom: '50px', textAlign: 'center' }}>
               <Typography>上記事項をご理解の上、</Typography>
               <Typography gutterBottom>
                 <Link to="/terms">利用規約とプライバシーポリシー</Link>に同意して
@@ -179,7 +179,7 @@ export const WalkThrough = (props: WalkThroughProps) => {
         <Box
           sx={{
             position: 'absolute',
-            top: '90vh',
+            bottom: '30px',
             width: '100%'
           }}
         >

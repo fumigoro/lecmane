@@ -25,6 +25,10 @@ export class Key {
    * お気に入りリスト
    */
   public static FAVORITE_LIST: StorageIOKey = { key: 'lecmane_favorite_list', chunk: true };
+  /**
+   * セットアップ済みかどうか
+   */
+  public static SETUP_DONE: StorageIOKey = { key: 'lecmane_setup_done', chunk: false };
 }
 
 //  LocalStorageAPIをラップする。5MBを超える巨大な文字列データの場合、分割してlocalStorageに出し入れするクラス。

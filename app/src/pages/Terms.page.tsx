@@ -1,7 +1,7 @@
-import { Container, Typography, Box, Button } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { DeleteAccount } from '../components/account/DeleteAccount';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
@@ -19,16 +19,6 @@ const Head2 = ({ children }: { children: ReactNode }) => (
 );
 
 const TermsPage = () => {
-  const navigate = useNavigate();
-  const clearAll = () => {
-    if (
-      window.confirm('講義のお気に入り登録を含む全てのデータが削除されます。この操作は元に戻せません。よろしいですか？')
-    ) {
-      localStorage.clear();
-      window.alert('削除しました');
-      navigate('/');
-    }
-  };
   return (
     <PageWrapper>
       <Header pageTitle="利用規約・プライバシーポリシー" showBackButton />
@@ -92,20 +82,11 @@ const TermsPage = () => {
         <Typography gutterBottom>
           当方は、本サービスの提供の終了、変更、または利用不能、本サービスの利用によるデータの消失または機械の故障もしくは損傷、履修に関する不利益、その他本サービスに関してご利用者様が被った損害につき、賠償する責任を一切負わないものとします。
         </Typography>
-        <Box sx={{ my: 1 }}>
+        <Box sx={{ my: 4 }}>
           <Typography align="center" variant="body2">
             上記事項に同意いただけない場合
           </Typography>
-          <Button
-            variant="outlined"
-            color="error"
-            fullWidth
-            onClick={() => {
-              clearAll();
-            }}
-          >
-            サービスの利用をやめる
-          </Button>
+          <DeleteAccount />
         </Box>
       </Container>
       <MobileNavigation />

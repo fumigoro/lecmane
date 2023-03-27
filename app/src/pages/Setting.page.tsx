@@ -1,4 +1,5 @@
 import { Box, Container, Divider, Typography } from '@mui/material';
+import { DeleteAccount } from '../components/account/DeleteAccount';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
 import { InAppLink } from '../components/general/InAppLink';
@@ -15,6 +16,7 @@ const SettingPage = () => {
           onClick={() => {
             if (window.confirm('お気に入りをリセットしますか？この操作は取り消せません。')) {
               localStorage.clear();
+              StorageIO.set(Key.SETUP_DONE, 'true');
               window.location.href = '/';
             }
           }}
@@ -28,12 +30,13 @@ const SettingPage = () => {
         <Box
           py={2}
           onClick={() => {
-            window.alert('キャッシュを削除しました');
             const data = StorageIO.get(Key.FAVORITE_LIST);
             localStorage.clear();
+            StorageIO.set(Key.SETUP_DONE, 'true');
             if (data) {
               StorageIO.set(Key.FAVORITE_LIST, data);
             }
+            window.alert('キャッシュを削除しました');
           }}
         >
           <Typography gutterBottom>キャッシュを削除</Typography>
@@ -51,6 +54,7 @@ const SettingPage = () => {
           </Box>
         </InAppLink>
         <Divider />
+        <DeleteAccount />
       </Container>
       <MobileNavigation />
     </PageWrapper>

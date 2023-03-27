@@ -22,7 +22,8 @@ import liff from '@line/liff/dist/lib';
 import { firebaseApp } from './lib/firebase';
 
 const Router = () => {
-  const [setUpCompleted, setSetUpCompleted] = useState(false);
+  // ローカルストレージからデータ読み込み
+  const [setUpCompleted, setSetUpCompleted] = useState<Boolean>(StorageIO.get(Key.SETUP_DONE) === 'true');
 
   const initLiff = async () => {
     await liff.init({ liffId: process.env.REACT_APP_LIFF_ID || '' });
@@ -35,16 +36,14 @@ const Router = () => {
   };
 
   useEffect(() => {
-    // LIFF を初期化
-    initLiff();
-    // ローカルストレージからデータ読み込み
-    const favoriteList = StorageIO.get(Key.CLASS_LIST);
-    if (favoriteList) {
-      setSetUpCompleted(true);
-    }
-
+    console.log('setUpCompleted', setUpCompleted);
     console.log(firebaseApp);
-  }, []);
+    if (setUpCompleted) {
+      StorageIO.set(Key.SETUP_DONE, 'true');
+      // LIFF を初期化
+      initLiff();
+    }
+  }, [setUpCompleted]);
 
   return (
     <Box sx={{ background: { xs: '#fafafa', md: '#fff' }, fontFamily: 'Noto Sans JP' }}>

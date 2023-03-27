@@ -75,23 +75,25 @@ export const getClassList = async () => {
   const fetchTasks = AVAILABLE_YEARS.flatMap((year) => {
     return faculties.map((fac) => getClassListOne(year, fac.id));
   });
-  return Promise.allSettled(fetchTasks).then((results) => {
-    // resultを順に確認し、成功してデータがあるものだけを一つの配列にまとめる
-    const successList = results.flatMap((result) => {
-      if (result.status === 'fulfilled') {
-        return result.value;
-      }
+  return Promise.allSettled(fetchTasks)
+    .then((results) => {
+      // resultを順に確認し、成功してデータがあるものだけを一つの配列にまとめる
+      const successList = results.flatMap((result) => {
+        if (result.status === 'fulfilled') {
+          return result.value;
+        }
+        return [];
+      });
+      // キャッシュ保存
+      StorageIO.set(Key.CLASS_LIST, JSON.stringify(successList));
+      StorageIO.set(Key.LAST_FETCHED, new Date().toISOString());
+      StorageIO.set(Key.DATA_TIMESTAMP, serverDataTimestamp.toISOString());
+      return successList;
+    })
+    .catch((error) => {
+      window.alert(`データの取得に失敗しました。${error}`);
       return [];
     });
-    // キャッシュ保存
-    StorageIO.set(Key.CLASS_LIST, JSON.stringify(successList));
-    StorageIO.set(Key.LAST_FETCHED, new Date().toISOString());
-    StorageIO.set(Key.DATA_TIMESTAMP, serverDataTimestamp.toISOString());
-    return successList;
-  }).catch((error) => {
-    window.alert(`データの取得に失敗しました。${error}`);
-    return [];
-  });
 };
 
 /**
