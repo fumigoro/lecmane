@@ -1,6 +1,12 @@
 name: Eslint code check
 
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
     
 jobs:
   eslint_code_check:
