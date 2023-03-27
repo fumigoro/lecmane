@@ -149,7 +149,7 @@ export const WalkThrough = (props: WalkThroughProps) => {
                   ・ご利用により生じたいかなる損害についても責任を負いかねます。
                 </Typography>
                 <Typography m={2} variant="h6" gutterBottom>
-                  ・このサービスは完全に個人で開発しており岐阜大学とは関係ありません。
+                  ・このサービスは有志の岐大生が趣味で開発しており、岐阜大学や企業などの営利団体との関係はありません。
                 </Typography>
               </Container>
             </Box>

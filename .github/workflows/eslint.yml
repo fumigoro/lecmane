@@ -1,0 +1,21 @@
+name: Eslint code check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    
+jobs:
+  eslint_code_check:
+    name: Eslint code check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: cd app && npm install
+      - run: cd app && npm run lint
