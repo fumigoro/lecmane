@@ -2,10 +2,10 @@ import { initializeApp } from 'firebase/app';
 import type { Profile } from '@liff/get-profile';
 import { getAuth, signInWithCustomToken, updateProfile } from 'firebase/auth';
 import { httpsCallable, getFunctions } from 'firebase/functions';
-const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+const apiKey = import.meta.env.VITE_FIREBASE_API_KEY;
 
 if (!apiKey) {
-  throw new Error('Environment variable REACT_APP_FIREBASE_API_KEY is not defined.');
+  throw new Error('Environment variable VITE_FIREBASE_API_KEY is not defined.');
 }
 
 const firebaseConfig = {

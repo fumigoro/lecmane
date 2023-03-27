@@ -26,7 +26,7 @@ const Router = () => {
   const [setUpCompleted, setSetUpCompleted] = useState<Boolean>(StorageIO.get(Key.SETUP_DONE) === 'true');
 
   const initLiff = async () => {
-    await liff.init({ liffId: process.env.REACT_APP_LIFF_ID || '' });
+    await liff.init({ liffId: import.meta.env.VITE_LIFF_ID || '' });
     if (!liff.isLoggedIn()) {
       liff.login();
     } else {
