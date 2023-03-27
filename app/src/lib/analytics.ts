@@ -5,7 +5,7 @@ import ReactGA from 'react-ga4';
  * Google Analytics に教科書検索ボタンクリックイベントを送信する
  */
 export const sendBookSearchEvent = (textbook: TextBook, serviceName: string) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (import.meta.env.MODE !== 'production') {
     return;
   }
   ReactGA.event({
