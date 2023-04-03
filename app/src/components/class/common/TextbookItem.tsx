@@ -73,7 +73,7 @@ export const TextbookItem = ({ textbook, classItem }: Props) => {
   };
   return (
     <>
-      <Accordion>
+      <Accordion sx={{ px: 1, borderRadius: '4px' }}>
         <AccordionSummary>
           <Grid container spacing={1}>
             <Grid item xs={2}>
@@ -155,7 +155,7 @@ export const TextbookItem = ({ textbook, classItem }: Props) => {
 export const TextbookItemSkelton = () => (
   <>
     <Divider />
-    <Stack direction="row" sx={{ mt: 1 }}>
+    <Stack direction="row" sx={{ mt: 1, px: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={2}>
           <Skeleton variant="rounded" width="100%" height={55} sx={{ mb: 1 }} />

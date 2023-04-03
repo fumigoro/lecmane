@@ -14,50 +14,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { getCreditsTotal } from '../../lib/credit';
 import { Class, CreditTotal } from '../../types/global';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {
-  lightBlue,
-  green,
-  orange,
-  blueGrey,
-  red,
-  brown,
-  pink,
-  purple,
-  amber,
-  blue,
-  cyan,
-  deepOrange,
-  deepPurple,
-  indigo,
-  lightGreen,
-  teal,
-  yellow
-} from '@mui/material/colors';
+import { lightBlue, green, orange, blueGrey, red, brown } from '@mui/material/colors';
 import { primaryColor } from '../../styles/theme';
 import { ClassOpeMenu } from '../class/common/ClassOpeMenu';
-
-const categoryColors = [
-  red,
-  pink,
-  purple,
-  deepPurple,
-  indigo,
-  blue,
-  lightBlue,
-  cyan,
-  teal,
-  green,
-  brown,
-  lightGreen,
-  amber,
-  yellow,
-  orange,
-  deepOrange
-];
-
-const getCategoryColors = (category: string) => {
-  return categoryColors[category.charCodeAt(0) % categoryColors.length];
-};
+import { getCategoryColor } from '../../lib/main';
 
 const getCreditSum = (classes: Class[]) => {
   return classes.reduce((acc, c) => acc + c.credit, 0);
@@ -104,7 +64,7 @@ export const CreditSummary = () => {
           const classes = Object.values(faculties).flat();
           const creditSum = getCreditSum(classes);
           const numOfClasses = classes.length;
-          const color = getCategoryColors(key);
+          const color = getCategoryColor(key);
           return (
             <Box key={key} sx={{ background: color[50], borderRadius: 4, py: 2, px: 1, my: 2 }}>
               <Typography variant="h5" pl={1} mb={1} sx={{ color: color['A700'] }}>

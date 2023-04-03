@@ -1,49 +1,8 @@
 import { Paper, Stack, Typography } from '@mui/material';
-import { shortRoomName } from '../../lib/main';
+import { getCategoryColor, shortRoomName } from '../../lib/main';
 import { Class } from '../../types/global';
 import { ClassOpeMenu } from '../class/common/ClassOpeMenu';
 import { useState } from 'react';
-import {
-  amber,
-  blue,
-  brown,
-  cyan,
-  deepOrange,
-  deepPurple,
-  green,
-  indigo,
-  lightBlue,
-  lightGreen,
-  orange,
-  pink,
-  purple,
-  red,
-  teal,
-  yellow
-} from '@mui/material/colors';
-
-const categoryColors = [
-  red,
-  pink,
-  purple,
-  deepPurple,
-  indigo,
-  blue,
-  lightBlue,
-  cyan,
-  teal,
-  green,
-  brown,
-  lightGreen,
-  amber,
-  yellow,
-  orange,
-  deepOrange
-];
-
-const getCategoryColors = (category: string) => {
-  return categoryColors[category.charCodeAt(0) % categoryColors.length];
-};
 
 type Props = {
   classes: Class[];
@@ -68,7 +27,7 @@ type TimetableClassItemProps = {
 };
 export const TimetableClassItem = ({ classItem: c }: TimetableClassItemProps) => {
   const [open, setOpen] = useState(false);
-  const color = getCategoryColors(c.department);
+  const color = getCategoryColor(c.department);
 
   return (
     <>

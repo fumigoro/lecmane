@@ -27,6 +27,7 @@ import { useNavigate } from 'react-router-dom';
 import { classApi } from '../../../classes.api';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { getCategoryColor } from '../../../lib/main';
 
 type Props = {
   classItem: Class;
@@ -37,12 +38,11 @@ type Props = {
 };
 
 const InfoBadge = styled(Box)(({ theme }) => ({
-  padding: '1px 6px',
+  fontFamily: theme.typography.fontFamily,
+  padding: '2px 6px',
   textAlign: 'center',
-  background: primaryColor[200],
-  fontWeight: 'bold',
   fontSize: 12,
-  color: '#2b3c4e'
+  borderRadius: 10
 }));
 
 export const ClassOpeMenu = ({
@@ -66,6 +66,8 @@ export const ClassOpeMenu = ({
   const handleOpenDetailPage = (id: string, year: number) => {
     navigate(`/classes/${id}?y=${year}`);
   };
+
+  const color = getCategoryColor(classItem.department);
 
   const isFavorite = isFavoriteProp !== undefined ? isFavoriteProp : classApi.isFavorite(classItem.year, classItem.id);
 
@@ -109,16 +111,16 @@ export const ClassOpeMenu = ({
               <CloseIcon />
             </IconButton>
           </Stack>
-          <Paper variant="outlined" sx={{ p: 2, background: isFavorite ? primaryColor[50] : 'white' }}>
+          <Paper variant="outlined" sx={{ p: 2, background: isFavorite ? color[50] : 'white' }}>
             <Typography variant="h5" gutterBottom>
               {classItem.title}
             </Typography>
-            <Stack spacing={1} direction="row" my={2}>
-              <Typography variant="body2">{classItem.year}年度</Typography>
-              <InfoBadge sx={{ borderRadius: 3 }}>{classItem.grade}年次</InfoBadge>
-              <InfoBadge sx={{ borderRadius: 3 }}>{classItem.semester}</InfoBadge>
-              <InfoBadge sx={{ borderRadius: 3 }}>{classItem.weekday}</InfoBadge>
-              <InfoBadge sx={{ borderRadius: 3 }}>{classItem.time}</InfoBadge>
+            <Stack spacing={1} direction="row" my={2} alignItems="center">
+              <InfoBadge sx={{ background: color['500'], color: 'white' }}>{classItem.year}年度</InfoBadge>
+              <InfoBadge sx={{ background: color['500'], color: 'white' }}>{classItem.grade}年次</InfoBadge>
+              <InfoBadge sx={{ background: color['500'], color: 'white' }}>{classItem.semester}</InfoBadge>
+              <InfoBadge sx={{ background: color['500'], color: 'white' }}>{classItem.weekday}</InfoBadge>
+              <InfoBadge sx={{ background: color['500'], color: 'white' }}>{classItem.time}</InfoBadge>
             </Stack>
             <Divider sx={{ mb: 2 }} />
             {basicData.map((d) => (

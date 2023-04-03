@@ -10,6 +10,7 @@ import { classApi } from '../../../classes.api';
 import { TextbookItem, TextbookItemSkelton } from './TextbookItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import { mainTheme } from '../../../styles/theme';
+import { getCategoryColor } from '../../../lib/main';
 
 type Props = {
   classItem: Class;
@@ -32,45 +33,49 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
     });
   }, [classItem]);
 
+  const color = getCategoryColor(classItem.department);
+
   return (
-    <Paper sx={{ p: 1, my: 1 }}>
-      <Box sx={{ width: '100%', cursor: 'pointer' }} onClick={(e) => setOpen(true)}>
-        <Typography gutterBottom fontWeight="bold">
-          {classItem.title}
-        </Typography>
-        <Stack direction="row" alignItems={'center'} spacing={1} sx={{ my: 1 }}>
-          <Stack direction="row" spacing={0.3}>
-            <CalendarTodayIcon sx={{ color: 'gray', fontSize: 16 }} />
-            <Typography variant="body2">
-              {classItem.grade}年 {classItem.semester.replace('学', '')}
-            </Typography>
+    <Paper sx={{ my: 1, background: color[50], p: 0.5 }} variant="outlined">
+      <Box sx={{ p: 0.5, cursor: 'pointer' }} onClick={(e) => setOpen(true)}>
+        <Box sx={{ width: '100%' }}>
+          <Typography gutterBottom fontWeight="bold" sx={{ color: color['A700'] }}>
+            {classItem.title}
+          </Typography>
+          <Stack direction="row" alignItems={'center'} spacing={1} sx={{ my: 1 }}>
+            <Stack direction="row" spacing={0.3}>
+              <CalendarTodayIcon sx={{ color: 'gray', fontSize: 16 }} />
+              <Typography variant="body2">
+                {classItem.grade}年 {classItem.semester.replace('学', '')}
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={0.3}>
+              <AccessTimeFilledIcon sx={{ color: 'gray', fontSize: 16 }} />
+              <Typography variant="body2">
+                {classItem.weekday.replace('日', '')} {classItem.time.replace('時', '')}
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={0.3}>
+              <SchoolIcon sx={{ color: 'gray', fontSize: 16 }} />
+              <Typography variant="body2">
+                {classItem.teachers[0]}
+                {classItem.teachers.length > 2 && ' ほか'}
+              </Typography>
+            </Stack>
+            <Stack direction="row" spacing={0.3}>
+              <NumbersIcon sx={{ color: 'gray', fontSize: 16 }} />
+              <Typography variant="body2" color="gray">
+                {classItem.id}
+              </Typography>
+            </Stack>
           </Stack>
-          <Stack direction="row" spacing={0.3}>
-            <AccessTimeFilledIcon sx={{ color: 'gray', fontSize: 16 }} />
-            <Typography variant="body2">
-              {classItem.weekday.replace('日', '')} {classItem.time.replace('時', '')}
-            </Typography>
-          </Stack>
-          <Stack direction="row" spacing={0.3}>
-            <SchoolIcon sx={{ color: 'gray', fontSize: 16 }} />
-            <Typography variant="body2">
-              {classItem.teachers[0]}
-              {classItem.teachers.length > 2 && ' ほか'}
-            </Typography>
-          </Stack>
-          <Stack direction="row" spacing={0.3}>
-            <NumbersIcon sx={{ color: 'gray', fontSize: 16 }} />
-            <Typography variant="body2" color="gray">
-              {classItem.id}
-            </Typography>
-          </Stack>
-        </Stack>
-        {fullData && fullData.details.textComment && (
-          <Stack direction="row" spacing={0.3} mb={0.5}>
-            <AnnouncementIcon sx={{ fontSize: 16, color: mainTheme.palette.primary.main }} />
-            <Typography variant="body2">{fullData.details.textComment}</Typography>
-          </Stack>
-        )}
+          {fullData && fullData.details.textComment && (
+            <Stack direction="row" spacing={0.3} mb={0.5}>
+              <AnnouncementIcon sx={{ fontSize: 16, color: 'gray' }} />
+              <Typography variant="body2">{fullData.details.textComment}</Typography>
+            </Stack>
+          )}
+        </Box>
       </Box>
       {fullData &&
         fullData.details.textbook.map((t, index) => <TextbookItem textbook={t} classItem={classItem} key={index} />)}

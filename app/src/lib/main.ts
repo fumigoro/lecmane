@@ -1,3 +1,21 @@
+import {
+  amber,
+  blue,
+  brown,
+  cyan,
+  deepOrange,
+  deepPurple,
+  green,
+  indigo,
+  lightBlue,
+  lightGreen,
+  orange,
+  pink,
+  purple,
+  red,
+  teal,
+  yellow
+} from '@mui/material/colors';
 import { SEMESTER } from '../types/filter/Semester';
 import { Year } from '../types/filter/Year';
 
@@ -69,4 +87,31 @@ export const copyToClipboard = (text: string) => {
   console.log(document.execCommand('copy'));
 
   rootElement.removeChild(targetElement);
+};
+
+/**
+ * 学部名からカテゴリ色を取得する
+ * @param category
+ * @returns
+ */
+export const getCategoryColor = (category: string) => {
+  const categoryColors = [
+    red,
+    pink,
+    purple,
+    deepPurple,
+    indigo,
+    blue,
+    lightBlue,
+    cyan,
+    teal,
+    green,
+    brown,
+    lightGreen,
+    amber,
+    yellow,
+    orange,
+    deepOrange
+  ];
+  return categoryColors[category.charCodeAt(0) % categoryColors.length];
 };
