@@ -8,7 +8,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
 import { sendBookSearchEvent } from '../../../lib/analytics';
-import { copyToClipboard, hanNumber2zenNumber } from '../../../lib/main';
+import { copyToClipboard } from '../../../lib/main';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -31,30 +31,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: 0
 }));
 
-const getCoopSearchUrl = (t: TextBook, c: Class) => {
-  let keyword = c.title.replace(/[（(《≪].+[）)》≫]/g, '');
-  keyword = keyword.replace(/VI/g, ' ６');
-  keyword = keyword.replace(/V/g, ' ５');
-  keyword = keyword.replace(/IV/g, ' ４');
-  keyword = keyword.replace(/III/g, ' ３');
-  keyword = keyword.replace(/II/g, ' ２');
-  keyword = keyword.replace(/I/g, ' １');
-  keyword = hanNumber2zenNumber(keyword);
-  const language = c.title.match(/\(.+語\)/g)?.[0].replace(/[()]/g, '');
-  if (language) {
-    keyword = `${keyword} ${language}`;
-  }
-  if (keyword.match(/\s/g)) {
-    return `https://kyoukasho.univ.coop/gucoop/html/products/list?ex_free=${keyword}&ex17=${c.department[0]}`;
-  }
-  return `https://kyoukasho.univ.coop/gucoop/html/products/list?&ex20=${keyword}&ex17=${c.department[0]}`;
-};
-
 const ECSites = [
-  {
-    name: '生協教科書サイト',
-    getUrl: getCoopSearchUrl
-  },
   {
     name: '図書館蔵書検索',
     getUrl: (t: TextBook, c: Class) => `http://opac.lib.gifu-u.ac.jp/opc/xc/search/*?os[isbn]=${t.isbn}`

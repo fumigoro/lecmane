@@ -1,4 +1,4 @@
-import { Box, Typography, Stack, Paper } from '@mui/material';
+import { Box, Typography, Stack, Paper, Button } from '@mui/material';
 import { Class, FullClass } from '../../../types/global';
 import NumbersIcon from '@mui/icons-material/Numbers';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
@@ -9,8 +9,26 @@ import { ClassOpeMenu } from './ClassOpeMenu';
 import { classApi } from '../../../classes.api';
 import { TextbookItem, TextbookItemSkelton } from './TextbookItem';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
-import { mainTheme } from '../../../styles/theme';
-import { getCategoryColor } from '../../../lib/main';
+import { getCategoryColor, hanNumber2zenNumber } from '../../../lib/main';
+
+const getCoopSearchUrl = (c: Class) => {
+  let keyword = c.title.replace(/[（(《≪].+[）)》≫]/g, '');
+  keyword = keyword.replace(/VI/g, ' ６');
+  keyword = keyword.replace(/V/g, ' ５');
+  keyword = keyword.replace(/IV/g, ' ４');
+  keyword = keyword.replace(/III/g, ' ３');
+  keyword = keyword.replace(/II/g, ' ２');
+  keyword = keyword.replace(/I/g, ' １');
+  keyword = hanNumber2zenNumber(keyword);
+  const language = c.title.match(/\(.+語\)/g)?.[0].replace(/[()]/g, '');
+  if (language) {
+    keyword = `${keyword} ${language}`;
+  }
+  if (keyword.match(/\s/g)) {
+    return `https://kyoukasho.univ.coop/gucoop/html/products/list?ex_free=${keyword}&ex17=${c.department[0]}`;
+  }
+  return `https://kyoukasho.univ.coop/gucoop/html/products/list?&ex20=${keyword}&ex17=${c.department[0]}`;
+};
 
 type Props = {
   classItem: Class;
@@ -80,7 +98,20 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
       {fullData &&
         fullData.details.textbook.map((t, index) => <TextbookItem textbook={t} classItem={classItem} key={index} />)}
       {!fullData && <TextbookItemSkelton />}
-
+      {fullData && fullData.details.textbook.length > 0 && (
+        <Box my={1}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="secondary"
+            sx={{ background: color[500] }}
+            href={getCoopSearchUrl(classItem)}
+            target="_blank"
+          >
+            この講義を生協教科書サイトで検索
+          </Button>
+        </Box>
+      )}
       <ClassOpeMenu classItem={classItem} open={open} setOpen={setOpen} />
     </Paper>
   );
