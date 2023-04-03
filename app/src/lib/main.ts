@@ -28,6 +28,18 @@ export const zen2han = (text: string) => {
   return result;
 };
 
+/**
+ * テキスト内の半角数字を全角に置換する
+ * @param text
+ * @returns
+ */
+export const hanNumber2zenNumber = (text: string) => {
+  let result = text.replace(/[0-9]/g, function (s) {
+    return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
+  });
+  return result;
+};
+
 export const removeSpace = (text: string) => {
   return text.replace(/[\s　]/g, '');
 };

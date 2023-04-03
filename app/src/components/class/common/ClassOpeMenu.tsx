@@ -22,7 +22,6 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { styled } from '@mui/material/styles';
 import { Class } from '../../../types/global';
-import { primaryColor } from '../../../styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { classApi } from '../../../classes.api';
 import StarIcon from '@mui/icons-material/Star';
