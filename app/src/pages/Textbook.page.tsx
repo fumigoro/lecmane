@@ -9,10 +9,11 @@ import useClassSearchQuery from '../hooks/useClassSearchQuery';
 import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { semesters } from '../types/filter/Semester';
 import { years } from '../types/filter/Year';
+import { getSemester } from '../lib/main';
 
 const TextbookPage = () => {
   useGA4PageEvent();
-  const [query, setQuery] = useClassSearchQuery((q) => ({ ...q, isFavorite: true }));
+  const [query, setQuery] = useClassSearchQuery((q) => ({ ...q, semester: getSemester(new Date()), isFavorite: true }));
   const classes = useClasses(query);
   return (
     <PageWrapper>

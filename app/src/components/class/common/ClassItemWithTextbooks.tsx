@@ -72,7 +72,8 @@ export const ClassItemWithTextbooks = ({ classItem }: Props) => {
           </Stack>
         )}
       </Box>
-      {fullData && fullData.details.textbook.map((t, index) => <TextbookItem textbook={t} key={index} />)}
+      {fullData &&
+        fullData.details.textbook.map((t, index) => <TextbookItem textbook={t} classItem={classItem} key={index} />)}
       {!fullData && <TextbookItemSkelton />}
 
       <ClassOpeMenu classItem={classItem} open={open} setOpen={setOpen} />

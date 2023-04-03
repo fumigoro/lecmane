@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Grid, Skeleton, Stack, Typography } from '@mui/material';
-import { TextBook } from '../../../types/global';
+import { Class, TextBook } from '../../../types/global';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styled from '@emotion/styled';
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
@@ -8,9 +8,13 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Snackbar from '@mui/material/Snackbar';
 import { useState } from 'react';
 import { sendBookSearchEvent } from '../../../lib/analytics';
+import { copyToClipboard } from '../../../lib/main';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 type Props = {
   textbook: TextBook;
+  classItem: Class;
 };
 
 const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} {...props} />)(
@@ -29,24 +33,35 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 const ECSites = [
   {
+    name: '生協教科書サイト',
+    getUrl: (t: TextBook, c: Class) => {
+      const language = c.title.match(/\(.+語\)/g)?.[0].replace(/[()]/g, '');
+      const classTitle = c.title.replace(/[（(《].+[）)》]/g, '');
+      if (language) {
+        return `https://kyoukasho.univ.coop/gucoop/html/products/list?ex_free=${classTitle} ${language}`;
+      }
+      return `https://kyoukasho.univ.coop/gucoop/html/products/list?ex20=${classTitle}`;
+    }
+  },
+  {
     name: '図書館蔵書検索',
-    getUrl: (t: TextBook) => `http://opac.lib.gifu-u.ac.jp/opc/xc/search/*?os[isbn]=${t.isbn}`
+    getUrl: (t: TextBook, c: Class) => `http://opac.lib.gifu-u.ac.jp/opc/xc/search/*?os[isbn]=${t.isbn}`
   },
   {
     name: 'Amazon',
-    getUrl: (t: TextBook) => `https://www.amazon.co.jp/s?k=${t.isbn}`
+    getUrl: (t: TextBook, c: Class) => `https://www.amazon.co.jp/s?k=${t.isbn}`
   },
   {
     name: 'メルカリ',
-    getUrl: (t: TextBook) => `https://jp.mercari.com/search?keyword=${t.title}`
+    getUrl: (t: TextBook, c: Class) => `https://jp.mercari.com/search?keyword=${t.title}`
   },
   {
     name: 'Google',
-    getUrl: (t: TextBook) => `https://www.google.co.jp/search?tbm=shop&q=${t.title}`
+    getUrl: (t: TextBook, c: Class) => `https://www.google.co.jp/search?tbm=shop&q=${t.title}`
   }
 ];
 
-export const TextbookItem = ({ textbook }: Props) => {
+export const TextbookItem = ({ textbook, classItem }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -87,33 +102,48 @@ export const TextbookItem = ({ textbook }: Props) => {
                 <Button
                   variant="outlined"
                   fullWidth
-                  href={ec.getUrl(textbook)}
+                  href={ec.getUrl(textbook, classItem)}
                   target="_blank"
                   color="secondary"
                   onClick={() => sendBookSearchEvent(textbook, ec.name)}
+                  endIcon={<OpenInNewIcon />}
                 >
                   {ec.name}
                 </Button>
               </Grid>
             ))}
-            <Grid item xs={6}>
-              <Button variant="outlined" fullWidth color="secondary" disabled>
-                生協教科書サイト(4/1~)
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => {
-                  navigator.clipboard.writeText(textbook.isbn).then(() => setOpen(true));
-                }}
-                color="secondary"
-                disabled={!textbook.isbn}
-              >
-                ISBNをコピー
-              </Button>
-            </Grid>
+            {textbook.isbn && (
+              <Grid item xs={6}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => {
+                    copyToClipboard(textbook.isbn);
+                    setOpen(true);
+                  }}
+                  // color="secondary"
+                  endIcon={<ContentCopyIcon />}
+                >
+                  ISBNをコピー
+                </Button>
+              </Grid>
+            )}
+            {!textbook.isbn && (
+              <Grid item xs={6}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => {
+                    copyToClipboard(classItem.title);
+                    setOpen(true);
+                  }}
+                  // color="secondary"
+                  endIcon={<ContentCopyIcon />}
+                >
+                  書籍名をコピー
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </AccordionDetails>
       </Accordion>

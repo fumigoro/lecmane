@@ -48,3 +48,25 @@ export const getSemester = (date: Date) => {
     return SEMESTER.FALL;
   }
 };
+
+/**
+ * テキストをクリップボードにコピーする
+ *
+ * LIFFブラウザではclipboard.writeTextが使えないため、execCommandを使用する
+ * @param text
+ * @returns
+ */
+export const copyToClipboard = (text: string) => {
+  const rootElement = document.querySelector('#root');
+  if (!rootElement) return;
+  const targetElement = document.createElement('textarea');
+  targetElement.value = text;
+  targetElement.style.position = 'absolute';
+  targetElement.style.top = '100vh';
+  rootElement.appendChild(targetElement);
+  targetElement.select();
+
+  console.log(document.execCommand('copy'));
+
+  rootElement.removeChild(targetElement);
+};
