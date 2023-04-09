@@ -54,6 +54,8 @@ export const ClassDetail = ({ fullData }: Props) => {
     );
   };
 
+  const syllabusUrl = `https://alss-portal.gifu-u.ac.jp/campusweb/slbssbdr.do?value(risyunen)=${fullData.year}&value(semekikn)=1&value(kougicd)=${fullData.id}`;
+
   return (
     <>
       <Typography mt={2}>{fullData.year}年度</Typography>
@@ -74,7 +76,7 @@ export const ClassDetail = ({ fullData }: Props) => {
           </CardContent>
         </Card>
         <Box mt={2} sx={{ bgcolor: 'white' }}>
-          <Button endIcon={<OpenInNewOutlinedIcon />} fullWidth variant="outlined" href={fullData.url} target="_blank">
+          <Button endIcon={<OpenInNewOutlinedIcon />} fullWidth variant="outlined" href={syllabusUrl} target="_blank">
             大学公式シラバスを開く
           </Button>
         </Box>
@@ -98,7 +100,7 @@ export const ClassDetail = ({ fullData }: Props) => {
           <Typography gutterBottom>
             最新・正確な情報は必ず大学公式のシラバスで確認してください。本サービス内での情報の正確性は保証できかねます。
           </Typography>
-          <Button endIcon={<OpenInNewOutlinedIcon />} fullWidth variant="contained" href={fullData.url} target="_blank">
+          <Button endIcon={<OpenInNewOutlinedIcon />} fullWidth variant="contained" href={syllabusUrl} target="_blank">
             大学公式シラバスを開く
           </Button>
         </Box>

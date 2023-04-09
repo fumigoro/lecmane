@@ -7,7 +7,7 @@ export type Class = {
   customId: string;
   year: Year;
   title: string;
-  url: string;
+  // url: string;
   semester: string;
   weekday: string;
   time: string;

@@ -59,7 +59,8 @@ export const ClassOpeMenu = ({
 
   const handleOpenSyllabus = () => {
     setOpen(false);
-    window.open(classItem.url, 'alss-portal.gifu-u.ac.jp');
+    const syllabusUrl = `https://alss-portal.gifu-u.ac.jp/campusweb/slbssbdr.do?value(risyunen)=${classItem.year}&value(semekikn)=1&value(kougicd)=${classItem.id}`;
+    window.open(syllabusUrl, 'alss-portal.gifu-u.ac.jp');
   };
 
   const handleOpenDetailPage = (id: string, year: number) => {
