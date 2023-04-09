@@ -88,6 +88,7 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
           label="キーワード"
           variant="outlined"
           sx={{ my: 1 }}
+          value={query.keyWord}
           onChange={(e) => setQuery({ ...query, keyWord: e.target.value })}
         />
       </Container>
