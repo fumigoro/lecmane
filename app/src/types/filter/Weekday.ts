@@ -1,7 +1,10 @@
 export type Weekday = '月' | '火' | '水' | '木' | '金' | '集中';
 
+// 集中講義を除いたWeekday
+export type WeekdayExcludeConcentrated = Exclude<Weekday, '集中'>;
+
 export const weekdays: {
-  value: Weekday;
+  value: WeekdayExcludeConcentrated;
   label: string;
 }[] = [
   {

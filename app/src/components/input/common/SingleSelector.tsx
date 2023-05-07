@@ -143,6 +143,7 @@ export const SingleSelector = <T,>(props: Props<T>) => {
                       p: 2,
                       border: option.value === props.selectedValue ? '3px solid orange' : ''
                     }}
+                    variant="outlined"
                   >
                     <Stack direction="row" alignItems="center" spacing={2}>
                       {option.icon}

@@ -37,7 +37,7 @@ export const RoomSearchModeSelect = ({ setMethod }: Props) => {
       <Stack spacing={2}>
         {SearchMethods.map((method, index) => (
           <Button key={index} fullWidth sx={{ p: 0 }} onClick={() => method.onClick()}>
-            <Card sx={{ width: '100%' }}>
+            <Card sx={{ width: '100%' }} variant="outlined">
               <CardContent>
                 <Box>{method.icon}</Box>
                 <Box mt={2}>
