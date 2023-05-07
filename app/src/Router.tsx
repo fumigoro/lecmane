@@ -21,6 +21,8 @@ import CreditSummaryPage from './pages/CreditTotal.page';
 import liff from '@line/liff/dist/lib';
 import { firebaseApp } from './lib/firebase';
 import ReactGA from 'react-ga4';
+import { RoomsByTimePage } from './pages/RoomsByTime';
+import { RoomsByRoomPage } from './pages/RoomsByRoom';
 
 const Router = () => {
   // ローカルストレージからデータ読み込み
@@ -68,6 +70,8 @@ const Router = () => {
           <Route path="/features/textbook" element={<TextbookPage />} />
           <Route path="/features/favorite" element={<FavoritePage />} />
           <Route path="/features/rooms" element={<RoomsPage />} />
+          <Route path="/features/rooms/time" element={<RoomsByTimePage />} />
+          <Route path="/features/rooms/room" element={<RoomsByRoomPage />} />
         </Routes>
       </ThemeProvider>
     </Box>
