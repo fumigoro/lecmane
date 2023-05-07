@@ -1,11 +1,12 @@
 import { Container, Stack } from '@mui/material';
 import PageWrapper from '../components/general/BackgroundWrapper';
-import { FeatureCard, FeatureCardDisabled } from '../components/general/FeatureIcon';
+import { FeatureCard } from '../components/general/FeatureIcon';
 import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import StarIcon from '@mui/icons-material/Star';
 import RoomIcon from '@mui/icons-material/Room';
+import TableRowsIcon from '@mui/icons-material/TableRows';
 import { mainTheme } from '../styles/theme';
 import useGA4PageEvent from '../hooks/useGA4PageEvent';
 
@@ -15,12 +16,12 @@ const iconProps = {
     color: mainTheme.palette.primary.main
   }
 };
-const disabledIconProps = {
-  sx: {
-    fontSize: 40,
-    color: 'gray'
-  }
-};
+// const disabledIconProps = {
+//   sx: {
+//     fontSize: 40,
+//     color: 'gray'
+//   }
+// };
 
 const FeaturesPage = () => {
   useGA4PageEvent();
@@ -45,13 +46,13 @@ const FeaturesPage = () => {
             title="単位数の集計"
             description="お気に入り登録した講義の単位数を集計"
             to="/features/credits"
-            icon={<StarIcon {...iconProps} />}
+            icon={<TableRowsIcon {...iconProps} />}
           />
-          <FeatureCardDisabled
+          <FeatureCard
             title="空き教室検索"
             description="自習などに使える教室を検索"
-            disabledReason="講義期間中のみ利用できます"
-            icon={<RoomIcon {...disabledIconProps} />}
+            to="/features/rooms"
+            icon={<RoomIcon {...iconProps} />}
           />
         </Stack>
       </Container>

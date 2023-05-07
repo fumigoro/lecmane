@@ -1,6 +1,6 @@
 export const SEMESTER: {
-  SPRING: Semester;
-  FALL: Semester;
+  SPRING: SemesterSpringAndFall;
+  FALL: SemesterSpringAndFall;
   ALL: Semester;
 } = {
   SPRING: '1',
@@ -10,8 +10,10 @@ export const SEMESTER: {
 
 export type Semester = '1' | '2' | '3';
 
-export const semesters: {
-  value: Semester;
+export type SemesterSpringAndFall = Exclude<Semester, '3'>;
+
+export const semestersSpringAndFall: {
+  value: SemesterSpringAndFall;
   label: string;
 }[] = [
   {
@@ -21,7 +23,14 @@ export const semesters: {
   {
     value: '2',
     label: '後期'
-  },
+  }
+];
+
+export const semesters: {
+  value: Semester;
+  label: string;
+}[] = [
+  ...semestersSpringAndFall,
   {
     value: '3',
     label: '通年'
