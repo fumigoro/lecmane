@@ -2,7 +2,6 @@ import { Paper, Typography, Container, Alert } from '@mui/material';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import useRoomApi from '../hooks/useRoomsApi';
-import { buildings } from '../types/Building';
 import { Time, times } from '../types/filter/Time';
 import { WeekdayExcludeConcentrated, weekdays } from '../types/filter/Weekday';
 import { useMemo, useState } from 'react';
@@ -12,6 +11,7 @@ import { Header } from '../components/general/Header';
 import MobileNavigation from '../components/general/Navigation';
 import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import { getSemester } from '../lib/main';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 export const RoomsByTimePage = () => {
   const { roomApi } = useRoomApi();
@@ -32,13 +32,19 @@ export const RoomsByTimePage = () => {
 
   // 読み込み中
   if (!roomApi) return <FullScreenMessage progress />;
+  const buildings = roomApi.getBuildings();
+  const buildingOptions = buildings.map((building) => ({
+    value: building,
+    label: building,
+    icon: <ApartmentIcon color="primary" />
+  }));
 
   return (
     <PageWrapper bgColored>
       <Header pageTitle="空き教室検索" showBackButton />
       <Container maxWidth="xl">
         <SingleSelector
-          options={buildings}
+          options={buildingOptions}
           label="建物を選択"
           selectedValue={inputState.building}
           onChange={(v) => {

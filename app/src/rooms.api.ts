@@ -55,6 +55,19 @@ class RoomsApi {
   public getRooms({ building }: { building: string | undefined }) {
     return this.rooms.flatMap((room) => (building === room.building ? [room] : []));
   }
+
+  /**
+   * 時間割データのある建物の一覧を返す
+   */
+  public getBuildings() {
+    const allBuildings = this.rooms.map((room) => room.building);
+    // 重複を削除
+    const uniqueBuildings = Array.from(new Set(allBuildings));
+    const availableBuildings = ['全共棟', '工学部棟', '応生棟', '地域棟', '教育棟', '看護棟'];
+    const buildings = uniqueBuildings.filter((building) => availableBuildings.includes(building));
+
+    return buildings;
+  }
 }
 
 export default RoomsApi;
