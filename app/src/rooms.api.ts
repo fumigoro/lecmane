@@ -63,10 +63,24 @@ class RoomsApi {
     const allBuildings = this.rooms.map((room) => room.building);
     // 重複を削除
     const uniqueBuildings = Array.from(new Set(allBuildings));
-    const availableBuildings = ['全共棟', '工学部棟', '応生棟', '地域棟', '教育棟', '看護棟'];
-    const buildings = uniqueBuildings.filter((building) => availableBuildings.includes(building));
+    const fixedIndexBuildings = ['全共棟', '工学部棟', '応生棟', '地域棟', '教育棟', '看護棟'];
+    // 並び替え
+    uniqueBuildings.sort((a, b) => {
+      const aIdx = fixedIndexBuildings.indexOf(a);
+      const bIdx = fixedIndexBuildings.indexOf(b);
+      if (aIdx === -1 && bIdx === -1) {
+        return a.localeCompare(b);
+      }
+      if (aIdx === -1) {
+        return 1;
+      }
+      if (bIdx === -1) {
+        return -1;
+      }
+      return aIdx - bIdx;
+    });
 
-    return buildings;
+    return uniqueBuildings;
   }
 }
 

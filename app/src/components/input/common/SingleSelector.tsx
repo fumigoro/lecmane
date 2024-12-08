@@ -69,7 +69,9 @@ export const SingleSelector = <T,>(props: Props<T>) => {
                   px: 1
                 }}
               >
-                <Typography>{props.noneOptionLabel}</Typography>
+                <Typography variant="h6" component="span">
+                  {props.noneOptionLabel}
+                </Typography>
               </Button>
             )}
             {/* 選択肢 */}
@@ -86,7 +88,9 @@ export const SingleSelector = <T,>(props: Props<T>) => {
                   px: 1
                 }}
               >
-                <Typography>{option.label}</Typography>
+                <Typography variant="h6" component="span">
+                  {option.label}
+                </Typography>
               </Button>
             ))}
           </Stack>

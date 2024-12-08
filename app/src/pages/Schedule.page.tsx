@@ -6,13 +6,14 @@ import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import { Timetable } from '../components/schedule/Timetable';
 import useGA4PageEvent from '../hooks/useGA4PageEvent';
-import { SEMESTER, Semester, semesters } from '../types/filter/Semester';
+import { Semester, semesters } from '../types/filter/Semester';
 import { years } from '../types/filter/Year';
+import { getSemester } from '../lib/main';
 
 const SchedulePage = () => {
   useGA4PageEvent();
   const [year, setYear] = useState(years[0].value);
-  const [semester, setSemester] = useState<Semester>(SEMESTER.SPRING);
+  const [semester, setSemester] = useState<Semester>(getSemester(new Date()));
 
   return (
     <PageWrapper>

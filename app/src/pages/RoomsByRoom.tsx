@@ -1,4 +1,4 @@
-import { Container, Paper, Typography, Box, Grid, styled } from '@mui/material';
+import { Container, Paper, Typography, Box, Grid, styled, Stack, Alert, AlertTitle } from '@mui/material';
 import { useState, useMemo } from 'react';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
@@ -7,7 +7,7 @@ import MobileNavigation from '../components/general/Navigation';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import useGA4PageEvent from '../hooks/useGA4PageEvent';
 import useRoomApi from '../hooks/useRoomsApi';
-import { SemesterSpringAndFall, semesterValueToLabel } from '../types/filter/Semester';
+import { SemesterSpringAndFall, semestersSpringAndFall, semesterValueToLabel } from '../types/filter/Semester';
 import { getSemester } from '../lib/main';
 import { grey, blue } from '@mui/material/colors';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -40,34 +40,49 @@ export const RoomsByRoomPage = () => {
     label: building,
     icon: <ApartmentIcon color="primary" />
   }));
+  const roomOptions = rooms.map((room) => ({
+    value: room.name,
+    label: room.name
+  }));
   return (
     <PageWrapper bgColored>
       <Header pageTitle="空き教室検索" showBackButton />
       <Container maxWidth="xl">
-        <SingleSelector
-          options={buildingOptions}
-          label="建物を選択"
-          selectedValue={inputState.building}
-          onChange={(v) => {
-            setInputState((s) => ({ ...s, building: v }));
-          }}
-          type={'card'}
-          sx={{ my: 2 }}
-        />
         <Paper sx={{ p: 2, my: 2 }} variant="outlined">
-          <SingleSelector
-            options={rooms.map((room) => ({
-              value: `${room.name}`,
-              label: `${room.name}`
-            }))}
-            noneOptionLabel="教室・施設を選択"
-            label="教室・施設を選択"
-            selectedValue={inputState.name}
-            onChange={(v) => {
-              setInputState((s) => ({ ...s, name: v }));
-            }}
-            type={'dropdown'}
-          />
+          <Stack gap={1}>
+            <SingleSelector
+              options={semestersSpringAndFall}
+              selectedValue={inputState.semester}
+              onChange={(v) => v && setInputState((s) => ({ ...s, semester: v }))}
+              type="button"
+              label="学期"
+            />
+            <SingleSelector
+              options={buildingOptions}
+              label="建物"
+              selectedValue={inputState.building}
+              onChange={(v) => {
+                setInputState((s) => ({ ...s, building: v }));
+              }}
+              type={'button'}
+            />
+            {roomOptions.length > 0 ? (
+              <SingleSelector
+                options={roomOptions}
+                noneOptionLabel="教室・施設を選択"
+                label="教室・施設を選択"
+                selectedValue={inputState.name}
+                onChange={(v) => {
+                  setInputState((s) => ({ ...s, name: v }));
+                }}
+                type={'dropdown'}
+              />
+            ) : (
+              <Alert severity="error">
+                <AlertTitle>建物を選択してください</AlertTitle>
+              </Alert>
+            )}
+          </Stack>
         </Paper>
         <Paper sx={{ p: 2 }} variant="outlined">
           <Box>
@@ -115,7 +130,7 @@ export const RoomsByRoomPage = () => {
                 </Grid>
               </>
             )}
-            {!selectedRoom && <Box>教室・施設を選択してください</Box>}
+            {!selectedRoom && <Box>建物と教室・施設を選択してください</Box>}
           </Box>
         </Paper>
       </Container>

@@ -43,16 +43,6 @@ export const RoomsByTimePage = () => {
     <PageWrapper bgColored>
       <Header pageTitle="空き教室検索" showBackButton />
       <Container maxWidth="xl">
-        <SingleSelector
-          options={buildingOptions}
-          label="建物を選択"
-          selectedValue={inputState.building}
-          onChange={(v) => {
-            setInputState((s) => ({ ...s, building: v }));
-          }}
-          type={'card'}
-          sx={{ my: 2 }}
-        />
         <Paper sx={{ p: 2, my: 2 }} variant="outlined">
           <Stack gap={1}>
             <SingleSelector
@@ -61,6 +51,15 @@ export const RoomsByTimePage = () => {
               selectedValue={inputState.semester}
               onChange={(v) => {
                 setInputState((s) => ({ ...s, semester: v }));
+              }}
+              type={'button'}
+            />
+            <SingleSelector
+              options={buildingOptions}
+              label="建物を選択"
+              selectedValue={inputState.building}
+              onChange={(v) => {
+                setInputState((s) => ({ ...s, building: v }));
               }}
               type={'button'}
             />
