@@ -57,7 +57,7 @@ export default function ClassSchedule(props: Props) {
   if (schedule != null && scheduleComment != null) {
     return (
       <Box mt={2}>
-        <Card>
+        <Card variant="outlined">
           <CardContent>
             <CardActions sx={{ p: 0 }}>
               <Typography>授業計画</Typography>
@@ -132,7 +132,7 @@ export default function ClassSchedule(props: Props) {
   } else {
     return (
       <Box mt={2}>
-        <Card>
+        <Card variant="outlined">
           <CardContent>
             <CardActions sx={{ p: 0 }}>
               <Typography>授業計画</Typography>

@@ -66,7 +66,7 @@ export const ClassDetail = ({ fullData }: Props) => {
         </Alert>
       </Box>
       <Box mt={2}>
-        <Card>
+        <Card variant="outlined">
           <CardContent>
             <Grid container spacing={2}>
               {displayData.basic.map((d, idx) => (
@@ -87,10 +87,12 @@ export const ClassDetail = ({ fullData }: Props) => {
 
         {displayData.details.map((d, idx) => (
           <Box key={idx} mt={2}>
-            <Card>
+            <Card variant="outlined">
               <CardContent component="div">
                 <Typography gutterBottom>{d.label}</Typography>
-                {d.value.split('\n')}
+                {d.value.split('\n').map((text, idx) => (
+                  <Typography key={idx}>{text}</Typography>
+                ))}
               </CardContent>
             </Card>
           </Box>

@@ -49,7 +49,7 @@ export const TeacherList = (props: Props) => {
 
   return (
     <Box pt={2}>
-      <Card>
+      <Card variant="outlined">
         <CardContent>
           <CardActions sx={{ p: 0 }}>
             <Grid container>
