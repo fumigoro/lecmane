@@ -1,7 +1,6 @@
 import {
   Box,
   InputLabel,
-  ButtonGroup,
   Button,
   SxProps,
   FormControl,
@@ -53,32 +52,24 @@ export const SingleSelector = <T,>(props: Props<T>) => {
   switch (props.type) {
     case 'button':
       return (
-        <Box sx={props.sx}>
-          {/* スマホ用ラベル */}
-          {props.label && (
-            <InputLabel sx={{ display: { xs: 'block', md: 'none' }, color: '#000', m: 'auto', mr: 1, ml: 0 }}>
-              {props.label}
-            </InputLabel>
-          )}
-          <ButtonGroup
-            variant="outlined"
-            aria-label="outlined button group"
-            sx={{ marginBottom: 1 }}
-            disabled={props.disabled}
-          >
-            {/* PC用ラベル */}
-            {props.label && (
-              <InputLabel sx={{ display: { xs: 'none', md: 'inline' }, color: '#000', m: 'auto', mx: 1 }}>
-                {props.label}
-              </InputLabel>
-            )}
+        <Stack sx={props.sx} gap={0.5}>
+          {props.label && <InputLabel sx={{ color: '#000' }}>{props.label}</InputLabel>}
+
+          <Stack direction="row" gap={0.5} sx={{ flexWrap: 'wrap' }}>
             {/* 選択しない、全て　のような例外選択肢。props.onChangeに対しundefinedを返す */}
             {props.noneOptionLabel && (
               <Button
                 onClick={() => props.onChange(undefined)}
                 variant={selectedId === noneOptionId ? 'contained' : 'outlined'}
+                disableElevation
+                disabled={props.disabled}
+                sx={{
+                  flexGrow: 1,
+                  minWidth: 0,
+                  px: 1
+                }}
               >
-                {props.noneOptionLabel}
+                <Typography>{props.noneOptionLabel}</Typography>
               </Button>
             )}
             {/* 選択肢 */}
@@ -87,12 +78,19 @@ export const SingleSelector = <T,>(props: Props<T>) => {
                 key={option.id}
                 onClick={() => props.onChange(option.value)}
                 variant={selectedId === option.id ? 'contained' : 'outlined'}
+                disableElevation
+                disabled={props.disabled}
+                sx={{
+                  flexGrow: 1,
+                  minWidth: 0,
+                  px: 1
+                }}
               >
-                {option.label}
+                <Typography>{option.label}</Typography>
               </Button>
             ))}
-          </ButtonGroup>
-        </Box>
+          </Stack>
+        </Stack>
       );
     case 'dropdown':
       return (

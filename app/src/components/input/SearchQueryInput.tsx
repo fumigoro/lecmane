@@ -1,4 +1,4 @@
-import { Box, Container, TextField } from '@mui/material';
+import { Box, Container, Stack, TextField } from '@mui/material';
 import { useEffect } from 'react';
 import { ClassSearchQuery } from '../../types/ClassSearchQuery';
 import { Flags } from '../../types/filter/Flag';
@@ -43,54 +43,56 @@ export const SearchQueryInput = ({ query, setQuery }: Props) => {
             setQuery({ ...query, flags: v });
           }}
         />
-        <SingleSelector
-          options={grades}
-          selectedValue={query.grade}
-          onChange={(v) => setQuery({ ...query, grade: v })}
-          noneOptionLabel="全て"
-          type="button"
-          label="学年"
-        />
-        <SingleSelector
-          options={semesters}
-          selectedValue={query.semester}
-          onChange={(v) => setQuery({ ...query, semester: v })}
-          noneOptionLabel="全て"
-          type="button"
-          label="開講時期"
-        />
-        <SingleSelector
-          options={weekdaysFull}
-          selectedValue={query.weekday}
-          onChange={(v) => setQuery({ ...query, weekday: v })}
-          noneOptionLabel="全て"
-          type="button"
-          label="曜日"
-        />
-        <SingleSelector
-          options={times}
-          selectedValue={query.time}
-          onChange={(v) => setQuery({ ...query, time: v })}
-          noneOptionLabel="全て"
-          type="button"
-          label="時限"
-        />
-        <SingleSelector
-          options={[{ value: true, label: '登録済み' }]}
-          selectedValue={query.isFavorite}
-          onChange={(v) => setQuery({ ...query, isFavorite: v })}
-          noneOptionLabel="全て"
-          type="button"
-          label="お気に入り登録"
-        />
-        <TextField
-          fullWidth
-          label="キーワード"
-          variant="outlined"
-          sx={{ my: 1 }}
-          value={query.keyWord}
-          onChange={(e) => setQuery({ ...query, keyWord: e.target.value })}
-        />
+        <Stack gap={1}>
+          <SingleSelector
+            options={grades}
+            selectedValue={query.grade}
+            onChange={(v) => setQuery({ ...query, grade: v })}
+            noneOptionLabel="全て"
+            type="button"
+            label="学年"
+          />
+          <SingleSelector
+            options={semesters}
+            selectedValue={query.semester}
+            onChange={(v) => setQuery({ ...query, semester: v })}
+            noneOptionLabel="全て"
+            type="button"
+            label="開講時期"
+          />
+          <SingleSelector
+            options={weekdaysFull}
+            selectedValue={query.weekday}
+            onChange={(v) => setQuery({ ...query, weekday: v })}
+            noneOptionLabel="全て"
+            type="button"
+            label="曜日"
+          />
+          <SingleSelector
+            options={times}
+            selectedValue={query.time}
+            onChange={(v) => setQuery({ ...query, time: v })}
+            noneOptionLabel="全て"
+            type="button"
+            label="時限"
+          />
+          <SingleSelector
+            options={[{ value: true, label: '登録済み' }]}
+            selectedValue={query.isFavorite}
+            onChange={(v) => setQuery({ ...query, isFavorite: v })}
+            noneOptionLabel="全て"
+            type="button"
+            label="お気に入り登録"
+          />
+          <TextField
+            fullWidth
+            label="キーワード"
+            variant="outlined"
+            sx={{ my: 1 }}
+            value={query.keyWord}
+            onChange={(e) => setQuery({ ...query, keyWord: e.target.value })}
+          />
+        </Stack>
       </Container>
     </Box>
   );

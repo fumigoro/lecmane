@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { useState } from 'react';
 import PageWrapper from '../components/general/BackgroundWrapper';
 import { Header } from '../components/general/Header';
@@ -18,20 +18,22 @@ const SchedulePage = () => {
     <PageWrapper>
       <Header pageTitle="時間割" />
       <Container maxWidth="xl">
-        <SingleSelector
-          options={years}
-          selectedValue={year}
-          onChange={(v) => v && setYear(v)}
-          type="dropdown"
-          label="年度"
-        />
-        <SingleSelector
-          options={semesters}
-          selectedValue={semester}
-          onChange={(v) => v && setSemester(v)}
-          type="button"
-          label=""
-        />
+        <Box my={2}>
+          <SingleSelector
+            options={years}
+            selectedValue={year}
+            onChange={(v) => v && setYear(v)}
+            type="dropdown"
+            label="年度"
+          />
+          <SingleSelector
+            options={semesters}
+            selectedValue={semester}
+            onChange={(v) => v && setSemester(v)}
+            type="button"
+            label=""
+          />
+        </Box>
       </Container>
       <Timetable year={year} semester={semester} />
       <MobileNavigation page="schedule" />

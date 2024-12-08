@@ -1,4 +1,4 @@
-import { Paper, Typography, Container, Alert } from '@mui/material';
+import { Paper, Typography, Container, Alert, Stack } from '@mui/material';
 import { FullScreenMessage } from '../components/general/FullScreenMessage';
 import { SingleSelector } from '../components/input/common/SingleSelector';
 import useRoomApi from '../hooks/useRoomsApi';
@@ -54,33 +54,35 @@ export const RoomsByTimePage = () => {
           sx={{ my: 2 }}
         />
         <Paper sx={{ p: 2, my: 2 }} variant="outlined">
-          <SingleSelector
-            options={semestersSpringAndFall}
-            label="学期を選択"
-            selectedValue={inputState.semester}
-            onChange={(v) => {
-              setInputState((s) => ({ ...s, semester: v }));
-            }}
-            type={'button'}
-          />
-          <SingleSelector
-            options={weekdays}
-            label="曜日を選択"
-            selectedValue={inputState.weekday}
-            onChange={(v) => {
-              setInputState((s) => ({ ...s, weekday: v }));
-            }}
-            type={'button'}
-          />
-          <SingleSelector
-            options={times}
-            label="時限を選択"
-            selectedValue={inputState.time}
-            onChange={(v) => {
-              setInputState((s) => ({ ...s, time: v }));
-            }}
-            type={'button'}
-          />
+          <Stack gap={1}>
+            <SingleSelector
+              options={semestersSpringAndFall}
+              label="開講時期"
+              selectedValue={inputState.semester}
+              onChange={(v) => {
+                setInputState((s) => ({ ...s, semester: v }));
+              }}
+              type={'button'}
+            />
+            <SingleSelector
+              options={weekdays}
+              label="曜日"
+              selectedValue={inputState.weekday}
+              onChange={(v) => {
+                setInputState((s) => ({ ...s, weekday: v }));
+              }}
+              type={'button'}
+            />
+            <SingleSelector
+              options={times}
+              label="時限"
+              selectedValue={inputState.time}
+              onChange={(v) => {
+                setInputState((s) => ({ ...s, time: v }));
+              }}
+              type={'button'}
+            />
+          </Stack>
         </Paper>
         <Paper sx={{ p: 2 }} variant="outlined">
           {!availableRooms && <Typography align="center">条件を選択してください</Typography>}
@@ -89,6 +91,9 @@ export const RoomsByTimePage = () => {
               {availableRooms && availableRooms.length}件の空き教室が見つかりました
             </Typography>
           )}
+          <Alert severity="warning" sx={{ my: 1 }}>
+            空き教室の利用ルールについては各学務係等の指示に従ってください。
+          </Alert>
           {availableRooms &&
             availableRooms.map((item, index) => (
               <Typography key={index} gutterBottom>
@@ -96,9 +101,6 @@ export const RoomsByTimePage = () => {
               </Typography>
             ))}
         </Paper>
-        <Alert severity="warning" sx={{ my: 2 }}>
-          実験室などの特殊な教室は検索結果に含まれません。それらの教室の空き状況は教室から検索してください。
-        </Alert>
       </Container>
       <MobileNavigation />
     </PageWrapper>

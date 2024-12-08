@@ -77,7 +77,7 @@ export const RoomsByRoomPage = () => {
                   {inputState.building} {inputState.name} {semesterValueToLabel(inputState.semester)}の使用予定
                 </Typography>
                 <Typography variant="body2" my={1}>
-                  講義なし表示でも集中講義や講義以外の使用等で空いていない場合があります。空き教室の利用については各学務係等の指示に従ってください。
+                  講義なし表示でも集中講義や講義以外の使用等で空いていない場合があります。空き教室の利用ルールについては各学務係等の指示に従ってください。
                 </Typography>
                 <Grid container spacing={1}>
                   {headerText.map((item) => (
