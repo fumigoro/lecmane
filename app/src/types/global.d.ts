@@ -22,7 +22,6 @@ export type Class = {
 };
 
 export type FullClass = Class & {
-  timestamp: string;
   details: {
     outline: string;
     goals: string;

@@ -25,8 +25,7 @@ const getValueAndLabels = (fullData: FullClass) => {
     { label: '教室', value: fullData.room.replaceAll('　', '') },
     { label: '授業形態', value: fullData.type },
     { label: '単位', value: `${fullData.credit}単位` },
-    { label: '履修コード', value: fullData.id },
-    { label: 'データ取得日', value: new Date(fullData.timestamp).toLocaleString() }
+    { label: '履修コード', value: fullData.id }
   ];
   const details = [
     { label: '授業概要', value: fullData.details.outline },
