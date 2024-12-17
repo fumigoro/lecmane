@@ -5,6 +5,9 @@ import { Calender, Class, FullClass } from '../types/global';
 import { Room } from '../rooms.api';
 import { Year } from '../types/filter/Year';
 
+// 講義データのURL
+const SYLLABUS_API_ORIGIN = 'https://cdn.lecmane.com';
+
 // S3上のデータを取得する関数
 
 /**
@@ -26,7 +29,7 @@ export const getClassDataUpdateAt = async (cache = true) => {
     }
   }
   // Fetchして取得しに行く
-  const fetchUrl = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/modified.txt`;
+  const fetchUrl = `${SYLLABUS_API_ORIGIN}/modified.txt`;
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
     const responseText = await response.text();
@@ -51,12 +54,11 @@ export const getClassDataUpdateAt = async (cache = true) => {
  * １つの学部の1つの年の講義リストを取得する
  */
 const getClassListOne = async (year: number, facultyId: string) => {
-  const fetchUrl = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/list/${facultyId}.json`;
+  const fetchUrl = `${SYLLABUS_API_ORIGIN}/${year}/list/${facultyId}.json`;
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
     const body = await response.json();
     const { main }: { main: Class[] } = body;
-    console.log(`fetch ${year} ${facultyId}.json`);
     return main;
   } catch (error) {
     window.alert(`データの取得に失敗しました。${year}-${facultyId}${error}`);
@@ -100,12 +102,11 @@ export const getClassList = async () => {
  * 指定の年度、IDのシラバスを取得する
  */
 export const getSyllabusOne = async (year: Year, id: string) => {
-  const fetchUrl = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/detail/${id}.json`;
+  const fetchUrl = `${SYLLABUS_API_ORIGIN}/${year}/detail/${id}.json`;
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
     const body = await response.json();
     const syllabus: FullClass = body;
-    console.log(`fetch ${year} ${id}.json`);
     return syllabus;
   } catch (error) {
     console.error(error);
@@ -114,7 +115,7 @@ export const getSyllabusOne = async (year: Year, id: string) => {
 };
 
 export const getRoomSchedule = async (year: Year) => {
-  const url = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/room_schedule.json`;
+  const url = `${SYLLABUS_API_ORIGIN}/${year}/room_schedule.json`;
   try {
     const response = await fetch(url, { cache: 'no-store' });
     const body: { name: string; building: string; search: boolean; schedule: string[][] }[] = await response.json();
@@ -131,7 +132,7 @@ export const getRoomSchedule = async (year: Year) => {
  * @returns
  */
 export const getCalender = async (year: Year) => {
-  const url = `https://gu-syllabus-db.s3.ap-northeast-1.amazonaws.com/${year}/calender.json`;
+  const url = `${SYLLABUS_API_ORIGIN}/${year}/calender.json`;
   try {
     const response = await fetch(url, { cache: 'no-store' });
     const body: Calender = await response.json();
@@ -140,7 +141,6 @@ export const getCalender = async (year: Year) => {
     });
     return body;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

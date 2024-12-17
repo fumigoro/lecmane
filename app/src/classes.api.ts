@@ -37,7 +37,6 @@ class ClassApi {
     if (!cachedListString || !localDataTimestampString) {
       // 全取得
       this.classList = await getClassList();
-      // console.log(this.classList);
       this.initialized = true;
       console.log('Class Api Initialized.');
       return;
@@ -74,7 +73,6 @@ class ClassApi {
     if (this.favoriteList.findIndex((f) => f.year === year && f.classId === classId) !== -1) {
       return false;
     }
-    // console.log(`追加${classId}`)
     this.favoriteList.push({
       year,
       classId
@@ -94,7 +92,6 @@ class ClassApi {
     if (index === -1) {
       return false;
     }
-    // console.log(`削除${classId}`)
     this.favoriteList.splice(index, 1);
     StorageIO.set(Key.FAVORITE_LIST, JSON.stringify(this.favoriteList));
     return true;

@@ -17,9 +17,8 @@ const useClassSearchQuery = (getInitQuery?: (q: ClassSearchQuery) => ClassSearch
     if (cashedQueryString) {
       return JSON.parse(cashedQueryString) as ClassSearchQuery;
     }
-    console.log(queryDefault);
     return queryDefault;
-  }, [getInitQuery]);
+  }, [cashedQueryString, getInitQuery]);
   const queryState = useState<ClassSearchQuery>(initialQuery);
   return queryState;
 };

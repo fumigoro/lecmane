@@ -27,7 +27,6 @@ class RoomsApi {
    */
   public getRoom({ name, building }: { name: string; building: string }) {
     const room = this.rooms.find((room) => room.name === name && room.building === building);
-    console.log(room);
     return room;
   }
 

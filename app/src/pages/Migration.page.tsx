@@ -42,7 +42,6 @@ const Migration = () => {
     });
     localStorage.removeItem('selected');
     previousStorageKeys.forEach((k) => localStorage.removeItem(k));
-    console.log('データ移行完了');
   }, [syllabusList]);
 
   return <></>;

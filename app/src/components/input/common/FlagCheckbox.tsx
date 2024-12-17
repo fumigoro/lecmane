@@ -30,7 +30,6 @@ export const FlagCheckbox = ({ query, onChange }: Props) => {
                     onChange([...query.flags, flag.id]);
                   } else {
                     const flagsNew = [...query.flags];
-                    // console.log(flagsNew)
                     const targetIndex = flagsNew.indexOf(flag.id);
                     if (targetIndex === -1) {
                       throw new Error('該当するフラグが見つからない');

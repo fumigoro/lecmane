@@ -96,8 +96,6 @@ export const copyToClipboard = (text: string) => {
   rootElement.appendChild(targetElement);
   targetElement.select();
 
-  console.log(document.execCommand('copy'));
-
   rootElement.removeChild(targetElement);
 };
 

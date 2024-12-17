@@ -19,7 +19,6 @@ import { WalkThrough } from './components/general/WalkThrough';
 import Migration from './pages/Migration.page';
 import CreditSummaryPage from './pages/CreditTotal.page';
 import liff from '@line/liff/dist/lib';
-import { firebaseApp } from './lib/firebase';
 import ReactGA from 'react-ga4';
 import { RoomsByTimePage } from './pages/RoomsByTime';
 import { RoomsByRoomPage } from './pages/RoomsByRoom';
@@ -34,13 +33,10 @@ const Router = () => {
       liff.login();
     } else {
       // const profile = await liff.getProfile();
-      // console.log(profile);
     }
   };
 
   useEffect(() => {
-    console.log('setUpCompleted', setUpCompleted);
-    console.log(firebaseApp);
     if (setUpCompleted) {
       StorageIO.set(Key.SETUP_DONE, 'true');
       // LIFF を初期化
