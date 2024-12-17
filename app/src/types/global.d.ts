@@ -33,6 +33,7 @@ export type FullClass = Class & {
     textbook: TextBook[];
     textComment: string;
     note: string;
+    lastModified: Date | null;
   };
 };
 

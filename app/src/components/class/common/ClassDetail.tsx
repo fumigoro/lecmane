@@ -25,7 +25,8 @@ const getValueAndLabels = (fullData: FullClass) => {
     { label: '教室', value: fullData.room.replaceAll('　', '') },
     { label: '授業形態', value: fullData.type },
     { label: '単位', value: `${fullData.credit}単位` },
-    { label: '履修コード', value: fullData.id }
+    { label: '履修コード', value: fullData.id },
+    { label: '情報取得日', value: fullData.details.lastModified && fullData.details.lastModified?.toLocaleDateString() }
   ];
   const details = [
     { label: '授業概要', value: fullData.details.outline },
@@ -69,7 +70,7 @@ export const ClassDetail = ({ fullData }: Props) => {
           <CardContent>
             <Grid container spacing={2}>
               {displayData.basic.map((d, idx) => (
-                <TableRow row={[d.label, d.value]} key={idx} />
+                <TableRow row={[d.label, d.value || '']} key={idx} />
               ))}
             </Grid>
           </CardContent>

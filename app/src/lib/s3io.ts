@@ -105,8 +105,17 @@ export const getSyllabusOne = async (year: Year, id: string) => {
   const fetchUrl = `${SYLLABUS_API_ORIGIN}/${year}/detail/${id}.json`;
   try {
     const response = await fetch(fetchUrl, { cache: 'no-store' });
+    // メタデータから最終更新日時を取得
+    const modified = response.headers.get('x-amz-meta-modified');
+    const modifiedDate = modified && new Date(modified);
     const body = await response.json();
-    const syllabus: FullClass = body;
+    const syllabus: FullClass = {
+      ...body,
+      details: {
+        ...body.details,
+        lastModified: modifiedDate
+      }
+    };
     return syllabus;
   } catch (error) {
     console.error(error);
